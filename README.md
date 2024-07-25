@@ -10,5 +10,7 @@ Currently, two official plugins are available:
 
 
 ### Hi Friends remember to do the following below to run
+
 npm install
+
 npm run dev
