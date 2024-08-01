@@ -10,6 +10,7 @@ import './index.css'
 // Pages
 import ErrorPage from './pages/error-page.jsx';
 import Bananas from './pages/bananas.jsx';
+import TaskPage from './pages/TasksAll.jsx';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
     path: "/banana",
     element: <Bananas />,
   },
+  {
+    path: "/tasks_all",
+    element: <TaskPage />
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
