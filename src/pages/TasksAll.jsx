@@ -1,7 +1,5 @@
 export default function TaskPage()
 {
-    
-
     return(
         <div>
             <p> niuts</p>
@@ -31,7 +29,12 @@ function TaskList()
 
     return(
         <table>
-            <thead>
+            <caption 
+                style = {{backgroundColor: 'white', color:'black'}}>
+                    Task List
+            </caption>
+            <thead 
+                style={{backgroundColor:'lightblue',color:'black'}}>
                 <tr>
                     <th>ID</th>
                     <th>Priority Level</th>
@@ -41,7 +44,8 @@ function TaskList()
                 </tr>
             </thead>
 
-            <tbody>
+            <tbody 
+            style = {{backgroundColor: 'white', color:'black'}}>
                 {listedTasks}
             </tbody>
         </table>
