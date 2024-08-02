@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
+import "./TasksAll.css"
+
 export default function TaskPage()
 {
     return(
         <div>
             <NavigationButtons></NavigationButtons>
-            <p> niuts</p>
             <TaskList></TaskList>
         </div>
     );
@@ -20,28 +22,30 @@ function TaskList()
 
     const listedTasks = dummyTasks.map((task) => (
         <tr key={task.id}>
-            <th>{task.id}</th>
-            <th>{task.priority_lvl}</th>
-            <th>{task.description}</th>
-            <th>{task.complete? "Complete" : "Incomeplete"}</th>
-            <th>{task.owner}</th>
+            <td>{task.id}</td>
+            <td>{task.priority_lvl}</td>
+            <td>{task.description}</td>
+            <td>{task.complete? "Complete" : "Incomeplete"}</td>
+            <td>{task.owner}</td>
+            <td class="remove-col">X</td>
         </tr>
     ));
 
     return(
         <table>
-            <caption 
-                style = {{backgroundColor: 'white', color:'black'}}>
+            <caption>
                     Task List
             </caption>
             <thead 
-                style={{backgroundColor:'lightblue',color:'black'}}>
+                style={{backgroundColor:'#2DFFF233',color:'black'}}>
                 <tr>
                     <th>ID</th>
                     <th>Priority Level</th>
                     <th>Description</th>
                     <th>Completion Status</th>
                     <th>Owner</th>
+
+                    <th class="remove-col">Remove </th>
                 </tr>
             </thead>
 
@@ -53,25 +57,17 @@ function TaskList()
     );
 }
 
-import { Link } from "react-router-dom";
-
 function NavigationButtons()
 {
     return(
-        <div
-            style={{
-                width:"100%",
-                display:"flex",
-                justifyContent: "space-evenly"
-            }}
-        >
-            <Link to={"/banana"}>
+        <div id ="nav-bar">
+            <Link class="nav-button" to={"/banana"}>
                 fuck
             </Link>
-            <Link to={"/"}>
+            <Link class="nav-button" to={"/"}>
                 balls
             </Link>
-            <button>
+            <button class="nav-button">
                 +
             </button>
         </div>
