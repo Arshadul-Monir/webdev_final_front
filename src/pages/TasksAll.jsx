@@ -21,15 +21,33 @@ function TaskList()
     ];
 
     const listedTasks = dummyTasks.map((task) => (
-        <tr key={task.id}>
-            <td>{task.id}</td>
-            <td>{task.priority_lvl}</td>
-            <td>{task.description}</td>
-            <td>{task.complete? "Complete" : "Incomeplete"}</td>
-            <td>{task.owner}</td>
-            <td class="remove-col">X</td>
+        <tr key={task.id} id={"row-"+task.id}>
+            <td onMouseOver={()=>selectRow(task.id)} onMouseLeave={()=>{deselectRow(task.id)}}>{task.id}</td>
+            <td onMouseOver={()=>selectRow(task.id)} onMouseLeave={()=>{deselectRow(task.id)}}>{task.priority_lvl}</td>
+            <td onMouseOver={()=>selectRow(task.id)} onMouseLeave={()=>{deselectRow(task.id)}}>{task.description}</td>
+            <td onMouseOver={()=>selectRow(task.id)} onMouseLeave={()=>{deselectRow(task.id)}}>{task.complete? "Complete" : "Incomeplete"}</td>
+            <td onMouseOver={()=>selectRow(task.id)} onMouseLeave={()=>{deselectRow(task.id)}}>{task.owner}</td>
+            
+            <td className="remove-col">X</td>
         </tr>
     ));
+
+    function selectRow(id)
+    {
+        console.log(id);
+        const row = document.getElementById("row-"+id);
+        row.style.backgroundColor = '#2DFFF233';
+        row.style.borderLeftColor= "#2DFFF233";
+        row.style.borderRightColor= "#2DFFF233";
+    }
+
+    function deselectRow(id)
+    {
+        console.log("de",id);
+        const row = document.getElementById("row-"+id);
+        row.style.backgroundColor = 'white';
+        row.style.border= "5px solid transparent";
+    }
 
     return(
         <table>
@@ -37,7 +55,9 @@ function TaskList()
                     Task List
             </caption>
             <thead 
-                style={{backgroundColor:'#2DFFF233',color:'black'}}>
+                //style={{backgroundColor:'#2DFFF233',color:'black'}}
+                style={{color:'black'}}
+            >
                 <tr>
                     <th>ID</th>
                     <th>Priority Level</th>
@@ -45,7 +65,7 @@ function TaskList()
                     <th>Completion Status</th>
                     <th>Owner</th>
 
-                    <th class="remove-col">Remove </th>
+                    <th className="remove-col">Remove </th>
                 </tr>
             </thead>
 
@@ -61,13 +81,13 @@ function NavigationButtons()
 {
     return(
         <div id ="nav-bar">
-            <Link class="nav-button" to={"/banana"}>
+            <Link className="nav-button" to={"/banana"}>
                 fuck
             </Link>
-            <Link class="nav-button" to={"/"}>
+            <Link className="nav-button" to={"/"}>
                 balls
             </Link>
-            <button class="nav-button">
+            <button className="nav-button">
                 +
             </button>
         </div>
