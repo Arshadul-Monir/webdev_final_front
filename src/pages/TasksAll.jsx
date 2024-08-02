@@ -2,6 +2,7 @@ export default function TaskPage()
 {
     return(
         <div>
+            <NavigationButtons></NavigationButtons>
             <p> niuts</p>
             <TaskList></TaskList>
         </div>
@@ -18,7 +19,7 @@ function TaskList()
     ];
 
     const listedTasks = dummyTasks.map((task) => (
-        <tr>
+        <tr key={task.id}>
             <th>{task.id}</th>
             <th>{task.priority_lvl}</th>
             <th>{task.description}</th>
@@ -49,5 +50,30 @@ function TaskList()
                 {listedTasks}
             </tbody>
         </table>
+    );
+}
+
+import { Link } from "react-router-dom";
+
+function NavigationButtons()
+{
+    return(
+        <div
+            style={{
+                width:"100%",
+                display:"flex",
+                justifyContent: "space-evenly"
+            }}
+        >
+            <Link to={"/banana"}>
+                fuck
+            </Link>
+            <Link to={"/"}>
+                balls
+            </Link>
+            <button>
+                +
+            </button>
+        </div>
     );
 }

@@ -23,7 +23,7 @@ const router = createBrowserRouter([
     element: <Bananas />,
   },
   {
-    path: "/tasks_all",
+    path: "/tasks",
     element: <TaskPage />
   }
 ]);
