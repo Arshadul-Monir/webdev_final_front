@@ -68,7 +68,12 @@ function TaskList()
                 {task.owner}
             </td>
 
-            <td className="remove-col">X</td>
+            <td 
+                className="remove-col remove-data"
+                onClick={()=>{deleteTask(task.id)}}
+            >
+                X
+            </td>
         </tr>
     ));
 
@@ -84,25 +89,18 @@ function TaskList()
         const completion_status = document.getElementById("completion-status-"+id);
         const owner = document.getElementById("owner-"+id);
 
-        id_number.style.textDecoration = "underline";
-        id_number.style.fontStyle = "italic";
-        id_number.style.fontWeight = "bold";
+        selectData(id_number);
+        selectData(priority_level);
+        selectData(description);
+        selectData(completion_status);
+        selectData(owner);
+    }
 
-        priority_level.style.textDecoration = "underline";
-        priority_level.style.fontStyle = "italic";
-        priority_level.style.fontWeight = "bold";
-
-        description.style.textDecoration = "underline";
-        description.style.fontStyle = "italic";
-        description.style.fontWeight = "bold";
-
-        completion_status.style.textDecoration = "underline";
-        completion_status.style.fontStyle = "italic";
-        completion_status.style.fontWeight = "bold";
-
-        owner.style.textDecoration = "underline";
-        owner.style.fontStyle = "italic";
-        owner.style.fontWeight = "bold";
+    function selectData(pElement)
+    {
+        pElement.style.textDecoration = "underline";
+        pElement.style.fontStyle = "italic";
+        pElement.style.fontWeight = "bold";
     }
 
     function deselectRow(id)
@@ -117,25 +115,18 @@ function TaskList()
         const completion_status = document.getElementById("completion-status-"+id);
         const owner = document.getElementById("owner-"+id);
 
-        id_number.style.textDecoration = "none";
-        id_number.style.fontStyle = "normal";
-        id_number.style.fontWeight = "normal";
+        deselectData(id_number);
+        deselectData(priority_level);
+        deselectData(description);
+        deselectData(completion_status);
+        deselectData(owner);
+    }
 
-        priority_level.style.textDecoration = "none";
-        priority_level.style.fontStyle = "normal";
-        priority_level.style.fontWeight = "normal";
-
-        description.style.textDecoration = "none";
-        description.style.fontStyle = "normal";
-        description.style.fontWeight = "normal";
-
-        completion_status.style.textDecoration = "none";
-        completion_status.style.fontStyle = "normal";
-        completion_status.style.fontWeight = "normal";
-
-        owner.style.textDecoration = "none";
-        owner.style.fontStyle = "normal";
-        owner.style.fontWeight = "normal";
+    function deselectData(pElement)
+    {
+        pElement.style.textDecoration = "none";
+        pElement.style.fontStyle = "normal";
+        pElement.style.fontWeight = "normal";
     }
 
     function clickRow(id)
@@ -143,6 +134,12 @@ function TaskList()
         //console.log("rah");
         const newURL = "/banana";
         navigate(newURL);
+    }
+
+    //unfinished, will perform deletion of task of the given id
+    function deleteTask(id)
+    {
+        console.log("delete", id)
     }
 
     return(
@@ -161,7 +158,7 @@ function TaskList()
                     <th>Completion Status</th>
                     <th>Owner</th>
 
-                    <th className="remove-col">Remove </th>
+                    <th className="remove-col">Remove</th>
                 </tr>
             </thead>
 

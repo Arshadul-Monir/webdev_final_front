@@ -71,3 +71,11 @@ caption{
 
     width: 100%;
 }
+
+.remove-data:hover{
+    color: rgb(119, 17, 17);
+
+    text-decoration: underline;
+    font-style: italic;
+    font-weight: bold;
+}
