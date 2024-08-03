@@ -16,7 +16,7 @@ table{
     border-collapse: collapse;
 }
 
-td,th{
+th{
     padding-left: 15px;
     padding-right: 15px;
 
@@ -60,4 +60,10 @@ caption{
 .remove-col{
     background-color: #ffffff;
     border-left: 80px solid transparent;
+}
+
+.table-data-link{
+    color:black;
+
+    width: 100%;
 }

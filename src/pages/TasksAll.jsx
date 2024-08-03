@@ -22,12 +22,40 @@ function TaskList()
 
     const listedTasks = dummyTasks.map((task) => (
         <tr key={task.id} id={"row-"+task.id}>
-            <td onMouseOver={()=>selectRow(task.id)} onMouseLeave={()=>{deselectRow(task.id)}}>{task.id}</td>
-            <td onMouseOver={()=>selectRow(task.id)} onMouseLeave={()=>{deselectRow(task.id)}}>{task.priority_lvl}</td>
-            <td onMouseOver={()=>selectRow(task.id)} onMouseLeave={()=>{deselectRow(task.id)}}>{task.description}</td>
-            <td onMouseOver={()=>selectRow(task.id)} onMouseLeave={()=>{deselectRow(task.id)}}>{task.complete? "Complete" : "Incomeplete"}</td>
-            <td onMouseOver={()=>selectRow(task.id)} onMouseLeave={()=>{deselectRow(task.id)}}>{task.owner}</td>
+            <td 
+                onMouseOver={()=>selectRow(task.id)} 
+                onMouseLeave={()=>{deselectRow(task.id)}}
+            >
+                <Link className="table-data-link" to={"/banana"}>{task.id}</Link>
+            </td>
+            <td 
+                onMouseOver={()=>selectRow(task.id)} 
+                onMouseLeave={()=>{deselectRow(task.id)}}
+            >
+                <Link className="table-data-link" to={"/banana"}>{task.priority_lvl}</Link>
+            </td>
+
+            <td 
+                onMouseOver={()=>selectRow(task.id)} 
+                onMouseLeave={()=>{deselectRow(task.id)}}
+            >
+                <Link className="table-data-link" to={"/banana"}>{task.description}</Link>
+            </td>
             
+            <td 
+                onMouseOver={()=>selectRow(task.id)} 
+                onMouseLeave={()=>{deselectRow(task.id)}}
+            >
+                <Link className="table-data-link" to={"/banana"}>{task.complete? "Complete" : "Incomeplete"}</Link>
+            </td>
+
+            <td 
+                onMouseOver={()=>selectRow(task.id)} 
+                onMouseLeave={()=>{deselectRow(task.id)}}
+            >
+                <Link className="table-data-link" to={"/banana"}>{task.owner}</Link>
+            </td>
+
             <td className="remove-col">X</td>
         </tr>
     ));
