@@ -65,8 +65,6 @@ function TaskList()
         console.log(id);
         const row = document.getElementById("row-"+id);
         row.style.backgroundColor = '#2DFFF233';
-        row.style.borderLeftColor= "#2DFFF233";
-        row.style.borderRightColor= "#2DFFF233";
     }
 
     function deselectRow(id)
@@ -74,7 +72,6 @@ function TaskList()
         console.log("de",id);
         const row = document.getElementById("row-"+id);
         row.style.backgroundColor = 'white';
-        row.style.border= "5px solid transparent";
     }
 
     return(

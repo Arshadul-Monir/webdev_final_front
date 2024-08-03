@@ -23,6 +23,10 @@ th{
     border: 5px solid transparent;
 }
 
+tr{
+    border: 8px solid transparent;
+}
+
 caption{
     background-color: white;
     color: black;
