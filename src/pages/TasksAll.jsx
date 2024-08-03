@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./TasksAll.css"
 
 export default function TaskPage()
@@ -13,6 +13,8 @@ export default function TaskPage()
 
 function TaskList()
 {
+    const navigate = useNavigate();
+    
     const dummyTasks = [
         {id: 88, priority_lvl: 2, description : "ballz", complete: false, owner : "joe mama"},
         {id: 1, priority_lvl: 5, description : "invade poland", complete: true, owner : "ludwig van beethoven"},
@@ -23,37 +25,47 @@ function TaskList()
     const listedTasks = dummyTasks.map((task) => (
         <tr key={task.id} id={"row-"+task.id}>
             <td 
+                id={"id-"+task.id}
                 onMouseOver={()=>selectRow(task.id)} 
                 onMouseLeave={()=>{deselectRow(task.id)}}
+                onClick={()=>{clickRow(task.id)}}
             >
-                <Link className="table-data-link" to={"/banana"}>{task.id}</Link>
+                {task.id}
             </td>
             <td 
+                id={"priority-level-"+task.id}
                 onMouseOver={()=>selectRow(task.id)} 
                 onMouseLeave={()=>{deselectRow(task.id)}}
+                onClick={()=>{clickRow(task.id)}}
             >
-                <Link className="table-data-link" to={"/banana"}>{task.priority_lvl}</Link>
+                {task.priority_lvl}
             </td>
 
             <td 
+                id={"description-"+task.id}
                 onMouseOver={()=>selectRow(task.id)} 
                 onMouseLeave={()=>{deselectRow(task.id)}}
+                onClick={()=>{clickRow(task.id)}}
             >
-                <Link className="table-data-link" to={"/banana"}>{task.description}</Link>
+                {task.description}
             </td>
             
             <td 
+                id={"completion-status-"+task.id}
                 onMouseOver={()=>selectRow(task.id)} 
                 onMouseLeave={()=>{deselectRow(task.id)}}
+                onClick={()=>{clickRow(task.id)}}
             >
-                <Link className="table-data-link" to={"/banana"}>{task.complete? "Complete" : "Incomeplete"}</Link>
+               {task.complete? "Complete" : "Incomeplete"}
             </td>
 
             <td 
+                id={"owner-"+task.id}
                 onMouseOver={()=>selectRow(task.id)} 
                 onMouseLeave={()=>{deselectRow(task.id)}}
+                onClick={()=>{clickRow(task.id)}}
             >
-                <Link className="table-data-link" to={"/banana"}>{task.owner}</Link>
+                {task.owner}
             </td>
 
             <td className="remove-col">X</td>
@@ -62,16 +74,75 @@ function TaskList()
 
     function selectRow(id)
     {
-        console.log(id);
+        //console.log(id);
         const row = document.getElementById("row-"+id);
         row.style.backgroundColor = '#2DFFF233';
+
+        const id_number = document.getElementById("id-"+id);
+        const priority_level = document.getElementById("priority-level-"+id);
+        const description = document.getElementById("description-"+id);
+        const completion_status = document.getElementById("completion-status-"+id);
+        const owner = document.getElementById("owner-"+id);
+
+        id_number.style.textDecoration = "underline";
+        id_number.style.fontStyle = "italic";
+        id_number.style.fontWeight = "bold";
+
+        priority_level.style.textDecoration = "underline";
+        priority_level.style.fontStyle = "italic";
+        priority_level.style.fontWeight = "bold";
+
+        description.style.textDecoration = "underline";
+        description.style.fontStyle = "italic";
+        description.style.fontWeight = "bold";
+
+        completion_status.style.textDecoration = "underline";
+        completion_status.style.fontStyle = "italic";
+        completion_status.style.fontWeight = "bold";
+
+        owner.style.textDecoration = "underline";
+        owner.style.fontStyle = "italic";
+        owner.style.fontWeight = "bold";
     }
 
     function deselectRow(id)
     {
-        console.log("de",id);
+        //console.log("de",id);
         const row = document.getElementById("row-"+id);
         row.style.backgroundColor = 'white';
+
+        const id_number = document.getElementById("id-"+id);
+        const priority_level = document.getElementById("priority-level-"+id);
+        const description = document.getElementById("description-"+id);
+        const completion_status = document.getElementById("completion-status-"+id);
+        const owner = document.getElementById("owner-"+id);
+
+        id_number.style.textDecoration = "none";
+        id_number.style.fontStyle = "normal";
+        id_number.style.fontWeight = "normal";
+
+        priority_level.style.textDecoration = "none";
+        priority_level.style.fontStyle = "normal";
+        priority_level.style.fontWeight = "normal";
+
+        description.style.textDecoration = "none";
+        description.style.fontStyle = "normal";
+        description.style.fontWeight = "normal";
+
+        completion_status.style.textDecoration = "none";
+        completion_status.style.fontStyle = "normal";
+        completion_status.style.fontWeight = "normal";
+
+        owner.style.textDecoration = "none";
+        owner.style.fontStyle = "normal";
+        owner.style.fontWeight = "normal";
+    }
+
+    function clickRow(id)
+    {
+        //console.log("rah");
+        const newURL = "/banana";
+        navigate(newURL);
     }
 
     return(
