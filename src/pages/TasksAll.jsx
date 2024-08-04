@@ -23,14 +23,12 @@ function TaskList({pTasks})
     const navigate = useNavigate();
 
     const listedTasks = pTasks.map((task) => (
-        <div className="task-list-row"
-                //style={{backgroundColor:'#2DFFF233',color:'black'}}
-                style={{color:'black', display:'grid', gridTemplateColumns: 'auto 70px', gap:'100px'}}
-            >
-                <div className="task-info-col"
-                    style={{display:'grid', gridTemplateColumns: '1fr 1fr 3fr 1fr 2fr', gap:'5px'}}
-                    onMouseOver={()=>selectRow(task.id)} 
-                    onMouseLeave={()=>{deselectRow(task.id)}}
+        <div 
+            className="task-list-row"
+            key={task.id}
+        >
+                <div id={"task-"+task.id} 
+                    className="task-info-col"
                     onClick={()=>{clickRow(task.id)}}
                 >
                     <p>{task.id}</p>
@@ -43,63 +41,10 @@ function TaskList({pTasks})
                 <div className="task-remove-col"
                     onClick={()=>{deleteTask(task.id)}}
                 >
-                    <p>X</p>
+                    <p className="remove-data">X</p>
                 </div>
         </div>
     ));
-
-
-    function selectRow(id)
-    {
-        //console.log(id);
-        const row = document.getElementById("row-"+id);
-        row.style.backgroundColor = '#2DFFF233';
-
-        const id_number = document.getElementById("id-"+id);
-        const priority_level = document.getElementById("priority-level-"+id);
-        const description = document.getElementById("description-"+id);
-        const completion_status = document.getElementById("completion-status-"+id);
-        const owner = document.getElementById("owner-"+id);
-
-        selectData(id_number);
-        selectData(priority_level);
-        selectData(description);
-        selectData(completion_status);
-        selectData(owner);
-    }
-
-    function selectData(pElement)
-    {
-        pElement.style.textDecoration = "underline";
-        pElement.style.fontStyle = "italic";
-        pElement.style.fontWeight = "bold";
-    }
-
-    function deselectRow(id)
-    {
-        //console.log("de",id);
-        const row = document.getElementById("row-"+id);
-        row.style.backgroundColor = 'white';
-
-        const id_number = document.getElementById("id-"+id);
-        const priority_level = document.getElementById("priority-level-"+id);
-        const description = document.getElementById("description-"+id);
-        const completion_status = document.getElementById("completion-status-"+id);
-        const owner = document.getElementById("owner-"+id);
-
-        deselectData(id_number);
-        deselectData(priority_level);
-        deselectData(description);
-        deselectData(completion_status);
-        deselectData(owner);
-    }
-
-    function deselectData(pElement)
-    {
-        pElement.style.textDecoration = "none";
-        pElement.style.fontStyle = "normal"; 
-        pElement.style.fontWeight = "normal";
-    }
 
     function clickRow(id)
     {
@@ -115,21 +60,14 @@ function TaskList({pTasks})
     }
 
     return(
-        <div className = "task-list"
-            style={{backgroundColor: 'white', color:'black', display:'flex', flexDirection: 'column',
-                paddingLeft: '5px', paddingRight: '20px'
-            }}
-        >
+        <div className = "task-list">
             <p className="table-caption">
                     Task List
             </p>
             <div className="task-list-row task-list-header"
-                //style={{backgroundColor:'#2DFFF233',color:'black'}}
-                style={{color:'black', display:'grid', gridTemplateColumns: 'auto 70px', gap:'100px'}}
+                //style={{color:'black', display:'grid', gridTemplateColumns: 'auto 70px', gap:'100px'}}
             >
-                    <div className="task-info-col"
-                        style={{display:'grid', gridTemplateColumns: '1fr 1fr 3fr 1fr 2fr'}}
-                    >
+                    <div className="header-info-col">
                         <p>ID</p>
                         <p>Priority</p>
                         <p>Description</p>
@@ -137,7 +75,7 @@ function TaskList({pTasks})
                         <p>Owner</p>
                     </div>
 
-                    <div className="task-remove-col">
+                    <div>
                         <p>Remove</p>
                     </div>
             </div>

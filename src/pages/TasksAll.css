@@ -6,25 +6,50 @@ p{
     color: black;
 }
 
-table{
-    background-color: #FFFFFF;
-    padding: 50px;
-    padding-top: 20px;
+.task-list{
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    padding-left: 5px;
+    padding-right: 20px;
+    padding-bottom: 30px;
 
-    border-radius: 5px;
-
-    border-collapse: collapse;
+    border-radius: 20px;
 }
 
-th{
-    padding-left: 15px;
-    padding-right: 15px;
-
-    border: 5px solid transparent;
+.task-list-row{
+    color: black;
+    display: grid;
+    grid-template-columns: auto 70px;
+    gap: 100px;
 }
 
-tr{
-    border: 8px solid transparent;
+.header-info-col,
+.task-info-col{
+    display: grid;
+    grid-template-columns: 1fr 1fr 3fr 1fr 3fr;
+    gap: 5px;
+
+    padding-left: 10px;
+    padding-right: 10px;
+
+    border-radius: 15px;
+
+    transition: all 100ms ease-in-out;
+}
+
+.task-info-col:hover{
+    background-color: #2DFFF233;
+
+    text-decoration: underline;
+    font-style: italic;
+}
+
+.task-list-header{
+    font-weight: bolder;
+    font-size: larger;
+
 }
 
 .table-caption{
@@ -32,7 +57,7 @@ tr{
     color: black;
     
     padding:10px;
-    padding-top: 20px;
+    padding-top: 10px;
     
     font-weight: bolder;
     font-size: larger;
@@ -61,15 +86,14 @@ tr{
     min-width: 80px;
 }
 
-.remove-col{
-    background-color: #ffffff;
-    border-left: 80px solid transparent;
-}
-
 .table-data-link{
     color:black;
 
     width: 100%;
+}
+
+.remove-data{
+    transition: all 100ms ease-in-out;
 }
 
 .remove-data:hover{
@@ -78,4 +102,7 @@ tr{
     text-decoration: underline;
     font-style: italic;
     font-weight: bold;
+    
+    background-color: rgba(139, 0, 0, 0.106);
+    border-radius: 50px;
 }
