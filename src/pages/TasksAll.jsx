@@ -3,18 +3,6 @@ import "./TasksAll.css"
 
 export default function TaskPage()
 {
-    return(
-        <div>
-            <NavigationButtons></NavigationButtons>
-            <TaskList></TaskList>
-        </div>
-    );
-}
-
-function TaskList()
-{
-    const navigate = useNavigate();
-    
     const dummyTasks = [
         {id: 88, priority_lvl: 2, description : "ballz", complete: false, owner : "joe mama"},
         {id: 1, priority_lvl: 5, description : "invade poland", complete: true, owner : "ludwig van beethoven"},
@@ -22,60 +10,44 @@ function TaskList()
         {id: 404, priority_lvl: 1000, description : "defend gotham", complete: false, owner : "the dark knight"}
     ];
 
-    const listedTasks = dummyTasks.map((task) => (
-        <tr key={task.id} id={"row-"+task.id}>
-            <td 
-                id={"id-"+task.id}
-                onMouseOver={()=>selectRow(task.id)} 
-                onMouseLeave={()=>{deselectRow(task.id)}}
-                onClick={()=>{clickRow(task.id)}}
-            >
-                {task.id}
-            </td>
-            <td 
-                id={"priority-level-"+task.id}
-                onMouseOver={()=>selectRow(task.id)} 
-                onMouseLeave={()=>{deselectRow(task.id)}}
-                onClick={()=>{clickRow(task.id)}}
-            >
-                {task.priority_lvl}
-            </td>
+    return(
+        <div>
+            <NavigationButtons></NavigationButtons>
+            <TaskList pTasks={dummyTasks}></TaskList>
+        </div>
+    );
+}
 
-            <td 
-                id={"description-"+task.id}
-                onMouseOver={()=>selectRow(task.id)} 
-                onMouseLeave={()=>{deselectRow(task.id)}}
-                onClick={()=>{clickRow(task.id)}}
-            >
-                {task.description}
-            </td>
-            
-            <td 
-                id={"completion-status-"+task.id}
-                onMouseOver={()=>selectRow(task.id)} 
-                onMouseLeave={()=>{deselectRow(task.id)}}
-                onClick={()=>{clickRow(task.id)}}
-            >
-               {task.complete? "Complete" : "Incomeplete"}
-            </td>
+function TaskList({pTasks})
+{
+    const navigate = useNavigate();
 
-            <td 
-                id={"owner-"+task.id}
-                onMouseOver={()=>selectRow(task.id)} 
-                onMouseLeave={()=>{deselectRow(task.id)}}
-                onClick={()=>{clickRow(task.id)}}
+    const listedTasks = pTasks.map((task) => (
+        <div className="task-list-row"
+                //style={{backgroundColor:'#2DFFF233',color:'black'}}
+                style={{color:'black', display:'grid', gridTemplateColumns: 'auto 70px', gap:'100px'}}
             >
-                {task.owner}
-            </td>
+                <div className="task-info-col"
+                    style={{display:'grid', gridTemplateColumns: '1fr 1fr 3fr 1fr 2fr', gap:'5px'}}
+                    onMouseOver={()=>selectRow(task.id)} 
+                    onMouseLeave={()=>{deselectRow(task.id)}}
+                    onClick={()=>{clickRow(task.id)}}
+                >
+                    <p>{task.id}</p>
+                    <p>{task.priority_lvl}</p>
+                    <p>{task.description}</p>
+                    <p>{task.complete? "Y" : "N"}</p>
+                    <p>{task.owner}</p>
+                </div>
 
-            <td 
-                className="remove-col remove-data"
-                onClick={()=>{deleteTask(task.id)}}
-            >
-                X
-            </td>
-        </tr>
+                <div className="task-remove-col"
+                    onClick={()=>{deleteTask(task.id)}}
+                >
+                    <p>X</p>
+                </div>
+        </div>
     ));
+
 
     function selectRow(id)
     {
@@ -125,7 +97,7 @@ function TaskList()
     function deselectData(pElement)
     {
         pElement.style.textDecoration = "none";
-        pElement.style.fontStyle = "normal";
+        pElement.style.fontStyle = "normal"; 
         pElement.style.fontWeight = "normal";
     }
 
@@ -143,30 +115,37 @@ function TaskList()
     }
 
     return(
-        <table>
-            <caption>
+        <div className = "task-list"
+            style={{backgroundColor: 'white', color:'black', display:'flex', flexDirection: 'column',
+                paddingLeft: '5px', paddingRight: '20px'
+            }}
+        >
+            <p className="table-caption">
                     Task List
-            </caption>
-            <thead 
+            </p>
+            <div className="task-list-row task-list-header"
                 //style={{backgroundColor:'#2DFFF233',color:'black'}}
-                style={{color:'black'}}
+                style={{color:'black', display:'grid', gridTemplateColumns: 'auto 70px', gap:'100px'}}
             >
-                <tr>
-                    <th>ID</th>
-                    <th>Priority Level</th>
-                    <th>Description</th>
-                    <th>Completion Status</th>
-                    <th>Owner</th>
+                    <div className="task-info-col"
+                        style={{display:'grid', gridTemplateColumns: '1fr 1fr 3fr 1fr 2fr'}}
+                    >
+                        <p>ID</p>
+                        <p>Priority</p>
+                        <p>Description</p>
+                        <p>Completion</p>
+                        <p>Owner</p>
+                    </div>
 
-                    <th className="remove-col">Remove</th>
-                </tr>
-            </thead>
+                    <div className="task-remove-col">
+                        <p>Remove</p>
+                    </div>
+            </div>
 
-            <tbody 
-            style = {{backgroundColor: 'white', color:'black'}}>
+            <div>
                 {listedTasks}
-            </tbody>
-        </table>
+            </div>
+        </div>
     );
 }
 

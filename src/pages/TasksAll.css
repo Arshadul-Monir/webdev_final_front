@@ -27,7 +27,7 @@ tr{
     border: 8px solid transparent;
 }
 
-caption{
+.table-caption{
     background-color: white;
     color: black;
     
