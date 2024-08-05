@@ -1,19 +1,23 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./TasksAll.css"
+import { useSelector } from "react-redux";
 
 export default function TaskPage()
 {
-    const dummyTasks = [
-        {id: 88, priority_lvl: 2, description : "ballz", complete: false, owner : "joe mama"},
-        {id: 1, priority_lvl: 5, description : "invade poland", complete: true, owner : "ludwig van beethoven"},
-        {id: 313, priority_lvl: 10, description : "become google", complete: false, owner : "kyle"},
-        {id: 404, priority_lvl: 1000, description : "defend gotham", complete: false, owner : "the dark knight"}
-    ];
+    // const dummyTasks = [
+    //     {id: 88, priority_lvl: 2, description : "ballz", complete: false, owner : "joe mama"},
+    //     {id: 1, priority_lvl: 5, description : "invade poland", complete: true, owner : "ludwig van beethoven"},
+    //     {id: 313, priority_lvl: 10, description : "become google", complete: false, owner : "kyle"},
+    //     {id: 404, priority_lvl: 1000, description : "defend gotham", complete: false, owner : "the dark knight"}
+    // ];
+
+    const tasks = useSelector(state => state.tasks);
+    // console.log(tasks);
 
     return(
         <div>
             <NavigationButtons></NavigationButtons>
-            <TaskList pTasks={dummyTasks}></TaskList>
+            <TaskList pTasks={tasks}></TaskList>
         </div>
     );
 }
