@@ -11,11 +11,19 @@ import './index.css'
 import ErrorPage from './pages/error-page.jsx';
 import Bananas from './pages/bananas.jsx';
 import TaskPage from './pages/TasksAll.jsx';
+import Homepage from './pages/homepage.jsx';
+import Employees from './pages/employees.jsx';
+
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Homepage />,
+    ErrorPage: <ErrorPage />
+  },
+  {
+    path: "/employees",
+    element: <Employees />,
     ErrorPage: <ErrorPage />
   },
   {

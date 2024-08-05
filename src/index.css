@@ -46,6 +46,7 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
@@ -65,4 +66,18 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+#greeting{
+  padding: 20px;
+  background: #1a1a1a;
+  margin: 10px;
+}
+
+#home-btns
+{
+  display: flex; 
+  gap: 12px;
+  justify-content: center;
+  flex-direction: row;
 }
