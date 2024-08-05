@@ -11,6 +11,7 @@ import './index.css'
 import ErrorPage from './pages/error-page.jsx';
 import Bananas from './pages/bananas.jsx';
 import TaskPage from './pages/TasksAll.jsx';
+import SingleTaskPage from './pages/TasksSingle.jsx';
 import Homepage from './pages/homepage.jsx';
 import Employees from './pages/employees.jsx';
 
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
     element: <Bananas />,
   },
   {
+    path: "/tasks/:id",
+    element: <SingleTaskPage />
+  },
+  {
     path: "/tasks",
     element: <TaskPage />
   }
@@ -46,5 +51,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <RouterProvider router={router} />
     </Provider>
   </React.StrictMode>,
-  {/* <App /> */}
+  //  <App /> 
 )

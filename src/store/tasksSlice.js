@@ -4,13 +4,34 @@
 import tasks from './dummydata/tasks.json';
 
 //REDUCER
-const initialState = tasks;
+const initialState = tasks; // []
 
 export function tasksReducer(state = initialState, action) {
     switch (action.type) {
       case 'tasks/tasksLoaded':
         return action.payload;
+
+      case 'add_task':
+        //console.log("IS IT RUNNING???")
+
+        //state.concat(action.newItem);
+        // console.log(action.newItem);
+        // state.concat(action.newItem);
+        // console.log(state);
+        return state = [...state , action.newItem];
+          // ...state,
+          // tasks: [...state.tasks, action.newItem]
+
+      case 'edit_task':
+        return state
+
+      case 'delete_task':
+        // console.log("Running delete")
+        return state.filter((task) => task.id != action.id)
+
+
       default:
+        //console.log("asdfasf")
         return state;
     }
 };

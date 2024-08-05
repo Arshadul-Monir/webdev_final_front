@@ -14,3 +14,8 @@ Currently, two official plugins are available:
 npm install
 
 npm run dev
+
+(might need to run
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+)

@@ -4,11 +4,13 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { Router } from 'react-router-dom'
 
+// Im still using this to test tailwind and other addons
 function App() {
   return (
     <>
-      <div>
-      </div>
+    <h1 className="text-3xl font-bold underline">
+      Hello world!
+    </h1>
     </>
   )
 }

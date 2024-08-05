@@ -1,6 +1,9 @@
 //REDUCER
 const initialState = [];
 
+
+
+
 export function employeesReducer(state = initialState, action) {
     switch (action.type) {
       case 'employees/employeesLoaded':
