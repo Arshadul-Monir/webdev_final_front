@@ -1,24 +1,33 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./TasksAll.css"
+import "../index.css"
+import { useSelector,useDispatch } from "react-redux";
 
 export default function TaskPage()
 {
-    const dummyTasks = [
-        {id: 88, priority_lvl: 2, description : "ballz", complete: false, owner : "joe mama"},
-        {id: 1, priority_lvl: 5, description : "invade poland", complete: true, owner : "ludwig van beethoven"},
-        {id: 313, priority_lvl: 10, description : "become google", complete: false, owner : "kyle"},
-        {id: 404, priority_lvl: 1000, description : "defend gotham", complete: false, owner : "the dark knight"}
-    ];
+    // const dummyTasks = [
+    //     {id: 88, priority_lvl: 2, description : "ballz", complete: false, owner : "joe mama"},
+    //     {id: 1, priority_lvl: 5, description : "invade poland", complete: true, owner : "ludwig van beethoven"},
+    //     {id: 313, priority_lvl: 10, description : "become google", complete: false, owner : "kyle"},
+    //     {id: 404, priority_lvl: 1000, description : "defend gotham", complete: false, owner : "the dark knight"}
+    // ];
+
+    const tasks = useSelector(state => state.tasks);
+    const disp = useDispatch();
+    // console.log(tasks[0].priority_lvl);
 
     return(
-        <div>
-            <NavigationButtons></NavigationButtons>
-            <TaskList pTasks={dummyTasks}></TaskList>
+        <div className="h-screen w-full flex justify-center ">
+            <div className="contextDiv">
+                <NavigationButtons></NavigationButtons>
+                <TaskList pTasks={tasks} dispatch={disp}></TaskList>
+            </div>
+
         </div>
     );
 }
 
-function TaskList({pTasks})
+function TaskList({pTasks, dispatch})
 {
     const navigate = useNavigate();
 
@@ -39,8 +48,8 @@ function TaskList({pTasks})
                 </div>
 
                 <div className="task-remove-col"
-                    onClick={()=>{deleteTask(task.id)}}
-                >
+                    onClick={() => dispatch({ type: 'delete_task', id: task.id })}>
+                
                     <p className="remove-data">X</p>
                 </div>
         </div>
@@ -49,7 +58,7 @@ function TaskList({pTasks})
     function clickRow(id)
     {
         //console.log("rah");
-        const newURL = "/banana";
+        const newURL = `/tasks/${id}`;
         navigate(newURL);
     }
 
@@ -90,16 +99,17 @@ function TaskList({pTasks})
 function NavigationButtons()
 {
     return(
-        <div id ="nav-bar">
+        <div id ="nav-bar " className="flex justify-evenly pb-[24px]">
             <Link className="nav-button" to={"/banana"}>
                 fuck
             </Link>
             <Link className="nav-button" to={"/"}>
                 balls
             </Link>
-            <button className="nav-button">
+            <Link className="nav-button" to={"/tasks/new"}>
                 +
-            </button>
+            </Link>
+            <div className="w-[24px]"></div>
         </div>
     );
 }

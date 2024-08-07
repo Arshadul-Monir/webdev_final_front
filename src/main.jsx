@@ -11,9 +11,14 @@ import './index.css'
 import ErrorPage from './pages/error-page.jsx';
 import Bananas from './pages/bananas.jsx';
 import TaskPage from './pages/TasksAll.jsx';
+import SingleTaskPage from './pages/TasksSingle.jsx';
 import Homepage from './pages/homepage.jsx';
 import Employees from './pages/employees.jsx';
 
+
+// //Redux
+import { Provider } from "react-redux";
+import store from "./store";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +36,10 @@ const router = createBrowserRouter([
     element: <Bananas />,
   },
   {
+    path: "/tasks/:id",
+    element: <SingleTaskPage />
+  },
+  {
     path: "/tasks",
     element: <TaskPage />
   }
@@ -38,7 +47,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
-    {/* <App /> */}
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>,
+  //  <App /> 
 )
