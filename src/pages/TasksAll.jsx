@@ -100,11 +100,11 @@ function NavigationButtons()
 {
     return(
         <div id ="nav-bar " className="flex justify-evenly pb-[24px]">
-            <Link className="nav-button" to={"/banana"}>
-                fuck
-            </Link>
             <Link className="nav-button" to={"/"}>
-                balls
+                Home
+            </Link>
+            <Link className="nav-button" to={"/employees"}>
+                Employees
             </Link>
             <Link className="nav-button" to={"/tasks/new"}>
                 +
