@@ -19,6 +19,7 @@ import Employees from './pages/employees.jsx';
 // //Redux
 import { Provider } from "react-redux";
 import store from "./store";
+import EmployeesSinglePage from './pages/employees_single.jsx';
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,10 @@ const router = createBrowserRouter([
   {
     path: "/employees",
     element: <Employees />,
-    ErrorPage: <ErrorPage />
+  },
+  {
+    path: "/employee/:id",
+    element: <EmployeesSinglePage />,
   },
   {
     path: "/banana",

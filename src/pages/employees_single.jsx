@@ -4,49 +4,42 @@ import "../index.css"
 import { useSelector, useDispatch  } from "react-redux";
 import { useState } from 'react'
 
-export default function TaskSinglePage()
+export default function EmployeesSinglePage()
 {
   const param = useParams();
 
 
   console.log(param.id);
 
-  const tasks = useSelector(state => state.tasks);
+  const employees = useSelector(state => state.employees);
   const dispatch = useDispatch();
-  console.log(tasks);
 
-  const taskfiltered = tasks.filter((task) => task.id == param.id)
+  const emplfiltered = employees.filter((empl) => empl.id == param.id)
 
-  // I check if we already have a task with that id. 
-  let task = taskfiltered[0]
+  // I check if we already have a employee with that id. 
+  let empl = emplfiltered[0]
 
-  const [newEntry, setNewEntry] = useState(taskfiltered.length == 0 ? true : false)
+  const [newEntry, setNewEntry] = useState(emplfiltered.length == 0 ? true : false)
   
   if (newEntry){
-    task = {
+    empl = {
       // Evanutally we can use rand thing with our db to create unique ids
       // but don't worry about it for now.
       id: 0,
-      priority_lvl: 0,
-      description: "",
-      owner: "",
-      complete: false
+      first_name: "",
+      last_name: "",
+      department: "",
+      task: ""
     }
   }
 
-  // const [id, setId] = useState(newEntry ? 0 : task.id)
-  // const [priority_lvl, setPriority_lvl] = useState(newEntry ? 0 : task.priority_lvl)
-  // const [description, setDescription] = useState(newEntry ? "" : task.description)
-  // const [owner, setOwner] = useState(newEntry ? "" : task.owner)
-  // const [complete, setComplete] = useState(newEntry ? false : task.complete)
-
   const [formData, setFormData] = useState(
   {
-    id: task.id,
-    priority_lvl: task.priority_lvl,
-    description: task.description,
-    owner: task.owner,
-    complete: task.complete
+    id: empl.id,
+    first_name: empl.first_name,
+    last_name: empl.last_name,
+    department: empl.department,
+    task: empl.task
   })
 
   function handleFormChange(event){
@@ -63,7 +56,7 @@ export default function TaskSinglePage()
     })
   }
 
-  const dispactchType = (newEntry == true) ? 'add_task' : 'edit_task'
+  const dispactchType = (newEntry == true) ? 'add_empl' : 'edit_empl'
 
   return(
     <div className="h-screen w-full flex justify-center ">
@@ -78,7 +71,6 @@ export default function TaskSinglePage()
               </button>
             </div>
 
-            {/* Middle Row */}
             <div className="forumRow">
               <div className="forumDiv">
                 <div><label className="pl-[4px]" >id</label></div>
@@ -92,12 +84,12 @@ export default function TaskSinglePage()
               </div>
 
               <div className="forumDiv">
-                <div><label className="pl-[4px]">Priority Level</label></div>
+                <div><label className="pl-[4px]">First Name</label></div>
                 <div>
                   <input type="number" id="" placeholder={0} className="pl-[4px]"
-                  value={formData.priority_lvl} 
-                  onChange={handleFormChangeNumber}
-                  name="priority_lvl"
+                  value={formData.first_name} 
+                  onChange={handleFormChange}
+                  name="first_name"
                   >
                 </input></div>
               </div>
@@ -107,37 +99,36 @@ export default function TaskSinglePage()
               </button>
             </div>
 
-            {/* Last row */}
             <div className="forumRow">
               <div className="forumDiv">
-                <div><label className="pl-[4px]" >Description</label></div>
+                <div><label className="pl-[4px]" >Last Name</label></div>
                 <div>
                   <input type="text" id="" placeholder="Description..." className="pl-[4px]"
-                  value={formData.description} 
+                  value={formData.last_name} 
                   onChange={handleFormChange}
-                  name="description"
+                  name="last_name"
                   >
                 </input></div>
               </div>
 
               <div className="forumDiv">
-                <div><label className="pl-[4px]">Owner</label></div>
+                <div><label className="pl-[4px]">Department</label></div>
                 <div>
                   <input type="text" id="" placeholder="Owner..." className="pl-[4px]"
-                  value={formData.owner} 
+                  value={formData.department} 
                   onChange={handleFormChange}
-                  name="owner"
+                  name="department"
                   >
                 </input></div>
               </div>
 
               <div className="forumDiv">
-                <div><label className="pl-[4px]">Complete Status</label></div>
+                <div><label className="pl-[4px]">Task</label></div>
                 <div>
                   <select id="" className="pl-[4px] w-[180px]"
-                  value={formData.complete} 
+                  value={formData.task} 
                   onChange={handleFormChange}
-                  name="complete"
+                  name="task"
                   >
                     <option value={false}> Incomplete </option>
                     <option value={true}> Complete </option>
@@ -151,33 +142,18 @@ export default function TaskSinglePage()
   );
 }
 
-// function FilloutTasks(){
-//   console.log(des);
-//   return (
-//   <div>
-//     <div>enter/save row</div>
-//     <div>first info row
-//       <label for="lname">Last Name</label>
-//       <input type="text" id="fname" name="firstname" placeholder="Your name.." value={des} onchange={setDes}>
-//       </input>
-//     </div>
-//     <div>2nd info row</div>
-//   </div>
-//   )
-// }
-
 function NavigationButtons()
 {
   return(
     <div id ="nav-bar " className="flex justify-evenly pb-[24px]">
-        <Link className="nav-button" to={"/banana"}>
-            fuck
-        </Link>
         <Link className="nav-button" to={"/"}>
+            Home
+        </Link>
+        <Link className="nav-button" to={"/bananas"}>
             balls
         </Link>
-        <Link className="nav-button" to={"/tasks/"}>
-            Back to all tasks
+        <Link className="nav-button" to={"/employees/"}>
+            Back to all employees
         </Link>
         <div className="w-[24px]"></div>
     </div>
