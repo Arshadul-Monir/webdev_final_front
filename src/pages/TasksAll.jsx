@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import "./TasksAll.css"
+// import "./TasksAll.css"
 import "./Table.css"
 import "../index.css"
 import { useSelector,useDispatch } from "react-redux";
@@ -37,72 +37,72 @@ export default function TaskPage()
 }
 
 
-function TaskList({pTasks, dispatch})
-{
-    const navigate = useNavigate();
+// function TaskList({pTasks, dispatch})
+// {
+//     const navigate = useNavigate();
 
-    const listedTasks = pTasks.map((task) => (
-        <div 
-            className="list-row"
-            key={task.id}
-        >
-                <div id={"task-"+task.id} 
-                    className="info-col"
-                    onClick={()=>{clickRow(task.id)}}
-                >
-                    <p>{task.id}</p>
-                    <p>{task.priority_lvl}</p>
-                    <p>{task.description}</p>
-                    <p>{task.complete? "Y" : "N"}</p>
-                    <p>{task.owner}</p>
-                </div>
+//     const listedTasks = pTasks.map((task) => (
+//         <div 
+//             className="list-row"
+//             key={task.id}
+//         >
+//                 <div id={"task-"+task.id} 
+//                     className="info-col"
+//                     onClick={()=>{clickRow(task.id)}}
+//                 >
+//                     <p>{task.id}</p>
+//                     <p>{task.priority_lvl}</p>
+//                     <p>{task.description}</p>
+//                     <p>{task.complete? "Y" : "N"}</p>
+//                     <p>{task.owner}</p>
+//                 </div>
 
-                <div className="remove-col"
-                    onClick={() => dispatch({ type: 'delete_task', id: task.id })}>
+//                 <div className="remove-col"
+//                     onClick={() => dispatch({ type: 'delete_task', id: task.id })}>
                 
-                    <p className="remove-data">X</p>
-                </div>
-        </div>
-    ));
+//                     <p className="remove-data">X</p>
+//                 </div>
+//         </div>
+//     ));
 
-    function clickRow(id)
-    {
-        //console.log("rah");
-        const newURL = `/tasks/${id}`;
-        navigate(newURL);
-    }
+//     function clickRow(id)
+//     {
+//         //console.log("rah");
+//         const newURL = `/tasks/${id}`;
+//         navigate(newURL);
+//     }
 
-    //unfinished, will perform deletion of task of the given id
-    function deleteTask(id)
-    {
-        console.log("delete", id)
-    }
+//     //unfinished, will perform deletion of task of the given id
+//     function deleteTask(id)
+//     {
+//         console.log("delete", id)
+//     }
 
-    return(
-        <div className = "list">
-            <p className="table-caption">
-                    Task List
-            </p>
-            <div className="list-row list-header">
-                    <div className="header-info-col">
-                        <p>ID</p>
-                        <p>Priority</p>
-                        <p>Description</p>
-                        <p>Completion</p>
-                        <p>Owner</p>
-                    </div>
+//     return(
+//         <div className = "list">
+//             <p className="table-caption">
+//                     Task List
+//             </p>
+//             <div className="list-row list-header">
+//                     <div className="header-info-col">
+//                         <p>ID</p>
+//                         <p>Priority</p>
+//                         <p>Description</p>
+//                         <p>Completion</p>
+//                         <p>Owner</p>
+//                     </div>
 
-                    <div>
-                        <p>Remove</p>
-                    </div>
-            </div>
+//                     <div>
+//                         <p>Remove</p>
+//                     </div>
+//             </div>
 
-            <div>
-                {listedTasks}
-            </div>
-        </div>
-    );
-}
+//             <div>
+//                 {listedTasks}
+//             </div>
+//         </div>
+//     );
+// }
 
 
 function NavigationButtons()
