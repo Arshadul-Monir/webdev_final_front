@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import "./TasksAll.css"
+import "./Table.css"
 import "../index.css"
 import { useSelector,useDispatch } from "react-redux";
 
@@ -33,11 +33,11 @@ function TaskList({pTasks, dispatch})
 
     const listedTasks = pTasks.map((task) => (
         <div 
-            className="task-list-row"
+            className="list-row"
             key={task.id}
         >
                 <div id={"task-"+task.id} 
-                    className="task-info-col"
+                    className="info-col"
                     onClick={()=>{clickRow(task.id)}}
                 >
                     <p>{task.id}</p>
@@ -47,7 +47,7 @@ function TaskList({pTasks, dispatch})
                     <p>{task.owner}</p>
                 </div>
 
-                <div className="task-remove-col"
+                <div className="remove-col"
                     onClick={() => dispatch({ type: 'delete_task', id: task.id })}>
                 
                     <p className="remove-data">X</p>
@@ -69,13 +69,11 @@ function TaskList({pTasks, dispatch})
     }
 
     return(
-        <div className = "task-list">
+        <div className = "list">
             <p className="table-caption">
                     Task List
             </p>
-            <div className="task-list-row task-list-header"
-                //style={{color:'black', display:'grid', gridTemplateColumns: 'auto 70px', gap:'100px'}}
-            >
+            <div className="list-row list-header">
                     <div className="header-info-col">
                         <p>ID</p>
                         <p>Priority</p>
@@ -100,11 +98,11 @@ function NavigationButtons()
 {
     return(
         <div id ="nav-bar " className="flex justify-evenly pb-[24px]">
-            <Link className="nav-button" to={"/banana"}>
-                fuck
-            </Link>
             <Link className="nav-button" to={"/"}>
-                balls
+                Home
+            </Link>
+            <Link className="nav-button" to={"/employees"}>
+                View All Employees
             </Link>
             <Link className="nav-button" to={"/tasks/new"}>
                 +
