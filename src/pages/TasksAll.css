@@ -94,6 +94,7 @@ p{
 
 .remove-data{
     transition: all 100ms ease-in-out;
+    text-align: center;
 }
 
 .remove-data:hover{
