@@ -68,32 +68,63 @@ function TaskList({pTasks, dispatch})
         console.log("delete", id)
     }
 
-    return(
-        <div className = "task-list">
-            <p className="table-caption">
-                    Task List
-            </p>
-            <div className="task-list-row task-list-header"
-                //style={{color:'black', display:'grid', gridTemplateColumns: 'auto 70px', gap:'100px'}}
-            >
-                    <div className="header-info-col">
-                        <p>ID</p>
-                        <p>Priority</p>
-                        <p>Description</p>
-                        <p>Completion</p>
-                        <p>Owner</p>
-                    </div>
+    if(pTasks.length > 0)
+    {
+            return(
+            <div className = "task-list">
+                <p className="table-caption">
+                        Task List
+                </p>
+                <div className="task-list-row task-list-header"
+                    //style={{color:'black', display:'grid', gridTemplateColumns: 'auto 70px', gap:'100px'}}
+                >
+                        <div className="header-info-col">
+                            <p>ID</p>
+                            <p>Priority</p>
+                            <p>Description</p>
+                            <p>Completion</p>
+                            <p>Owner</p>
+                        </div>
 
-                    <div>
-                        <p>Remove</p>
-                    </div>
-            </div>
+                        <div>
+                            <p>Remove</p>
+                        </div>
+                </div>
 
-            <div>
-                {listedTasks}
+                <div>
+                    {listedTasks}
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
+    else{
+        return(
+            <div className = "task-list">
+                <p className="table-caption">
+                        Task List
+                </p>
+                <div className="task-list-row task-list-header"
+                    //style={{color:'black', display:'grid', gridTemplateColumns: 'auto 70px', gap:'100px'}}
+                >
+                        <div className="header-info-col">
+                            <p>ID</p>
+                            <p>Priority</p>
+                            <p>Description</p>
+                            <p>Completion</p>
+                            <p>Owner</p>
+                        </div>
+
+                        <div>
+                            <p>Remove</p>
+                        </div>
+                </div>
+
+                <div style={{textAlign:'center', paddingTop:'40px', paddingBottom:'20px'}}>
+                    No tasks found
+                </div>
+            </div>
+        );
+    }
 }
 
 function NavigationButtons()
