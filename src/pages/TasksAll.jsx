@@ -2,6 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import "./TasksAll.css"
 import "../index.css"
 import { useSelector,useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { fetchEmployees } from "../store/employeesSlice";
 
 export default function TaskPage()
 {
@@ -15,6 +17,10 @@ export default function TaskPage()
     const tasks = useSelector(state => state.tasks);
     const disp = useDispatch();
     // console.log(tasks[0].priority_lvl);
+
+    useEffect(()=>{
+        disp(fetchEmployees());
+    },[disp]);
 
     return(
         <div className="h-screen w-full flex justify-center ">
@@ -91,7 +97,7 @@ function TaskList({pTasks, dispatch})
                         </div>
                 </div>
 
-                <div>
+                <div style={{minHeight:'84px'}}>
                     {listedTasks}
                 </div>
             </div>
