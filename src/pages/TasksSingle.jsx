@@ -73,9 +73,9 @@ export default function TaskSinglePage()
           <div className="forumCol">
             <div className="flex justify-end">
 
-              <button className="nav-button" onClick={() => dispatch({ type: dispactchType, newItem: formData })}>
-                Save
-              </button>
+              <Link className="nav-button" onClick={() => dispatch({ type: dispactchType, newItem: formData })} to={"/tasks"}>
+                Save 
+              </Link>
             </div>
 
             {/* Middle Row */}

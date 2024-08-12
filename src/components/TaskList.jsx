@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import "../index.css"
+
 
 export default function TaskList({pTasks = [], dispatch})
 {
