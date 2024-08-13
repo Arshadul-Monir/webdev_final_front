@@ -23,7 +23,7 @@ export default function TaskList({pTasks = [], dispatch})
                 </div>
 
                 <div className="task-remove-col"
-                    onClick={() => dispatch({ type: 'delete_task', id: task.id })}>
+                    onClick={() => deleteTask(task.id)}>
                 
                     <p className="remove-data">X</p>
                 </div>
