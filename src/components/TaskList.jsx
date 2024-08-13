@@ -16,7 +16,7 @@ export default function TaskList({pTasks = [], dispatch})
                     onClick={()=>{clickRow(task.id)}}
                 >
                     <p>{task.id}</p>
-                    <p>{task.priority_lvl}</p>
+                    <p>{task.priority}</p>
                     <p>{task.description}</p>
                     <p>{task.complete? "Y" : "N"}</p>
                     <p>{task.owner}</p>

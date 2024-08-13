@@ -2,8 +2,8 @@ import { Link, useNavigate,useParams } from "react-router-dom";
 import "./Table.css"
 import "../index.css"
 import { useSelector, useDispatch  } from "react-redux";
-import { useState } from 'react'
-import { addTask, deleteTask, editTask } from "../store/tasksSlice";
+import { useEffect, useState } from 'react'
+import { fetchTasks, addTask, deleteTask, editTask } from "../store/tasksSlice";
 
 
 export default function TaskSinglePage()
@@ -11,15 +11,22 @@ export default function TaskSinglePage()
   const param = useParams();
 
   const tasks = useSelector(state => state.tasks);
-  const dispatch = useDispatch();
+  // console.log(tasks);
+  const disp = useDispatch();
 
-  console.log(param.id);
-  console.log(tasks);
+  useEffect(()=>{
+      disp(fetchTasks());
+  },[disp]);
+
+  // console.log(param.id);
+  // console.log(tasks);
 
   const taskfiltered = tasks.filter((task) => task.id == param.id)
 
   // I check if we already have a task with that id. 
+  console.log(taskfiltered)
   let task = taskfiltered[0]
+
   const orignalID = (param.id == "new" ? 0 : task.id);
 
   const [newEntry, setNewEntry] = useState(taskfiltered.length == 0 ? true : false)
@@ -36,7 +43,7 @@ export default function TaskSinglePage()
       // Evanutally we can use rand thing with our db to create unique ids
       // but don't worry about it for now.
       id: 0,
-      priority_lvl: 0,
+      priority: "",
       description: "",
       owner: "",
       complete: false
@@ -52,7 +59,7 @@ export default function TaskSinglePage()
   const [formData, setFormData] = useState(
   {
     id: task.id,
-    priority_lvl: task.priority_lvl,
+    priority: task.priority,
     description: task.description,
     owner: task.owner,
     complete: task.complete
@@ -73,14 +80,26 @@ export default function TaskSinglePage()
     })
     setChangeMade(true);
     if (event.target.name == "id"){
-      console.log("Asdfasdf");
+      //console.log("Asdfasdf");
       validateID(Number(event.target.value));
     }
 
   }
 
 
-  const dispactchType = (newEntry == true) ? dispatch(addTask(task)) : dispatch(editTask(task))
+  const dispactchType = (newEntry == true) ?  nothing :  nothing //? dispatch(addTask(task)) : dispatch(editTask(task))
+
+  function nothing(){
+    return
+  }
+
+  function dispatchAddTask(task){
+    dispatch(addTask(task))
+  }
+
+  function dispatchAddTask(task){
+    dispatch(addTask(task))
+  }
 
   function validateID(idnumber){
     if (idnumber == 0){
@@ -111,7 +130,7 @@ export default function TaskSinglePage()
           <div className="forumCol">
             <div className="flex justify-end">
 
-              <Link className="nav-button" onClick={dispactchType} to={"/tasks"}>
+              <Link type="button" className="nav-button" onClick={dispactchType} to={"/tasks"}>
 
                 Save 
               </Link>
@@ -134,9 +153,9 @@ export default function TaskSinglePage()
               <div className="forumDiv">
                 <div><label className="pl-[4px]">Priority Level</label></div>
                 <div>
-                  <input type="number" id="" placeholder={0} className="pl-[4px]"
-                  value={formData.priority_lvl} 
-                  onChange={handleFormChangeNumber}
+                  <input type="text" id="" placeholder={0} className="pl-[4px]"
+                  value={formData.priority} 
+                  onChange={handleFormChange}
                   name="priority_lvl"
                   >
                 </input></div>
@@ -197,11 +216,11 @@ function NavigationButtons()
 {
   return(
     <div id ="nav-bar " className="flex justify-evenly pb-[24px]">
-        <Link className="nav-button" to={"/banana"}>
-            fuck
-        </Link>
         <Link className="nav-button" to={"/"}>
-            balls
+          Home
+        </Link>
+        <Link className="nav-button" to={"/employees"}>
+            Employees
         </Link>
         <Link className="nav-button" to={"/tasks/"}>
             Back to all tasks

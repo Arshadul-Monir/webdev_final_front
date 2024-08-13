@@ -139,10 +139,10 @@ function NavigationButtons()
         <Link className="nav-button" to={"/"}>
             Home
         </Link>
-        <Link className="nav-button" to={"/bananas"}>
-            balls
+        <Link className="nav-button" to={"/tasks"}>
+            Tasks
         </Link>
-        <Link className="nav-button" to={"/employees/"}>
+        <Link className="nav-button" to={"/employees"}>
             Back to all employees
         </Link>
         <div className="w-[24px]"></div>
