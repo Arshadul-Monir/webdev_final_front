@@ -67,34 +67,58 @@ function EmployeeList({pEmployees, dispatch})
         navigate(newURL);
     }
 
-    //unfinished, will perform deletion of task of the given id
-    function deleteTask(id)
+    if(pEmployees.length > 0)
     {
-        console.log("delete", id)
+        return(
+            <div className = "list">
+                <p className="table-caption">
+                        Employee List
+                </p>
+                <div className="list-row list-header">
+                        <div className="header-info-col">
+                            <p>ID</p>
+                            <p>First Name</p>
+                            <p>Last Name</p>
+                            <p>Department</p>
+                            <p>Task</p>
+                        </div>
+
+                        <div>
+                            <p>Remove</p>
+                        </div>
+                </div>
+
+                <div>
+                    {listedEmployees}
+                </div>
+            </div>
+        );
     }
+    else
+    {
+        return(
+            <div className = "list">
+                <p className="table-caption">
+                        Employee List
+                </p>
+                <div className="list-row list-header">
+                        <div className="header-info-col">
+                            <p>ID</p>
+                            <p>First Name</p>
+                            <p>Last Name</p>
+                            <p>Department</p>
+                            <p>Task</p>
+                        </div>
 
-    return(
-        <div className = "list">
-            <p className="table-caption">
-                    Employee List
-            </p>
-            <div className="list-row list-header">
-                    <div className="header-info-col">
-                        <p>ID</p>
-                        <p>First Name</p>
-                        <p>Last Name</p>
-                        <p>Department</p>
-                        <p>Task</p>
-                    </div>
+                        <div>
+                            <p>Remove</p>
+                        </div>
+                </div>
 
-                    <div>
-                        <p>Remove</p>
-                    </div>
+                <div style={{textAlign:'center', paddingTop:'40px', paddingBottom:'20px'}}>
+                    No employees found
+                </div>
             </div>
-
-            <div>
-                {listedEmployees}
-            </div>
-        </div>
-    );
+        );
+    }
 }
