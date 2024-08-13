@@ -37,12 +37,6 @@ export default function TaskList({pTasks = [], dispatch})
         navigate(newURL);
     }
 
-    //unfinished, will perform deletion of task of the given id
-    function deleteTask(id)
-    {
-        console.log("delete", id)
-    }
-
     if(pTasks.length > 0)
     {
             return(

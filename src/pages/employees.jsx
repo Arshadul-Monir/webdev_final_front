@@ -58,7 +58,7 @@ function EmployeeList({pEmployees, dispatch})
     function clickRow(id)
     {
         //console.log("rah");
-        const newURL = `/tasks/${id}`;
+        const newURL = `/employees/${id}`;
         navigate(newURL);
     }
 
