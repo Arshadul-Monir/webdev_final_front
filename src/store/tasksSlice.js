@@ -30,6 +30,7 @@ export const fetchTasks = () => async (dispatch) => {
   try {
     let res = await axios.get(`${PATH}`);
     dispatch({type: 'tasks/tasksLoaded', payload: res.data});
+    console.log(res.data);
   } catch(err) {
     console.error(err);
   }
@@ -48,6 +49,7 @@ export const deleteTask = taskId => async dispatch => {
 
 /* ADD TASK */
 export const addTask = task => async (dispatch) => {
+  console.log(task)
   try {
     let res = await axios.post(`${PATH}`, task);
     dispatch({type: 'tasks/taskCreated', payload: res.data});

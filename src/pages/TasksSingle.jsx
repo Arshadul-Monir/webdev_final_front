@@ -15,6 +15,7 @@ export default function TaskSinglePage()
   console.log(param.id);
   console.log(tasks);
 
+
   const taskfiltered = tasks.filter((task) => task.id == param.id)
 
   // I check if we already have a task with that id. 
@@ -31,7 +32,7 @@ export default function TaskSinglePage()
       // Evanutally we can use rand thing with our db to create unique ids
       // but don't worry about it for now.
       id: 0,
-      priority_lvl: 0,
+      priority: 0,
       description: "",
       owner: "",
       complete: false
@@ -39,7 +40,7 @@ export default function TaskSinglePage()
   }
 
   // const [id, setId] = useState(newEntry ? 0 : task.id)
-  // const [priority_lvl, setPriority_lvl] = useState(newEntry ? 0 : task.priority_lvl)
+  // const [priority, setpriority] = useState(newEntry ? 0 : task.priority)
   // const [description, setDescription] = useState(newEntry ? "" : task.description)
   // const [owner, setOwner] = useState(newEntry ? "" : task.owner)
   // const [complete, setComplete] = useState(newEntry ? false : task.complete)
@@ -47,22 +48,25 @@ export default function TaskSinglePage()
   const [formData, setFormData] = useState(
   {
     id: task.id,
-    priority_lvl: task.priority_lvl,
+    priority: task.priority,
     description: task.description,
     owner: task.owner,
     complete: task.complete
   } )
 
   function handleFormChange(event){
-    console.log(event)
+    console.log(event.target.name)
     setFormData({...formData,
-        [event.target.name]: event.target.value
+      [event.target.name]: event.target.value
     })
-    setChangeMade(true);
+
+    console.log(event.target.value)
+    console.log(formData)
   }
 
   function handleFormChangeNumber(event){
-    //console.log("@", event)
+    // console.log(event)
+
     setFormData({...formData,
         [event.target.name]: Number(event.target.value)
     })
@@ -75,7 +79,8 @@ export default function TaskSinglePage()
   }
 
 
-  const dispactchType = (newEntry == true) ? dispatch(addTask(task)) : dispatch(editTask(task))
+  const dispactchType = (newEntry == true) ? () => dispatch(addTask(formData)) : () => dispatch(editTask(formData));
+
 
   function validateID(idnumber){
     if (idnumber == 0){
@@ -130,9 +135,9 @@ export default function TaskSinglePage()
                 <div><label className="pl-[4px]">Priority Level</label></div>
                 <div>
                   <input type="number" id="" placeholder={0} className="pl-[4px]"
-                  value={formData.priority_lvl} 
+                  value={formData.priority} 
                   onChange={handleFormChangeNumber}
-                  name="priority_lvl"
+                  name="priority"
                   >
                 </input></div>
               </div>
