@@ -123,18 +123,7 @@ export default function EmployeesSinglePage()
                 </input></div>
               </div>
 
-              <div className="forumDiv">
-                <div><label className="pl-[4px]">Task</label></div>
-                <div>
-                  <select id="" className="pl-[4px] w-[180px]"
-                  value={formData.task} 
-                  onChange={handleFormChange}
-                  name="task"
-                  >
-                    <option value={false}> Incomplete </option>
-                    <option value={true}> Complete </option>
-                </select></div>
-              </div>
+
             </div>
           </div>
 
