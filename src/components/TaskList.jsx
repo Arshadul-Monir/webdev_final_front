@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import "../index.css"
-import { deleteTask } from "../store/tasksSlice"
+
 
 export default function TaskList({pTasks = [], dispatch})
 {
@@ -16,14 +16,14 @@ export default function TaskList({pTasks = [], dispatch})
                     onClick={()=>{clickRow(task.id)}}
                 >
                     <p>{task.id}</p>
-                    <p>{task.priority_lvl}</p>
+                    <p>{task.priority}</p>
                     <p>{task.description}</p>
                     <p>{task.complete? "Y" : "N"}</p>
                     <p>{task.owner}</p>
                 </div>
 
                 <div className="task-remove-col"
-                    onClick={() => dispatch(deleteTask(task.id))}>
+                    onClick={() => dispatch({ type: 'delete_task', id: task.id })}>
                 
                     <p className="remove-data">X</p>
                 </div>
@@ -38,10 +38,10 @@ export default function TaskList({pTasks = [], dispatch})
     }
 
     //unfinished, will perform deletion of task of the given id
-    // function deleteTask(id)
-    // {
-    //     console.log("delete", id)
-    // }
+    function deleteTask(id)
+    {
+        console.log("delete", id)
+    }
 
     if(pTasks.length > 0)
     {
