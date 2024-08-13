@@ -8,13 +8,9 @@ import { addTask, deleteTask, editTask } from "../store/tasksSlice";
 export default function TaskSinglePage()
 {
   const param = useParams();
-
-
-  console.log(param.id);
-
   const tasks = useSelector(state => state.tasks);
   const dispatch = useDispatch();
-  console.log(tasks);
+  // console.log(tasks);
 
   const taskfiltered = tasks.filter((task) => task.id == param.id)
 
@@ -51,20 +47,22 @@ export default function TaskSinglePage()
   })
 
   function handleFormChange(event){
-    console.log(event)
+    console.log(event.target.name)
     setFormData({...formData,
-        [event.target.name]: event.target.value
+      [event.target.name]: event.target.value
     })
+    console.log(event.target.value)
+    console.log(formData)
   }
 
   function handleFormChangeNumber(event){
-    console.log(event)
+    // console.log(event)
     setFormData({...formData,
         [event.target.name]: Number(event.target.value)
     })
   }
 
-  const dispactchType = (newEntry == true) ? dispatch(addTask(task)) : dispatch(editTask(task))
+  const dispactchType = (newEntry == true) ? () => dispatch(addTask(formData)) : () => dispatch(editTask(formData));
 
   return(
     <div className="h-screen w-full flex justify-center ">
