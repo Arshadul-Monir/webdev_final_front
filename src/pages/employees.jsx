@@ -4,6 +4,7 @@ import "../index.css"
 import { useEffect } from "react";
 import { useSelector,useDispatch } from "react-redux";
 import { fetchEmployees } from "../store/employeesSlice";
+import NavigationButtons from "../components/NavigationButtons";
 
 export default function Employees()
 {
@@ -18,7 +19,11 @@ export default function Employees()
     return(
         <div className="h-screen w-full flex justify-center">
             <div className="contextDiv">
-                <NavigationButtons></NavigationButtons>
+                <NavigationButtons 
+                    buttonOne="Home" 
+                    buttonTwo="Tasks" 
+                    buttonThree="New_Employee"
+                ></NavigationButtons>
                 <EmployeeList pEmployees={employees} dispatch={disp}></EmployeeList>
             </div>
         </div>
@@ -90,24 +95,6 @@ function EmployeeList({pEmployees, dispatch})
             <div>
                 {listedEmployees}
             </div>
-        </div>
-    );
-}
-
-function NavigationButtons()
-{
-    return(
-        <div id ="nav-bar " className="flex justify-evenly pb-[24px]">
-            <Link className="nav-button" to={"/"}>
-                Home
-            </Link>
-            <Link className="nav-button" to={"/tasks"}>
-                View All Tasks
-            </Link>
-            <Link className="nav-button" to={"/employee/new"}>
-                +
-            </Link >
-            <div className="w-[24px]"></div>
         </div>
     );
 }
