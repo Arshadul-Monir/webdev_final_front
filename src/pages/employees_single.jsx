@@ -66,7 +66,7 @@ export default function EmployeesSinglePage()
           <div className="forumCol">
             <div className="flex justify-end">
 
-              <button className="nav-button" onClick={() => dispatch({ type: dispactchType, newItem: formData })}>
+              <button className="nav-button" onClick={() => dispatch({ type: dispactchType, newItem: formData })} to={"/employees"}>
                 Save
               </button>
             </div>

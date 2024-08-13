@@ -1,5 +1,3 @@
-
-
 //REDUCER
 const initialState = [];
 
@@ -25,12 +23,13 @@ export function employeesReducer(state = initialState, action) {
 //API calls go here
 import axios from "axios";
 //PATH (should be where your server is running)
-const PATH = "https://jsonplaceholder.typicode.com";
+const PATH = "http://localhost:5001/api/";
 
 //Thunk 
 export const fetchEmployees = () => async (dispatch) => {
   try {
-    let res = await axios.get(`${PATH}/users`);
+    let res = await axios.get(`${PATH}/employees`);
+    console.log (res.data);
     dispatch({type: 'employees/employeesLoaded', payload: res.data});
   } catch(err) {
     console.error(err);

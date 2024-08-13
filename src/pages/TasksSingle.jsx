@@ -3,6 +3,7 @@ import "./Table.css"
 import "../index.css"
 import { useSelector, useDispatch  } from "react-redux";
 import { useState } from 'react'
+import { addTask, deleteTask, editTask } from "../store/tasksSlice";
 
 export default function TaskSinglePage()
 {
@@ -73,6 +74,9 @@ export default function TaskSinglePage()
 
   }
 
+
+  const dispactchType = (newEntry == true) ? dispatch(addTask(task)) : dispatch(editTask(task))
+
   function validateID(idnumber){
     if (idnumber == 0){
       setIdValid(false);
@@ -93,7 +97,6 @@ export default function TaskSinglePage()
   }
 
 
-  const dispactchType = (newEntry == true) ? 'add_task' : 'edit_task'
 
   return(
     <div className="h-screen w-full flex justify-center ">
@@ -103,8 +106,8 @@ export default function TaskSinglePage()
           <div className="forumCol">
             <div className="flex justify-end">
 
-              <Validate idValid = {idValid}></Validate>
-              <Link className="nav-button" onClick={() => dispatch({ type: dispactchType, newItem: formData })} to={"/tasks"}>
+              <Link className="nav-button" onClick={dispactchType} to={"/tasks"}>
+
                 Save 
               </Link>
 
@@ -134,7 +137,7 @@ export default function TaskSinglePage()
                 </input></div>
               </div>
 
-              <button className="nav-button">
+              <button className="nav-button" onClick={() => deleteTask(task.id)}>
                 Delete
               </button>
             </div>
