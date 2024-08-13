@@ -64,7 +64,7 @@ export default function TaskSinglePage()
     })
   }
 
-  const dispactchType = (newEntry == true) ? 'add_task' : 'edit_task'
+  const dispactchType = (newEntry == true) ? dispatch(addTask(task)) : dispatch(editTask(task))
 
   return(
     <div className="h-screen w-full flex justify-center ">
@@ -74,7 +74,7 @@ export default function TaskSinglePage()
           <div className="forumCol">
             <div className="flex justify-end">
 
-              <Link className="nav-button" onClick={() => dispatch(addTask(task.id))} to={"/tasks"}>
+              <Link className="nav-button" onClick={dispactchType} to={"/tasks"}>
                 Save 
               </Link>
             </div>
