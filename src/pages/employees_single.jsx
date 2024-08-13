@@ -84,9 +84,27 @@ export default function EmployeesSinglePage()
               </div>
 
               <div className="forumDiv">
+                <div><label className="pl-[4px]">Department</label></div>
+                <div>
+                  <input type="text" id="" placeholder="Department..." className="pl-[4px]"
+                  value={formData.department} 
+                  onChange={handleFormChange}
+                  name="department"
+                  >
+                </input></div>
+              </div>
+
+
+              <button className="nav-button">
+                Delete
+              </button>
+            </div>
+            <div className="forumRow">
+
+            <div className="forumDiv">
                 <div><label className="pl-[4px]">First Name</label></div>
                 <div>
-                  <input type="number" id="" placeholder={0} className="pl-[4px]"
+                  <input type="text" id="" placeholder="First Name..." className="pl-[4px]"
                   value={formData.first_name} 
                   onChange={handleFormChange}
                   name="first_name"
@@ -94,30 +112,13 @@ export default function EmployeesSinglePage()
                 </input></div>
               </div>
 
-              <button className="nav-button">
-                Delete
-              </button>
-            </div>
-
-            <div className="forumRow">
               <div className="forumDiv">
                 <div><label className="pl-[4px]" >Last Name</label></div>
                 <div>
-                  <input type="text" id="" placeholder="Description..." className="pl-[4px]"
+                  <input type="text" id="" placeholder="Last Name..." className="pl-[4px]"
                   value={formData.last_name} 
                   onChange={handleFormChange}
                   name="last_name"
-                  >
-                </input></div>
-              </div>
-
-              <div className="forumDiv">
-                <div><label className="pl-[4px]">Department</label></div>
-                <div>
-                  <input type="text" id="" placeholder="Owner..." className="pl-[4px]"
-                  value={formData.department} 
-                  onChange={handleFormChange}
-                  name="department"
                   >
                 </input></div>
               </div>

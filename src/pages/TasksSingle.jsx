@@ -5,6 +5,7 @@ import { useSelector, useDispatch  } from "react-redux";
 import { useState } from 'react'
 import { addTask, deleteTask, editTask } from "../store/tasksSlice";
 
+
 export default function TaskSinglePage()
 {
   const param = useParams();
@@ -23,8 +24,12 @@ export default function TaskSinglePage()
 
   const [newEntry, setNewEntry] = useState(taskfiltered.length == 0 ? true : false)
   const [changeMade, setChangeMade] = useState(false)
+
+  // Validations
   const [idValid, setIdValid] = useState((param.id == "new" ? false : true))
-  
+  const [descriptionValid, setDescriptionValid] = useState(false)
+
+
   if (newEntry){
 
     task = {
@@ -208,18 +213,18 @@ function NavigationButtons()
 }
 
 function Validate(idObj){
-  // console.log(idObj.idValid);
-  if (idObj.idValid == true){
-    return (
-      <div>
-      </div>
-    )
-  } else {
-    return (
-      <div>
-        ID not valid
-      </div>
-    )
-  }
+  const iddiv = (idObj.idValid == true) ?( <div></div> ) : (<div> ID not valid </div>)
 
+  return ( 
+        <div>
+          <ValidateIDDiv obj = {idObj}></ValidateIDDiv>
+        </div>
+  )
+
+}
+
+function ValidateIDDiv(idObj){
+  const iddiv = (idObj.idValid == true) ?( <div></div> ) : (<div> ID not valid </div>)
+
+  return (iddiv)
 }
