@@ -9,21 +9,24 @@ export default function TaskSinglePage()
 {
   const param = useParams();
 
-
-  console.log(param.id);
-
   const tasks = useSelector(state => state.tasks);
   const dispatch = useDispatch();
+
+  console.log(param.id);
   console.log(tasks);
 
   const taskfiltered = tasks.filter((task) => task.id == param.id)
 
   // I check if we already have a task with that id. 
   let task = taskfiltered[0]
+  const orignalID = (param.id == "new" ? 0 : task.id);
 
   const [newEntry, setNewEntry] = useState(taskfiltered.length == 0 ? true : false)
+  const [changeMade, setChangeMade] = useState(false)
+  const [idValid, setIdValid] = useState((param.id == "new" ? false : true))
   
   if (newEntry){
+
     task = {
       // Evanutally we can use rand thing with our db to create unique ids
       // but don't worry about it for now.
@@ -48,23 +51,52 @@ export default function TaskSinglePage()
     description: task.description,
     owner: task.owner,
     complete: task.complete
-  })
+  } )
 
   function handleFormChange(event){
     console.log(event)
     setFormData({...formData,
         [event.target.name]: event.target.value
     })
+    setChangeMade(true);
   }
 
   function handleFormChangeNumber(event){
-    console.log(event)
+    //console.log("@", event)
     setFormData({...formData,
         [event.target.name]: Number(event.target.value)
     })
+    setChangeMade(true);
+    if (event.target.name == "id"){
+      console.log("Asdfasdf");
+      validateID(Number(event.target.value));
+    }
+
   }
 
+
   const dispactchType = (newEntry == true) ? dispatch(addTask(task)) : dispatch(editTask(task))
+
+  function validateID(idnumber){
+    if (idnumber == 0){
+      setIdValid(false);
+      return;
+    }
+    if (idnumber == orignalID) {
+      setIdValid(true);
+      return;
+    } 
+    let taskfiltered2 = tasks.filter((task) => task.id == idnumber)
+    if (taskfiltered2.length == 0){
+        setIdValid(true); 
+    } else {
+        setIdValid(false);
+    }
+
+
+  }
+
+
 
   return(
     <div className="h-screen w-full flex justify-center ">
@@ -75,8 +107,10 @@ export default function TaskSinglePage()
             <div className="flex justify-end">
 
               <Link className="nav-button" onClick={dispactchType} to={"/tasks"}>
+
                 Save 
               </Link>
+
             </div>
 
             {/* Middle Row */}
@@ -152,20 +186,7 @@ export default function TaskSinglePage()
   );
 }
 
-// function FilloutTasks(){
-//   console.log(des);
-//   return (
-//   <div>
-//     <div>enter/save row</div>
-//     <div>first info row
-//       <label for="lname">Last Name</label>
-//       <input type="text" id="fname" name="firstname" placeholder="Your name.." value={des} onchange={setDes}>
-//       </input>
-//     </div>
-//     <div>2nd info row</div>
-//   </div>
-//   )
-// }
+
 
 function NavigationButtons()
 {
@@ -183,4 +204,22 @@ function NavigationButtons()
         <div className="w-[24px]"></div>
     </div>
 );
+
+}
+
+function Validate(idObj){
+  // console.log(idObj.idValid);
+  if (idObj.idValid == true){
+    return (
+      <div>
+      </div>
+    )
+  } else {
+    return (
+      <div>
+        ID not valid
+      </div>
+    )
+  }
+
 }
