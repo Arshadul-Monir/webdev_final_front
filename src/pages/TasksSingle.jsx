@@ -4,6 +4,8 @@ import "../index.css"
 import { useSelector, useDispatch  } from "react-redux";
 import { useState } from 'react'
 import { addTask, deleteTask, editTask } from "../store/tasksSlice";
+import NavigationButtons from "../components/NavigationButtons";
+
 
 export default function TaskSinglePage()
 {
@@ -106,7 +108,7 @@ export default function TaskSinglePage()
   return(
     <div className="h-screen w-full flex justify-center ">
       <div className="contextDiv">
-          <NavigationButtons ></NavigationButtons>
+          <NavigationButtons buttonTwo="Employees" buttonThree="Return_Tasks"></NavigationButtons>
 
           <div className="forumCol">
             <div className="flex justify-end">
@@ -189,27 +191,6 @@ export default function TaskSinglePage()
       </div>
     </div>
   );
-}
-
-
-
-function NavigationButtons()
-{
-  return(
-    <div id ="nav-bar " className="flex justify-evenly pb-[24px]">
-        <Link className="nav-button" to={"/"}>
-            Home
-        </Link>
-        <Link className="nav-button" to={"/employees"}>
-            View All Employees
-        </Link>
-        <Link className="nav-button" to={"/tasks/"}>
-            Back to all tasks
-        </Link>
-        <div className="w-[24px]"></div>
-    </div>
-);
-
 }
 
 function Validate(idObj){
