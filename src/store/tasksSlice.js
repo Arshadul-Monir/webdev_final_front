@@ -21,7 +21,7 @@ export function tasksReducer(state = initialState, action) {
 //API calls go here
 import axios from "axios";
 //PATH (should be where your server is running)
-const PATH = "https://localhost:5001/api";
+const PATH = "http://localhost:5001/api/tasks";
 
 //Thunks
 

@@ -11,6 +11,7 @@ import TaskList from "../components/TaskList";
 export default function TaskPage()
 {
     const tasks = useSelector(state => state.tasks);
+    console.log(tasks);
     const disp = useDispatch();
 
     useEffect(()=>{

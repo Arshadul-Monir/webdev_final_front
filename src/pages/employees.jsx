@@ -1,12 +1,19 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./Table.css"
 import "../index.css"
+import { useEffect } from "react";
 import { useSelector,useDispatch } from "react-redux";
+import { fetchEmployees } from "../store/employeesSlice";
 
 export default function Employees()
 {
     const employees = useSelector(state => state.employees);
+    console.log(employees);
     const disp = useDispatch();
+
+    useEffect(() => {
+        disp(fetchEmployees());
+      }, [disp]);
 
     return(
         <div className="h-screen w-full flex justify-center">
@@ -32,10 +39,12 @@ function EmployeeList({pEmployees, dispatch})
                     onClick={()=>{clickRow(empl.id)}}
                 >
                     <p>{empl.id}</p>
-                    <p>{empl.first_name}</p>
-                    <p>{empl.last_name}</p>
+                    <p>{empl.firstname}</p>
+                    <p>{empl.lastname}</p>
                     <p>{empl.department}</p>
-                    <p>{empl.task}</p>
+
+                    {/* <p>{empl.task}</p> */}
+                    <p> WE NEED TO MAP TASKS OUTS HERE</p>
                 </div>
 
                 <div className="id-remove-col"
