@@ -3,6 +3,7 @@ import "./Table.css"
 import "../index.css"
 import { useSelector, useDispatch  } from "react-redux";
 import { useState } from 'react'
+import { addTask, deleteTask, editTask } from "../store/tasksSlice";
 
 export default function TaskSinglePage()
 {
@@ -73,7 +74,7 @@ export default function TaskSinglePage()
           <div className="forumCol">
             <div className="flex justify-end">
 
-              <Link className="nav-button" onClick={() => dispatch({ type: dispactchType, newItem: formData })} to={"/tasks"}>
+              <Link className="nav-button" onClick={() => dispatch(addTask(task.id))} to={"/tasks"}>
                 Save 
               </Link>
             </div>
@@ -102,7 +103,7 @@ export default function TaskSinglePage()
                 </input></div>
               </div>
 
-              <button className="nav-button">
+              <button className="nav-button" onClick={() => deleteTask(task.id)}>
                 Delete
               </button>
             </div>
