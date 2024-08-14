@@ -4,19 +4,9 @@ import { deleteTask } from "../../store/tasksSlice"
 
 import "./styles/tailwindStyle.css"
 
-function ShowOwnership(task){
-    // console.log("Show ownership", task.task)
-    // console.log(task.task.employee, task.task == null);
-
-    const owner = (task.task.employee == null) ? "No owner" : `${task.task.employee.firstname} ${task.task.employee.lastname}`
-    return (<p>{owner}</p>)
-}
-
 export default function TaskList({pTasks = [], dispatch})
-{   
+{
     const navigate = useNavigate();
-
-
 
     const listedTasks = pTasks.map((task) => (
         <div 
@@ -30,10 +20,8 @@ export default function TaskList({pTasks = [], dispatch})
                     <p>{task.id}</p>
                     <p>{task.priority}</p>
                     <p>{task.description}</p>
-                    <p>{task.isComplete? "Y" : "N"}</p>
-
-                    <ShowOwnership task = {task}></ShowOwnership>
-
+                    <p>{task.complete? "Y" : "N"}</p>
+                    <p>{(task.employee)? task.employee.firstname+ " " +task.employee.lastname : "N/A"}</p>
                 </div>
 
                 <div className="task-remove-col"
@@ -50,7 +38,6 @@ export default function TaskList({pTasks = [], dispatch})
         const newURL = `/tasks/${id}`;
         navigate(newURL);
     }
-
 
     if(pTasks.length > 0)
     {

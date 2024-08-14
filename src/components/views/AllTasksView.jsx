@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import "./Table.css"
 import "./styles/tailwindStyle.css"
 import TaskList from "./TaskList";
+import NavigationButtons from "./NavigationButtons";
 
-export default function AllTasksView({ tasks, deleteTask })
+export default function AllTasksView({ tasks, dispatch })
 {
     // const tasks = useSelector(state => state.tasks);
     // // console.log(tasks);
@@ -18,28 +19,10 @@ export default function AllTasksView({ tasks, deleteTask })
     return(
         <div className="h-screen w-full flex justify-center ">
             <div className="contextDiv">
-                <NavigationButtons />
-                <TaskList pTasks={tasks} dispatch={deleteTask}></TaskList>
+                <NavigationButtons buttonOne="Home" buttonTwo="Employees" buttonThree="New_Task"></NavigationButtons>
+                <TaskList pTasks={tasks} dispatch={dispatch}></TaskList>
             </div>
 
-        </div>
-    );
-}
-
-function NavigationButtons()
-{
-    return(
-        <div id ="nav-bar " className="flex justify-evenly pb-[24px]">
-            <Link className="nav-button" to={"/"}>
-                Home
-            </Link>
-            <Link className="nav-button" to={"/employees"}>
-                View All Employees
-            </Link>
-            <Link className="nav-button" to={"/tasks/new"}>
-                +
-            </Link>
-            <div className="w-[24px]"></div>
         </div>
     );
 }
