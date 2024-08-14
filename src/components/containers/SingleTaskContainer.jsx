@@ -48,7 +48,7 @@ function SingleTaskContainer() {
     task = {
       // Here we have a default value of zero if there are no tasks 
       // or we take the largest id value then add one.
-      id: (tasks.length == 0) ? 0 : (Math.max(...tasks.map(o => o.id)) + 1),
+      //id: (tasks.length == 0) ? 0 : (Math.max(...tasks.map(o => o.id)) + 1),
       priority: "Low",
       description: "",
       employeeId: null,
@@ -60,7 +60,7 @@ function SingleTaskContainer() {
   const [formData, setFormData] = useState(
     // This was to prevent page refresh crashing 
     (task == undefined) ? {
-      id: 0,
+      //id: 0,
       priority: "",
       description: "",
       employeeId: null,
@@ -91,10 +91,10 @@ function SingleTaskContainer() {
           [event.target.name]: Number(event.target.value)
       })
       setChangeMade(true);
-      if (event.target.name == "id"){
-        //console.log("Asdfasdf");
-        validateID(Number(event.target.value));
-      }
+      // if (event.target.name == "id"){
+      //   //console.log("Asdfasdf");
+      //   validateID(Number(event.target.value));
+      // }
   
     }
   
@@ -106,6 +106,7 @@ function SingleTaskContainer() {
           tasks = {tasks} // we prob don't need this one, if i was better at coding. 
           employees = {employees}
           dispactchType={dispactchType} 
+          deleteTask={dispatch(deleteTask(formData))}
 
           formData={formData}
           setFormData={setFormData} // This is actually not being used

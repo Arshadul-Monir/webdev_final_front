@@ -4,6 +4,7 @@ import "./Table.css"
 import { useSelector, useDispatch  } from "react-redux";
 import { useEffect, useState } from 'react'
 import { fetchTasks, addTask, deleteTask, editTask } from "../../store/tasksSlice";
+import NavigationButtons from "./NavigationButtons";
 
 import "./styles/tailwindStyle.css"
 
@@ -65,7 +66,7 @@ export default function SingleTaskView({
   return(
     <div className="h-screen w-full flex justify-center ">
       <div className="contextDiv">
-          <NavigationButtons ></NavigationButtons>
+          <NavigationButtons buttonTwo="Employees" buttonThree="Return_Tasks"></NavigationButtons>
 
           <div className="forumCol">
             <div className="flex justify-end">
@@ -78,13 +79,10 @@ export default function SingleTaskView({
               <div className="forumDiv">
                 <div><label className="pl-[4px]" >id</label></div>
                 <div>
-                  <input type="number" id="" placeholder={0} className="pl-[4px]"
-                  disabled 
-                  value={formData.id} 
-                  onChange={handleFormChangeNumber}
-                  name="id"
-                  >
-                </input></div>
+                  <p style={{textAlign:"left", paddingLeft:"50px"}}> 
+                    {(!task.id)? "New Task!" : `Edit task ${task.id}!`}
+                  </p>
+                </div>
               </div>
 
               <div className="forumDiv">
@@ -101,9 +99,10 @@ export default function SingleTaskView({
                 </select></div>
               </div>
 
-              <button className="nav-button" onClick={() => deleteTask(task.id)}>
-                Delete
-              </button>
+              <Link className="nav-button" to={"/tasks"} 
+              onClick={(!task.id)? () => null : deleteTask(task.id)}>
+                {(!task.id)? "Cancel?" : `Delete task ${task.id}?`}
+              </Link>
             </div>
 
             {/* Last row */}
@@ -157,27 +156,6 @@ export default function SingleTaskView({
       </div>
     </div>
   );
-}
-
-
-
-function NavigationButtons()
-{
-  return(
-    <div id ="nav-bar " className="flex justify-evenly pb-[24px]">
-        <Link className="nav-button" to={"/"}>
-          Home
-        </Link>
-        <Link className="nav-button" to={"/employees"}>
-            Employees
-        </Link>
-        <Link className="nav-button" to={"/tasks/"}>
-            Back to all tasks
-        </Link>
-        <div className="w-[24px]"></div>
-    </div>
-);
-
 }
 
 
