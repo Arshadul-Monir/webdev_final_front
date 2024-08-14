@@ -19,7 +19,7 @@ export default function TaskList({pTasks = [], deleteTask})
                     <p>{task.priority}</p>
                     <p>{task.description}</p>
                     <p>{task.complete? "Y" : "N"}</p>
-                    <p>{task.owner}</p>
+                    <p>{(task.employee)? task.employee.firstname+ " " +task.employee.lastname : "N/A"}</p>
                 </div>
 
                 <div className="task-remove-col"
