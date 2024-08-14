@@ -12,7 +12,7 @@ function ShowOwnership(task){
     return (<p>{owner}</p>)
 }
 
-export default function TaskList({pTasks = [], dispatch})
+export default function TaskList({pTasks = [], deleteTask})
 {   
     const navigate = useNavigate();
 
@@ -37,7 +37,7 @@ export default function TaskList({pTasks = [], dispatch})
                 </div>
 
                 <div className="task-remove-col"
-                    onClick={() => dispatch(deleteTask(task.id))}>
+                    onClick={deleteTask}>
                 
                     <p className="remove-data">X</p>
                 </div>

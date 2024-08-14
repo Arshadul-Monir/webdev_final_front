@@ -90,20 +90,20 @@ function EmployeeList({pEmployees})
     );
 }
 
-function NavigationButtons()
-{
-    return(
-        <div id ="nav-bar " className="flex justify-evenly pb-[24px]">
-            <Link className="nav-button" to={"/"}>
-                Home
-            </Link>
-            <Link className="nav-button" to={"/tasks"}>
-                View All Tasks
-            </Link>
-            <Link className="nav-button" to={"/employee/new"}>
-                +
-            </Link >
-            <div className="w-[24px]"></div>
-        </div>
-    );
-}
+// function NavigationButtons()
+// {
+//     return(
+//         <div id ="nav-bar " className="flex justify-evenly pb-[24px]">
+//             <Link className="nav-button" to={"/"}>
+//                 Home
+//             </Link>
+//             <Link className="nav-button" to={"/tasks"}>
+//                 View All Tasks
+//             </Link>
+//             <Link className="nav-button" to={"/employee/new"}>
+//                 +
+//             </Link >
+//             <div className="w-[24px]"></div>
+//         </div>
+//     );
+// }
