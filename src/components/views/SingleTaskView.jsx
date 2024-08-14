@@ -7,12 +7,24 @@ import { fetchTasks, addTask, deleteTask, editTask } from "../../store/tasksSlic
 
 import "./styles/tailwindStyle.css"
 
-export default function SingleTaskView({task, dispactchType,
+export default function SingleTaskView({
+  task, 
+  tasks, 
+  employees, 
+  dispactchType,
   formData,
-  setFormData,
+  setFormData, // This is actually not being used
   handleFormChange,
-  handleFormChangeNumber})
+  handleFormChangeNumber
+
+
+
+})
 {
+
+  console.log(task)
+  console.log(tasks)
+  console.log(employees)
 
   function validateID(idnumber){
     if (idnumber == 0){
@@ -65,12 +77,15 @@ export default function SingleTaskView({task, dispactchType,
               <div className="forumDiv">
                 <div><label className="pl-[4px]">Priority Level</label></div>
                 <div>
-                  <input type="text" id="" placeholder={0} className="pl-[4px]"
+                  <select  id="" placeholder={"Low"} className="pl-[4px]"
                   value={formData.priority} 
                   onChange={handleFormChange}
-                  name="priority_lvl"
+                  name="priority"
                   >
-                </input></div>
+                  <option value={"Low"}> Low </option>
+                  <option value={"Medium"}> Medium </option>
+                  <option value={"High"}> High </option>
+                </select></div>
               </div>
 
               <button className="nav-button" onClick={() => deleteTask(task.id)}>

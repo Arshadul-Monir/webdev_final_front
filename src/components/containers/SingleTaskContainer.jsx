@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from 'react'
-import { fetchTasks, addTask, deleteTask, editTask } from "../../store/tasksSlice";
-
+import { fetchTasks, addTask, deleteTask, editTask,  } from "../../store/tasksSlice";
+import { fetchEmployees } from "../../store/employeesSlice";
 
 import SingleTaskView from '../views/SingleTaskView';
 
@@ -17,15 +17,22 @@ function SingleTaskContainer() {
       disp(fetchTasks());
   },[disp]);
 
-  console.log("Pram Id", param.taskId);
-  console.log("tasks", tasks);
+  const employees = useSelector((state) => state.employees);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+      dispatch(fetchEmployees());
+    }, [dispatch]);
+
+  // console.log("Pram Id", param.taskId);
+  // console.log("tasks", tasks);
 
   const taskfiltered = tasks.filter((task) => task.id == param.taskId)
 
   // I check if we already have a task with that id. 
-  console.log("filtered tasks", taskfiltered)
+  // console.log("filtered tasks", taskfiltered)
   let task = taskfiltered[0]
-  console.log("Printing task", task)
+  // console.log("Printing task", task)
 
   let onLoadId = (task == undefined) ? 0 : task.id
   const orignalID = (param.taskId == "new" ? 0 : onLoadId);
@@ -38,31 +45,35 @@ function SingleTaskContainer() {
   const [descriptionValid, setDescriptionValid] = useState(false)
   
   if (newEntry){
-
+    // console.log("tasks in newEntry ",tasks);
     task = {
-      // Evanutally we can use rand thing with our db to create unique ids
-      // but don't worry about it for now.
-      id: 0,
+      // Here we have a default value of zero if there are no tasks 
+      // or we take the last id value then add one.
+      id: (tasks.length == 0) ? 0 : (tasks[tasks.length -1].id + 1),
       priority: "",
       description: "",
-      owner: "",
+      employeeId: null,
+      employee: null,
       complete: false
     }
   }
 
   const [formData, setFormData] = useState(
+    // This was to prevent page refresh crashing 
     (task == undefined) ? {
       id: 0,
       priority: "",
       description: "",
-      owner: "",
+      employeeId: null,
+      employee: null,
       complete: false
     } :
     {
       id: task.id,
       priority: task.priority,
       description: task.description,
-      owner: task.owner,
+      employeeId: task.employeeId,
+      employee: task.employee,
       complete: task.complete
     } 
   )
@@ -91,11 +102,18 @@ function SingleTaskContainer() {
     const dispactchType = (newEntry == true) ? () => dispatch(addTask(formData)) : () => dispatch(editTask(formData));
     // const dispactchType = () => dispatch(editTask(formData));
 
-  return <SingleTaskView task={task} dispactchType={dispactchType} 
+  return <SingleTaskView 
+          task={task} 
+          tasks = {tasks} // we prob don't need this one, if i was better at coding. 
+          employees = {employees}
+          dispactchType={dispactchType} 
+
           formData={formData}
-          setFormData={setFormData}
+          setFormData={setFormData} // This is actually not being used
           handleFormChange={handleFormChange}
           handleFormChangeNumber={handleFormChangeNumber}
+
+
           />
 }
 
