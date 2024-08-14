@@ -88,7 +88,7 @@ function SingleTaskContainer() {
   
     }
   
-    const dispactchType = (newEntry == true) ? () => dispatch(addTask(formData)) : () => dispatch(editTask(formData));
+    const dispactchType = (newEntry == true) ? () => disp(addTask(formData)) : () => disp(editTask(formData));
     // const dispactchType = () => dispatch(editTask(formData));
 
   return <SingleTaskView task={task} dispactchType={dispactchType} 
