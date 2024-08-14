@@ -10,17 +10,17 @@ function SingleTaskContainer() {
   const param = useParams();
 
   const tasks = useSelector(state => state.tasks);
+  const employees = useSelector((state) => state.employees);
+  
   // console.log(tasks);
   const dispatch = useDispatch();
 
-  useEffect(()=>{
-    dispatch(fetchTasks());
-  },[dispatch]);
-
   useEffect(() => {
     dispatch(fetchEmployees());
+    dispatch(fetchTasks());
   }, [dispatch]);
-  const employees = useSelector((state) => state.employees);
+
+
 
 
 
@@ -31,15 +31,17 @@ function SingleTaskContainer() {
   let task = taskfiltered[0]
   // console.log("Printing task", task)
 
-  let onLoadId = (task == undefined) ? 0 : task.id
-  const orignalID = (param.taskId == "new" ? 0 : onLoadId);
-
   const [newEntry, setNewEntry] = useState(taskfiltered.length == 0 ? true : false)
+  
+  // this is if we want to highlight the save button if changes are made (optional and not implemented yet)
   const [changeMade, setChangeMade] = useState(false)
 
   // Validations
-  const [idValid, setIdValid] = useState((param.taskId == "new" ? false : true))
-  const [descriptionValid, setDescriptionValid] = useState(false)
+  // NO LONGER NEEDED HERE
+  // let onLoadId = (task == undefined) ? 0 : task.id
+  // const orignalID = (param.taskId == "new" ? 0 : onLoadId);
+  // const [idValid, setIdValid] = useState((param.taskId == "new" ? false : true))
+  // const [descriptionValid, setDescriptionValid] = useState(false)
   
   if (newEntry){
     // console.log("tasks in newEntry ",tasks);
