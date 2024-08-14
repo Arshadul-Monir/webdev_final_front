@@ -11,7 +11,7 @@ export default function AllEmployeesView({employees})
     return(
         <div className="h-screen w-full flex justify-center">
             <div className="contextDiv">
-                <NavigationButtons></NavigationButtons>
+                <NavigationButtons buttonTwo="Tasks" buttonThree="New_Employee"></NavigationButtons>
                 {/* <EmployeeList pEmployees={employees} dispatch={disp}></EmployeeList> */}
                 <EmployeeList pEmployees={employees} ></EmployeeList>
 
