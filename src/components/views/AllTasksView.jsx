@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./Table.css"
 import "./styles/tailwindStyle.css"
 import TaskList from "./TaskList";
-import NavigationButtons from "../components/NavigationButtons";
+import NavigationButtons from "./NavigationButtons";
 
 export default function AllTasksView({ tasks, deleteTask })
 {

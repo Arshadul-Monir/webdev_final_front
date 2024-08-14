@@ -2,8 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Table.css"
 // import "../index.css"
 import "./styles/tailwindStyle.css"
-import NavigationButtons from "../components/NavigationButtons";
 
+import NavigationButtons from "./NavigationButtons";
 
 export default function AllEmployeesView({employees})
 {
