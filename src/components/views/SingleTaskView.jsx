@@ -13,85 +13,6 @@ export default function SingleTaskView({task, dispactchType,
   handleFormChange,
   handleFormChangeNumber})
 {
-  // const param = useParams();
-
-  // const tasks = useSelector(state => state.tasks);
-  // console.log(tasks);
-  // const disp = useDispatch();
-
-  // useEffect(()=>{
-  //     disp(fetchTasks());
-  // },[disp]);
-
-  // // console.log(param.id);
-  // // console.log(tasks);
-
-  // const taskfiltered = tasks.filter((task) => task.id == param.id)
-
-  // I check if we already have a task with that id. 
-  // console.log(taskfiltered)
-  // let task = taskfiltered[0]
-
-  // const orignalID = (param.id == "new" ? 0 : task.id);
-
-  // const [newEntry, setNewEntry] = useState(taskfiltered.length == 0 ? true : false)
-  // const [changeMade, setChangeMade] = useState(false)
-
-  // // Validations
-  // const [idValid, setIdValid] = useState((param.id == "new" ? false : true))
-  // const [descriptionValid, setDescriptionValid] = useState(false)
-
-
-  // if (newEntry){
-
-  //   task = {
-  //     // Evanutally we can use rand thing with our db to create unique ids
-  //     // but don't worry about it for now.
-  //     id: 0,
-  //     priority: "",
-  //     description: "",
-  //     owner: "",
-  //     complete: false
-  //   }
-  // }
-
-  // // const [id, setId] = useState(newEntry ? 0 : task.id)
-  // // const [priority_lvl, setPriority_lvl] = useState(newEntry ? 0 : task.priority_lvl)
-  // // const [description, setDescription] = useState(newEntry ? "" : task.description)
-  // // const [owner, setOwner] = useState(newEntry ? "" : task.owner)
-  // // const [complete, setComplete] = useState(newEntry ? false : task.complete)
-
-  // const [formData, setFormData] = useState(
-  // {
-  //   id: task.id,
-  //   priority: task.priority,
-  //   description: task.description,
-  //   owner: task.owner,
-  //   complete: task.complete
-  // } )
-
-  // function handleFormChange(event){
-  //   console.log(event)
-  //   setFormData({...formData,
-  //       [event.target.name]: event.target.value
-  //   })
-  //   setChangeMade(true);
-  // }
-
-  // function handleFormChangeNumber(event){
-  //   //console.log("@", event)
-  //   setFormData({...formData,
-  //       [event.target.name]: Number(event.target.value)
-  //   })
-  //   setChangeMade(true);
-  //   if (event.target.name == "id"){
-  //     //console.log("Asdfasdf");
-  //     validateID(Number(event.target.value));
-  //   }
-
-  // }
-
-  // const dispactchType = (newEntry == true) ? () => dispatch(addTask(formData)) : () => dispatch(editTask(formData));
 
   function validateID(idnumber){
     if (idnumber == 0){
@@ -111,7 +32,6 @@ export default function SingleTaskView({task, dispactchType,
 
 
   }
-
 
 
   return(

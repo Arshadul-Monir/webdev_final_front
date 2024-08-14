@@ -17,24 +17,24 @@ function SingleTaskContainer() {
       disp(fetchTasks());
   },[disp]);
 
-  // console.log(param.id);
-  // console.log(tasks);
+  console.log("Pram Id", param.taskId);
+  console.log("tasks", tasks);
 
-  const taskfiltered = tasks.filter((task) => task.id == param.id)
+  const taskfiltered = tasks.filter((task) => task.id == param.taskId)
 
   // I check if we already have a task with that id. 
-  console.log(taskfiltered)
+  console.log("filtered tasks", taskfiltered)
   let task = taskfiltered[0]
-
+  console.log("Printing task", task)
 
   let onLoadId = (task == undefined) ? 0 : task.id
-  const orignalID = (param.id == "new" ? 0 : onLoadId);
+  const orignalID = (param.taskId == "new" ? 0 : onLoadId);
 
   const [newEntry, setNewEntry] = useState(taskfiltered.length == 0 ? true : false)
   const [changeMade, setChangeMade] = useState(false)
 
   // Validations
-  const [idValid, setIdValid] = useState((param.id == "new" ? false : true))
+  const [idValid, setIdValid] = useState((param.taskId == "new" ? false : true))
   const [descriptionValid, setDescriptionValid] = useState(false)
   
   if (newEntry){

@@ -1,6 +1,6 @@
 import { Link, useNavigate,useParams } from "react-router-dom";
 import "./Table.css"
-import "../index.css"
+// import "../index.css"
 import { useSelector, useDispatch  } from "react-redux";
 import { useEffect, useState } from 'react'
 import { fetchTasks, addTask, deleteTask, editTask } from "../store/tasksSlice";
