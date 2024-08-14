@@ -3,6 +3,7 @@ import "./Table.css"
 // import "../index.css"
 import "./styles/tailwindStyle.css"
 
+import NavigationButtons from "./NavigationButtons";
 
 export default function AllEmployeesView({employees})
 {
