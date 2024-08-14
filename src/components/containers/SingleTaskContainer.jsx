@@ -50,11 +50,11 @@ function SingleTaskContainer() {
       // Here we have a default value of zero if there are no tasks 
       // or we take the last id value then add one.
       id: (tasks.length == 0) ? 0 : (tasks[tasks.length -1].id + 1),
-      priority: "",
+      priority: "Low",
       description: "",
       employeeId: null,
       employee: null,
-      complete: false
+      isComplete: false
     }
   }
 
@@ -66,7 +66,7 @@ function SingleTaskContainer() {
       description: "",
       employeeId: null,
       employee: null,
-      complete: false
+      isComplete: false
     } :
     {
       id: task.id,
@@ -74,7 +74,7 @@ function SingleTaskContainer() {
       description: task.description,
       employeeId: task.employeeId,
       employee: task.employee,
-      complete: task.complete
+      isComplete: task.isComplete
     } 
   )
 

@@ -22,9 +22,9 @@ export default function SingleTaskView({
 })
 {
 
-  console.log(task)
-  console.log(tasks)
-  console.log(employees)
+  console.log("On single Task view", task)
+  // console.log(tasks)
+  // console.log(employees)
 
   function validateID(idnumber){
     if (idnumber == 0){
@@ -67,6 +67,7 @@ export default function SingleTaskView({
                 <div><label className="pl-[4px]" >id</label></div>
                 <div>
                   <input type="number" id="" placeholder={0} className="pl-[4px]"
+                  disabled 
                   value={formData.id} 
                   onChange={handleFormChangeNumber}
                   name="id"
@@ -109,12 +110,21 @@ export default function SingleTaskView({
               <div className="forumDiv">
                 <div><label className="pl-[4px]">Owner</label></div>
                 <div>
-                  <input type="text" id="" placeholder="Owner..." className="pl-[4px]"
-                  value={formData.owner} 
-                  onChange={handleFormChange}
-                  name="owner"
-                  >
-                </input></div>
+                  <select name="employeeId" 
+                    onChange={handleFormChangeNumber}>
+                    <option value="null">None</option>
+                    {employees.map(emp => {
+                      let name = emp.firstname + " " + emp.lastname;
+                      
+                      let option = (emp.id == task.employeeId) ? 
+                          <option selected key={emp.id} value={emp.id}>{name}</option> 
+                          : <option key={emp.id} value={emp.id}>{name}</option> 
+                      return option
+                      
+                      ;
+                    })}
+                  </select>
+                </div>
               </div>
 
               <div className="forumDiv">
@@ -123,7 +133,7 @@ export default function SingleTaskView({
                   <select id="" className="pl-[4px] w-[180px]"
                   value={formData.complete} 
                   onChange={handleFormChange}
-                  name="complete"
+                  name="isComplete"
                   >
                     <option value={false}> Incomplete </option>
                     <option value={true}> Complete </option>

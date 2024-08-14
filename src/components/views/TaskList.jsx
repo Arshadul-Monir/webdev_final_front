@@ -30,7 +30,7 @@ export default function TaskList({pTasks = [], dispatch})
                     <p>{task.id}</p>
                     <p>{task.priority}</p>
                     <p>{task.description}</p>
-                    <p>{task.complete? "Y" : "N"}</p>
+                    <p>{task.isComplete? "Y" : "N"}</p>
 
                     <ShowOwnership task = {task}></ShowOwnership>
 
