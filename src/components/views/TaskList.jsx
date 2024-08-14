@@ -4,13 +4,7 @@ import { deleteTask } from "../../store/tasksSlice"
 
 import "./styles/tailwindStyle.css"
 
-function ShowOwnership(task){
-    // console.log("Show ownership", task.task)
-    // console.log(task.task.employee, task.task == null);
 
-    const owner = (task.task.employee == null) ? "No owner" : `${task.task.employee.firstname} ${task.task.employee.lastname}`
-    return (<p>{owner}</p>)
-}
 
 export default function TaskList({pTasks = [], dispatch})
 {   
@@ -30,9 +24,8 @@ export default function TaskList({pTasks = [], dispatch})
                     <p>{task.id}</p>
                     <p>{task.priority}</p>
                     <p>{task.description}</p>
-                    <p>{task.isComplete? "Y" : "N"}</p>
-
-                    <ShowOwnership task = {task}></ShowOwnership>
+                    <p>{task.complete? "Y" : "N"}</p>
+                    <p>{(task.employee)? task.employee.firstname+ " " +task.employee.lastname : "N/A"}</p>
 
                 </div>
 
@@ -50,7 +43,6 @@ export default function TaskList({pTasks = [], dispatch})
         const newURL = `/tasks/${id}`;
         navigate(newURL);
     }
-
 
     if(pTasks.length > 0)
     {
@@ -111,3 +103,12 @@ export default function TaskList({pTasks = [], dispatch})
     }
 }
 
+
+// Kyle did this better with one line lol 
+function ShowOwnership(task){
+    // console.log("Show ownership", task.task)
+    // console.log(task.task.employee, task.task == null);
+
+    const owner = (task.task.employee == null) ? "No owner" : `${task.task.employee.firstname} ${task.task.employee.lastname}`
+    return (<p>{owner}</p>)
+}

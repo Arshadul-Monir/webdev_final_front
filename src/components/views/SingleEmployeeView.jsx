@@ -4,6 +4,8 @@ import "./styles/tailwindStyle.css"
 import { useSelector, useDispatch  } from "react-redux";
 import { useState } from 'react'
 
+import NavigationButtons from "./NavigationButtons";
+
 export default function SingleEmployeeView({empl, dispactchType,
   formData,
   setFormData,
@@ -14,7 +16,7 @@ export default function SingleEmployeeView({empl, dispactchType,
   return(
     <div className="h-screen w-full flex justify-center ">
       <div className="contextDiv">
-          <NavigationButtons ></NavigationButtons>
+          <NavigationButtons buttonTwo="Tasks"  buttonThree="Return_Employees"></NavigationButtons>
 
           <div className="forumCol">
             <div className="flex justify-end">
@@ -83,22 +85,4 @@ export default function SingleEmployeeView({empl, dispactchType,
       </div>
     </div>
   );
-}
-
-function NavigationButtons()
-{
-  return(
-    <div id ="nav-bar " className="flex justify-evenly pb-[24px]">
-        <Link className="nav-button" to={"/"}>
-            Home
-        </Link>
-        <Link className="nav-button" to={"/tasks"}>
-            Tasks
-        </Link>
-        <Link className="nav-button" to={"/employees"}>
-            Back to all employees
-        </Link>
-        <div className="w-[24px]"></div>
-    </div>
-);
 }
