@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import "../index.css"
+import { deleteTask } from "../../store/tasksSlice"
 
 
-export default function TaskList({pTasks = [], deleteTask})
+import "./styles/tailwindStyle.css"
+
+export default function TaskList({pTasks = [], dispatch})
 {
     const navigate = useNavigate();
 
@@ -23,7 +25,7 @@ export default function TaskList({pTasks = [], deleteTask})
                 </div>
 
                 <div className="task-remove-col"
-                    onClick={() => deleteTask(task.id)}>
+                    onClick={() => dispatch(deleteTask(task.id))}>
                 
                     <p className="remove-data">X</p>
                 </div>

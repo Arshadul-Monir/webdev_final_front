@@ -8,18 +8,23 @@ import {
 import './index.css'
 
 // Pages
-import ErrorPage from './pages/error-page.jsx';
-import Bananas from './pages/bananas.jsx';
-import TaskPage from './pages/TasksAll.jsx';
-import SingleTaskPage from './pages/TasksSingle.jsx';
-import Homepage from './pages/homepage.jsx';
-import Employees from './pages/employees.jsx';
+import ErrorPage from './components/views/error-page.jsx';
+import Homepage from './components/views/homepage.jsx';
+import Bananas from './components/views/bananas.jsx';
+
+// Pages that require containers 
+import AllEmployeesContainer from './components/containers/AllEmployeesContainer.jsx';
+import AllTasksContainer from './components/containers/AllTasksContainer.jsx';
+import SingleTaskContainer from './components/containers/SingleTaskContainer.jsx';
+import SingleEmployeeContainer from './components/containers/SingleEmployeeContainer.jsx';
+// import SingleTaskNewContainer from './components/containers/SingleTaskNewContainer.jsx';
+
 
 
 // //Redux
 import { Provider } from "react-redux";
 import store from "./store";
-import EmployeesSinglePage from './pages/employees_single.jsx';
+
 
 const router = createBrowserRouter([
   {
@@ -29,24 +34,26 @@ const router = createBrowserRouter([
   },
   {
     path: "/employees",
-    element: <Employees />,
-  },
-  {
-    path: "/employees/:id",
-    element: <EmployeesSinglePage />,
-  },
-  {
-    path: "/banana",
-    element: <Bananas />,
-  },
-  {
-    path: "/tasks/:id",
-    element: <SingleTaskPage />
+    element: <AllEmployeesContainer  />,
   },
   {
     path: "/tasks",
-    element: <TaskPage />
-  }
+    element: <AllTasksContainer/>
+  },
+
+  // {
+  //   path: "/banana",
+  //   element: <Bananas />,
+  // },
+  {
+    path: "/employees/:emplId",
+    element: <SingleEmployeeContainer />,
+  },
+  {
+    path: "/tasks/:taskId",
+    element: <SingleTaskContainer />
+  },
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
