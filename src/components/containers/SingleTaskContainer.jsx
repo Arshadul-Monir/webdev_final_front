@@ -11,21 +11,18 @@ function SingleTaskContainer() {
 
   const tasks = useSelector(state => state.tasks);
   // console.log(tasks);
-  const disp = useDispatch();
-
-  useEffect(()=>{
-      disp(fetchTasks());
-  },[disp]);
-
-  const employees = useSelector((state) => state.employees);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-      dispatch(fetchEmployees());
-    }, [dispatch]);
+  useEffect(()=>{
+    dispatch(fetchTasks());
+  },[dispatch]);
 
-  // console.log("Pram Id", param.taskId);
-  // console.log("tasks", tasks);
+  useEffect(() => {
+    dispatch(fetchEmployees());
+  }, [dispatch]);
+  const employees = useSelector((state) => state.employees);
+
+
 
   const taskfiltered = tasks.filter((task) => task.id == param.taskId)
 
@@ -48,8 +45,8 @@ function SingleTaskContainer() {
     // console.log("tasks in newEntry ",tasks);
     task = {
       // Here we have a default value of zero if there are no tasks 
-      // or we take the last id value then add one.
-      id: (tasks.length == 0) ? 0 : (tasks[tasks.length -1].id + 1),
+      // or we take the largest id value then add one.
+      id: (tasks.length == 0) ? 0 : (Math.max(...tasks.map(o => o.id)) + 1),
       priority: "Low",
       description: "",
       employeeId: null,

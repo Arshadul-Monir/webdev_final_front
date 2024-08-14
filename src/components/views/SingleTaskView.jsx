@@ -22,7 +22,7 @@ export default function SingleTaskView({
 })
 {
 
-  console.log("On single Task view", task)
+  // console.log("On single Task view", task)
   // console.log(tasks)
   // console.log(employees)
 
