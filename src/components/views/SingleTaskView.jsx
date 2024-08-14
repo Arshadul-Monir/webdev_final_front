@@ -9,41 +9,57 @@ import "./styles/tailwindStyle.css"
 
 export default function SingleTaskView({
   task, 
-  tasks, 
+  tasks, // This is actually not being used
   employees, 
   dispactchType,
   formData,
   setFormData, // This is actually not being used
   handleFormChange,
-  handleFormChangeNumber
+  handleFormChangeNumber,
 
-
+  // Validation Related
+  changeMade
 
 })
 {
 
   // console.log("On single Task view", task)
+  // console.log("form data", formData)
   // console.log(tasks)
   // console.log(employees)
 
-  function validateID(idnumber){
-    if (idnumber == 0){
-      setIdValid(false);
-      return;
-    }
-    if (idnumber == orignalID) {
-      setIdValid(true);
-      return;
-    } 
-    let taskfiltered2 = tasks.filter((task) => task.id == idnumber)
-    if (taskfiltered2.length == 0){
-        setIdValid(true); 
+  function ValidateWarningText(){
+    const check1 = (formData.description.length == "")
+    const check2 = (formData.employeeId == null)
+    if (changeMade && check1 && check2 ){
+      return <div className="text-red-600"> Warning No Description or Employee assigned</div>
+    } else if (changeMade && check1){
+      return <div className="text-red-600"> WarningNo Description</div>
+    } else if (changeMade && check2){
+      return <div className="text-red-600"> Warning No Employee assigned</div>
     } else {
-        setIdValid(false);
+      return <div></div>
     }
-
-
   }
+
+  function BackOrSaveBtn(){
+    if (changeMade){
+      return (   
+ 
+        <Link type="button" className="nav-button" onClick={dispactchType} to={"/tasks"}>
+          Save 
+        </Link>
+      )
+    } else {
+      return (
+        <Link type="button" className="nav-button" to={"/tasks"}>
+        Back 
+      </Link>
+      )
+    }
+  }
+
+
 
 
   return(
@@ -53,12 +69,8 @@ export default function SingleTaskView({
 
           <div className="forumCol">
             <div className="flex justify-end">
-
-              <Link type="button" className="nav-button" onClick={dispactchType} to={"/tasks"}>
-
-                Save 
-              </Link>
-
+              <ValidateWarningText></ValidateWarningText>
+              <BackOrSaveBtn ></BackOrSaveBtn>
             </div>
 
             {/* Middle Row */}
@@ -167,6 +179,8 @@ function NavigationButtons()
 );
 
 }
+
+
 
 function Validate(idObj){
   const iddiv = (idObj.idValid == true) ?( <div></div> ) : (<div> ID not valid </div>)
