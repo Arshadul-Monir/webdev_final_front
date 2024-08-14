@@ -8,7 +8,7 @@ export default function TaskList({pTasks = [], dispatch})
 {
     const navigate = useNavigate();
 
-    const listedTasks = pTasks.map((task) => (
+    const listedTasks = [].concat(pTasks).sort((a,b) => a.id < b.id ? 1 : -1).map((task) => (
         <div 
             className="task-list-row"
             key={task.id}
