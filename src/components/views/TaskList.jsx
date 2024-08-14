@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import "../index.css"
+import { deleteTask } from "../../store/tasksSlice"
 
+
+import "./styles/tailwindStyle.css"
 
 export default function TaskList({pTasks = [], dispatch})
 {
@@ -23,7 +25,7 @@ export default function TaskList({pTasks = [], dispatch})
                 </div>
 
                 <div className="task-remove-col"
-                    onClick={() => dispatch({ type: 'delete_task', id: task.id })}>
+                    onClick={() => dispatch(deleteTask(task.id))}>
                 
                     <p className="remove-data">X</p>
                 </div>
@@ -37,11 +39,6 @@ export default function TaskList({pTasks = [], dispatch})
         navigate(newURL);
     }
 
-    //unfinished, will perform deletion of task of the given id
-    function deleteTask(id)
-    {
-        console.log("delete", id)
-    }
 
     if(pTasks.length > 0)
     {

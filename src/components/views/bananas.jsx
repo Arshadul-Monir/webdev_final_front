@@ -1,6 +1,6 @@
 import { useRouteError } from "react-router-dom";
 import { useState } from 'react'
-import '../App.css'
+import "./styles/tailwindStyle.css"
 
 export default function Bananas() {
   const error = useRouteError();

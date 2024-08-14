@@ -1,31 +1,25 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./Table.css"
-import "../index.css"
-import { useEffect } from "react";
-import { useSelector,useDispatch } from "react-redux";
-import { fetchEmployees } from "../store/employeesSlice";
+// import "../index.css"
+import "./styles/tailwindStyle.css"
 
-export default function Employees()
+
+export default function AllEmployeesView({employees})
 {
-    const employees = useSelector(state => state.employees);
-    console.log(employees);
-    const disp = useDispatch();
-
-    useEffect(() => {
-        disp(fetchEmployees());
-      }, [disp]);
 
     return(
         <div className="h-screen w-full flex justify-center">
             <div className="contextDiv">
                 <NavigationButtons></NavigationButtons>
-                <EmployeeList pEmployees={employees} dispatch={disp}></EmployeeList>
+                {/* <EmployeeList pEmployees={employees} dispatch={disp}></EmployeeList> */}
+                <EmployeeList pEmployees={employees} ></EmployeeList>
+
             </div>
         </div>
     );
 }
 
-function EmployeeList({pEmployees, dispatch})
+function EmployeeList({pEmployees})
 {
     const navigate = useNavigate();
 
@@ -48,7 +42,8 @@ function EmployeeList({pEmployees, dispatch})
                 </div>
 
                 <div className="id-remove-col"
-                    onClick={() => dispatch({ type: 'delete_empl', id: empl.id })}>
+                    // onClick={() => dispatch({ type: 'delete_empl', id: empl.id })}
+                    >
                 
                     <p className="remove-data">X</p>
                 </div>
@@ -58,7 +53,7 @@ function EmployeeList({pEmployees, dispatch})
     function clickRow(id)
     {
         //console.log("rah");
-        const newURL = `/tasks/${id}`;
+        const newURL = `/employees/${id}`;
         navigate(newURL);
     }
 
