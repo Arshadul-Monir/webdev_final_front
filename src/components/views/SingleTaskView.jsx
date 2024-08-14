@@ -79,13 +79,10 @@ export default function SingleTaskView({
               <div className="forumDiv">
                 <div><label className="pl-[4px]" >id</label></div>
                 <div>
-                  <input type="number" id="" placeholder={0} className="pl-[4px]"
-                  disabled 
-                  value={formData.id} 
-                  onChange={handleFormChangeNumber}
-                  name="id"
-                  >
-                </input></div>
+                  <p style={{textAlign:"left", paddingLeft:"50px"}}> 
+                    {(!task.id)? "New Task!" : `Edit task ${task.id}!`}
+                  </p>
+                </div>
               </div>
 
               <div className="forumDiv">
@@ -102,9 +99,10 @@ export default function SingleTaskView({
                 </select></div>
               </div>
 
-              <button className="nav-button" onClick={() => deleteTask(task.id)}>
-                Delete
-              </button>
+              <Link className="nav-button" to={"/tasks"} 
+              onClick={(!task.id)? () => null : deleteTask(task.id)}>
+                {(!task.id)? "Cancel?" : `Delete task ${task.id}?`}
+              </Link>
             </div>
 
             {/* Last row */}
