@@ -112,7 +112,8 @@ function SingleTaskContainer() {
           handleFormChange={handleFormChange}
           handleFormChangeNumber={handleFormChangeNumber}
 
-
+          // Validations related
+          changeMade={changeMade}
           />
 }
 
