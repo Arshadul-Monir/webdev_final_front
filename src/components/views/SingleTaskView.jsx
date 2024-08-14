@@ -162,30 +162,6 @@ export default function SingleTaskView({
 
 
 
-<<<<<<< HEAD
-=======
-function NavigationButtons()
-{
-  return(
-    <div id ="nav-bar " className="flex justify-evenly pb-[24px]">
-        <Link className="nav-button" to={"/"}>
-          Home
-        </Link>
-        <Link className="nav-button" to={"/employees"}>
-            Employees
-        </Link>
-        <Link className="nav-button" to={"/tasks/"}>
-            Back to all tasks
-        </Link>
-        <div className="w-[24px]"></div>
-    </div>
-);
-
-}
-
-
-
->>>>>>> main
 function Validate(idObj){
   const iddiv = (idObj.idValid == true) ?( <div></div> ) : (<div> ID not valid </div>)
 
