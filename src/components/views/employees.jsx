@@ -3,6 +3,7 @@ import "./Table.css"
 // import "../index.css"
 import "./styles/tailwindStyle.css"
 
+import NavigationButtons from "./NavigationButtons";
 
 export default function AllEmployeesView({employees})
 {
@@ -10,7 +11,11 @@ export default function AllEmployeesView({employees})
     return(
         <div className="h-screen w-full flex justify-center">
             <div className="contextDiv">
-                <NavigationButtons></NavigationButtons>
+                <NavigationButtons 
+                    buttonOne="Home" 
+                    buttonTwo="Tasks" 
+                    buttonThree="New_Employee"
+                ></NavigationButtons>
                 {/* <EmployeeList pEmployees={employees} dispatch={disp}></EmployeeList> */}
                 <EmployeeList pEmployees={employees} ></EmployeeList>
 
@@ -57,52 +62,58 @@ function EmployeeList({pEmployees})
         navigate(newURL);
     }
 
-    //unfinished, will perform deletion of task of the given id
-    function deleteTask(id)
+    if(pEmployees.length > 0)
     {
-        console.log("delete", id)
+        return(
+            <div className = "list">
+                <p className="table-caption">
+                        Employee List
+                </p>
+                <div className="list-row list-header">
+                        <div className="header-info-col">
+                            <p>ID</p>
+                            <p>First Name</p>
+                            <p>Last Name</p>
+                            <p>Department</p>
+                            <p>Task</p>
+                        </div>
+
+                        <div>
+                            <p>Remove</p>
+                        </div>
+                </div>
+
+                <div>
+                    {listedEmployees}
+                </div>
+            </div>
+        );
     }
+    else
+    {
+        return(
+            <div className = "list">
+                <p className="table-caption">
+                        Employee List
+                </p>
+                <div className="list-row list-header">
+                        <div className="header-info-col">
+                            <p>ID</p>
+                            <p>First Name</p>
+                            <p>Last Name</p>
+                            <p>Department</p>
+                            <p>Task</p>
+                        </div>
 
-    return(
-        <div className = "list">
-            <p className="table-caption">
-                    Employee List
-            </p>
-            <div className="list-row list-header">
-                    <div className="header-info-col">
-                        <p>ID</p>
-                        <p>First Name</p>
-                        <p>Last Name</p>
-                        <p>Department</p>
-                        <p>Task</p>
-                    </div>
+                        <div>
+                            <p>Remove</p>
+                        </div>
+                </div>
 
-                    <div>
-                        <p>Remove</p>
-                    </div>
+                <div style={{textAlign:'center', paddingTop:'40px', paddingBottom:'20px'}}>
+                    No employees found
+                </div>
             </div>
-
-            <div>
-                {listedEmployees}
-            </div>
-        </div>
-    );
-}
-
-function NavigationButtons()
-{
-    return(
-        <div id ="nav-bar " className="flex justify-evenly pb-[24px]">
-            <Link className="nav-button" to={"/"}>
-                Home
-            </Link>
-            <Link className="nav-button" to={"/tasks"}>
-                View All Tasks
-            </Link>
-            <Link className="nav-button" to={"/employee/new"}>
-                +
-            </Link >
-            <div className="w-[24px]"></div>
-        </div>
-    );
+        );
+    }
 }

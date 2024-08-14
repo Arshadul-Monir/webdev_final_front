@@ -21,7 +21,7 @@ export default function TaskList({pTasks = [], dispatch})
                     <p>{task.priority}</p>
                     <p>{task.description}</p>
                     <p>{task.complete? "Y" : "N"}</p>
-                    <p>{task.owner}</p>
+                    <p>{(task.employee)? task.employee.firstname+ " " +task.employee.lastname : "N/A"}</p>
                 </div>
 
                 <div className="task-remove-col"
@@ -38,7 +38,6 @@ export default function TaskList({pTasks = [], dispatch})
         const newURL = `/tasks/${id}`;
         navigate(newURL);
     }
-
 
     if(pTasks.length > 0)
     {
