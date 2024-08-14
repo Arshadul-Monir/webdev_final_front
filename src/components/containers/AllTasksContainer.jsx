@@ -7,7 +7,7 @@ function AllTasksContainer() {
     const tasks = useSelector((state) => state.tasks);
     const dispatch = useDispatch();
 
-    const deleteDispatch = (taskId) => dispatch(deleteTask(taskId));
+    //const deleteDispatch = (taskId) => dispatch(deleteTask(taskId));
 
     useEffect(() => {
         dispatch(fetchTasks());
@@ -15,7 +15,7 @@ function AllTasksContainer() {
     
     return (
       // <TasksAll></TasksAll>
-      <AllTasksView tasks={tasks} deleteTask={deleteDispatch} />
+      <AllTasksView tasks={tasks} dispatch={dispatch} />
     );
 
 }
