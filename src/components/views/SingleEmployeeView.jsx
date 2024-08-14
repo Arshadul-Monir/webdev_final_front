@@ -4,7 +4,7 @@ import "./styles/tailwindStyle.css"
 import { useSelector, useDispatch  } from "react-redux";
 import { useState } from 'react'
 
-import NavigationButtons from "/NavigationButtons";
+import NavigationButtons from "./NavigationButtons";
 
 export default function SingleEmployeeView({empl, dispactchType,
   formData,
