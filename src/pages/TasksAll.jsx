@@ -4,7 +4,7 @@ import "./Table.css"
 import "../index.css"
 import { useSelector,useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { fetchTasks } from "../store/tasksSlice";
+import { deleteTask, fetchTasks } from "../store/tasksSlice";
 import TaskList from "../components/TaskList";
 import NavigationButtons from "../components/NavigationButtons";
 
@@ -14,6 +14,8 @@ export default function TaskPage()
     // console.log(tasks);
     const disp = useDispatch();
 
+    const deleteDispatch = (taskId) => disp(deleteTask(taskId))
+
     useEffect(()=>{
         disp(fetchTasks());
     },[disp]);
@@ -22,7 +24,7 @@ export default function TaskPage()
         <div className="h-screen w-full flex justify-center ">
             <div className="contextDiv">
                 <NavigationButtons buttonOne="Home" buttonTwo="Employees" buttonThree="New_Task"></NavigationButtons>
-                <TaskList pTasks={tasks} dispatch={disp}></TaskList>
+                <TaskList pTasks={tasks} deleteTask={deleteDispatch}></TaskList>
             </div>
 
         </div>
