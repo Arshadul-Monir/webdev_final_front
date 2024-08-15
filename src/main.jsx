@@ -18,7 +18,7 @@ import AllTasksContainer from './components/containers/AllTasksContainer.jsx';
 import SingleTaskContainer from './components/containers/SingleTaskContainer.jsx';
 import SingleEmployeeContainer from './components/containers/SingleEmployeeContainer.jsx';
 // import SingleTaskNewContainer from './components/containers/SingleTaskNewContainer.jsx';
-
+import NewTaskContainer from './components/containers/NewTaskContainer.jsx';
 
 
 // //Redux
@@ -52,6 +52,11 @@ const router = createBrowserRouter([
   {
     path: "/tasks/:taskId",
     element: <SingleTaskContainer />
+  },
+  ,
+  {
+    path: "/tasks/new",
+    element: <NewTaskContainer />
   },
 
 ]);
