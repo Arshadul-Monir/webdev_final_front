@@ -8,22 +8,31 @@ export default function EmployeeList({pEmployees = [], dispatch})
 {
     const navigate = useNavigate();
 
+
+    function mapTasks(tasks){
+
+        const tasksMapped = tasks.map((task) => <div onClick={()=>{clickTask(task.id)}}> {task.description}</div>)
+        return (
+            <p>{tasksMapped}</p>
+        )
+    }
+
     const listedEmployees = [].concat(pEmployees).sort((a,b) => a.id < b.id ? 1 : -1).map((empl) => (
         <div 
             className="list-row"
             key={empl.id}
         >
                 <div id={"employee-"+empl.id} 
-                    className="info-col"
-                    onClick={()=>{clickRow(empl.id)}}
-                >
-                    <p>{empl.id}</p>
-                    <p>{empl.firstname}</p>
-                    <p>{empl.lastname}</p>
-                    <p>{empl.department}</p>
+                    className="employee-list-info-col"
 
-                    {/* <p>{empl.task}</p> */}
-                    <p> WE NEED TO MAP TASKS OUTS HERE</p>
+                >
+                    <p onClick={()=>{clickRow(empl.id)}}>{empl.id}</p>
+                    <p onClick={()=>{clickRow(empl.id)}}>{empl.firstname}</p>
+                    <p onClick={()=>{clickRow(empl.id)}}>{empl.lastname}</p>
+                    <p>{( empl.department) ? empl.department : "None" }</p>
+                    
+                    {mapTasks(empl.tasks)}
+                    {/* <p>{empl.tasks}</p> */}
                 </div>
 
                 <div className="id-remove-col"
@@ -42,6 +51,11 @@ export default function EmployeeList({pEmployees = [], dispatch})
         navigate(newURL);
     }
 
+    function clickTask(id){
+        const newURL = `/tasks/${id}`;
+        navigate(newURL);
+    }
+
     if(pEmployees.length > 0)
     {
             return(
@@ -50,12 +64,12 @@ export default function EmployeeList({pEmployees = [], dispatch})
                         Employee List
                 </p>
                 <div className="list-row list-header">
-                        <div className="header-info-col">
+                        <div className="employee-list-info-col">
                             <p>ID</p>
                             <p>First Name</p>
                             <p>Last Name</p>
                             <p>Department</p>
-                            <p>Task</p>
+                            <p>Task(s)</p>
                         </div>
     
                         <div>
