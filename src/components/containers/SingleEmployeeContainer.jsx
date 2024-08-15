@@ -1,67 +1,89 @@
-import { Link, useNavigate,useParams } from "react-router-dom";
-import { useSelector, useDispatch  } from "react-redux";
-import { useState } from 'react'
-
+import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from 'react'
+import { fetchEmployees, addEmployee, deleteEmployee, editEmployee,  } from "../../store/employeesSlice";
+import { fetchTasks } from "../../store/tasksSlice";
 
 import SingleEmployeeView from '../views/SingleEmployeeView';
 
 function SingleEmployeeContainer(){
-
   const param = useParams();
-  console.log(param.id);
 
-  const employees = useSelector(state => state.employees);
+  const tasks = useSelector(state => state.tasks);
+  const employees = useSelector((state) => state.employees);
+  
   const dispatch = useDispatch();
 
-  const emplfiltered = employees.filter((empl) => empl.id == param.id)
+  useEffect(() => {
+    dispatch(fetchTasks());
+    dispatch(fetchEmployees());
+  }, [dispatch]);
 
-  // I check if we already have a employee with that id. 
-  let empl = emplfiltered[0]
+  const employeefiltered = employees.filter((employee) => employee.id == param.employeeId)
 
-  const [newEntry, setNewEntry] = useState(emplfiltered.length == 0 ? true : false)
+  let employee = employeefiltered[0];
+
+  const [newEntry, setNewEntry] = useState(employeefiltered.length == 0 ? true : false)
+  
+  // this is if we want to highlight the save button if changes are made (optional and not implemented yet)
+  const [changeMade, setChangeMade] = useState(false)
   
   if (newEntry){
-    empl = {
-      // Evanutally we can use rand thing with our db to create unique ids
-      // but don't worry about it for now.
-      id: 0,
-      first_name: "",
-      last_name: "",
-      department: "",
-      task: ""
+    employee = {
+      // Here we have a default value of zero if there are no employees 
+      // or we take the largest id value then add one.
+      //id: (tasks.length == 0) ? 0 : (Math.max(...tasks.map(o => o.id)) + 1),
+
     }
   }
 
   const [formData, setFormData] = useState(
-  {
-    id: empl.id,
-    first_name: empl.first_name,
-    last_name: empl.last_name,
-    department: empl.department,
-    task: empl.task
-  })
+    // This was to prevent page refresh crashing
+    (employee == undefined) ? {
+      first_name: "",
+      last_name: "",
+      department: null,
+      tasks: [],
+    } :
+    {
+      id: employee.id,
+      first_name: employee.first_name,
+      last_name: employee.last_name,
+      department: employee.department,
+      tasks: employee.tasks,
+    }
+  )
 
   function handleFormChange(event){
     console.log(event)
     setFormData({...formData,
         [event.target.name]: event.target.value
     })
+    setChangeMade(true);
   }
 
   function handleFormChangeNumber(event){
-    console.log(event)
+    //console.log("@", event)
     setFormData({...formData,
         [event.target.name]: Number(event.target.value)
     })
+    setChangeMade(true);
+    // if (event.target.name == "id"){
+    //   //console.log("Asdfasdf");
+    //   validateID(Number(event.target.value));
+    // }
   }
 
-  const dispactchType = (newEntry == true) ? 'add_empl' : 'edit_empl'
+  const dispactchType = (newEntry == true) ? () => dispatch(addEmployee(formData)) : () => dispatch(editEmployee(formData));
 
-  return <SingleEmployeeView empl={empl} dispactchType={dispactchType} 
-    formData={formData}
-    setFormData={setFormData}
-    handleFormChange={handleFormChange}
-    handleFormChangeNumber={handleFormChangeNumber}>
+  return <SingleEmployeeView 
+          employee={employee}
+          tasks={tasks}
+          dispactchType={dispactchType} 
+          formData={formData}
+          setFormData={setFormData}
+          handleFormChange={handleFormChange}
+          handleFormChangeNumber={handleFormChangeNumber}>
 
     </SingleEmployeeView>
 }

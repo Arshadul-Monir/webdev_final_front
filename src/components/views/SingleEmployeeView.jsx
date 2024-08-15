@@ -5,13 +5,49 @@ import { useSelector, useDispatch  } from "react-redux";
 import { useState } from 'react'
 import NavigationButtons from "./NavigationButtons";
 
-export default function SingleEmployeeView({empl, dispactchType,
+export default function SingleEmployeeView({
+  employee,
+  tasks,
+  dispactchType,
   formData,
-  setFormData,
   handleFormChange,
-  handleFormChangeNumber})
-{
+  handleFormChangeNumber,
+  changeMade
 
+})
+{
+  function ValidateWarningText(){
+    document.getElementsByClassName("nav-btn").disabled = true;
+    const check1 = (formData.first_name == "")
+    const check2 = (formData.last_name == "")
+    if (changeMade && check1 && check2 ){
+      return <div className="text-red-600"> Must Enter First and Last name</div>
+    } else if (changeMade && check1){
+      return <div className="text-red-600"> Must Enter First Name</div>
+    } else if (changeMade && check2){
+      return <div className="text-red-600"> Must Enter Last Name</div>
+    } else {
+      return <div></div>
+    }
+  }
+
+  function BackOrSaveBtn(){
+    if (changeMade){
+      return (   
+ 
+        <Link type="button" className="nav-button" onClick={dispactchType} to={"/employees"}>
+          Save 
+        </Link>
+      )
+    } else {
+      return (
+        <Link type="button" className="nav-button" to={"/employees"}>
+        Back 
+      </Link>
+      )
+    }
+  }
+  
   return(
     <div className="h-screen w-full flex justify-center ">
       <div className="contextDiv">
@@ -19,22 +55,18 @@ export default function SingleEmployeeView({empl, dispactchType,
 
           <div className="forumCol">
             <div className="flex justify-end">
-
-              <button className="nav-button" onClick={() => dispatch({ type: dispactchType, newItem: formData })} to={"/employees"}>
-                Save
-              </button>
+              <ValidateWarningText />
+              <BackOrSaveBtn />
             </div>
 
             <div className="forumRow">
               <div className="forumDiv">
                 <div><label className="pl-[4px]" >id</label></div>
                 <div>
-                  <input type="number" id="" placeholder={0} className="pl-[4px]"
-                  value={formData.id} 
-                  onChange={handleFormChangeNumber}
-                  name="id"
-                  >
-                </input></div>
+                  <p style={{textAlign:"left", paddingLeft:"50px"}}> 
+                      {(!employee.id)? "New Employee!" : `Edit Employee ${employee.id}!`}
+                  </p>
+                </div>
               </div>
 
               <div className="forumDiv">

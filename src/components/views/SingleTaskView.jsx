@@ -35,7 +35,7 @@ export default function SingleTaskView({
     if (changeMade && check1 && check2 ){
       return <div className="text-red-600"> Warning No Description or Employee assigned</div>
     } else if (changeMade && check1){
-      return <div className="text-red-600"> WarningNo Description</div>
+      return <div className="text-red-600"> Warning No Description</div>
     } else if (changeMade && check2){
       return <div className="text-red-600"> Warning No Employee assigned</div>
     } else {

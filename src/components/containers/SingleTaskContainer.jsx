@@ -12,7 +12,6 @@ function SingleTaskContainer() {
   const tasks = useSelector(state => state.tasks);
   const employees = useSelector((state) => state.employees);
   
-  // console.log(tasks);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -20,31 +19,16 @@ function SingleTaskContainer() {
     dispatch(fetchTasks());
   }, [dispatch]);
 
-
-
-
-
   const taskfiltered = tasks.filter((task) => task.id == param.taskId)
 
-  // I check if we already have a task with that id. 
-  // console.log("filtered tasks", taskfiltered)
   let task = taskfiltered[0]
-  // console.log("Printing task", task)
 
   const [newEntry, setNewEntry] = useState(taskfiltered.length == 0 ? true : false)
   
   // this is if we want to highlight the save button if changes are made (optional and not implemented yet)
   const [changeMade, setChangeMade] = useState(false)
-
-  // Validations
-  // NO LONGER NEEDED HERE
-  // let onLoadId = (task == undefined) ? 0 : task.id
-  // const orignalID = (param.taskId == "new" ? 0 : onLoadId);
-  // const [idValid, setIdValid] = useState((param.taskId == "new" ? false : true))
-  // const [descriptionValid, setDescriptionValid] = useState(false)
   
   if (newEntry){
-    // console.log("tasks in newEntry ",tasks);
     task = {
       // Here we have a default value of zero if there are no tasks 
       // or we take the largest id value then add one.
@@ -99,7 +83,6 @@ function SingleTaskContainer() {
     }
   
     const dispactchType = (newEntry == true) ? () => dispatch(addTask(formData)) : () => dispatch(editTask(formData));
-    // const dispactchType = () => dispatch(editTask(formData));
 
   return <SingleTaskView 
           task={task} 
