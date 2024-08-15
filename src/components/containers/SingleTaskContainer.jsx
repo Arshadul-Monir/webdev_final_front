@@ -89,7 +89,7 @@ function SingleTaskContainer() {
           tasks = {tasks} // we prob don't need this one, if i was better at coding. 
           employees = {employees}
           dispactchType={dispactchType} 
-          deleteTask={dispatch(deleteTask(formData))}
+          deleteTask={dispatch(() => deleteTask(formData))}
 
           formData={formData}
           setFormData={setFormData} // This is actually not being used
