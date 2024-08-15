@@ -80,11 +80,14 @@ function SingleEmployeeContainer(){
           employee={employee}
           tasks={tasks}
           dispactchType={dispactchType} 
+          deleteTask={dispatch(deleteEmployee(formData))}
+
           formData={formData}
           setFormData={setFormData}
           handleFormChange={handleFormChange}
           handleFormChangeNumber={handleFormChangeNumber}>
-
+          
+          changeMade={changeMade}
     </SingleEmployeeView>
 }
 

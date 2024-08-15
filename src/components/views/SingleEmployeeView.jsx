@@ -13,7 +13,6 @@ export default function SingleEmployeeView({
   handleFormChange,
   handleFormChangeNumber,
   changeMade
-
 })
 {
   function ValidateWarningText(){
@@ -75,16 +74,15 @@ export default function SingleEmployeeView({
                   <input type="text" id="" placeholder="Department..." className="pl-[4px]"
                   value={formData.department} 
                   onChange={handleFormChange}
-                  name="department"
-                  >
-                </input></div>
-              </div>
+                  name="department" />
+                </div></div>
 
-
-              <button className="nav-button">
-                Delete
-              </button>
+                <Link className="nav-button" to={"/employees"} 
+                onClick={(!employee.id)? () => null : deleteTask(employee.id)}>
+                  {(!employee.id)? "Cancel?" : `Delete task ${employee.id}?`}
+                </Link>
             </div>
+            
             <div className="forumRow">
 
             <div className="forumDiv">
@@ -108,8 +106,6 @@ export default function SingleEmployeeView({
                   >
                 </input></div>
               </div>
-
-
             </div>
           </div>
 
