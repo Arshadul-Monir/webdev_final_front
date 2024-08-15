@@ -8,24 +8,27 @@ export default function EmployeeList({pEmployees = [], dispatch})
 {
     const navigate = useNavigate();
 
-    const listedEmployees = [].concat(pEmployees).sort((a,b) => a.id < b.id ? 1 : -1).map((employee) => (
+    const listedEmployees = [].concat(pEmployees).sort((a,b) => a.id < b.id ? 1 : -1).map((empl) => (
         <div 
             className="list-row"
-            key={employee.id}
+            key={empl.id}
         >
-                <div id={"employee-"+employee.id} 
+                <div id={"employee-"+empl.id} 
                     className="info-col"
-                    onClick={()=>{clickRow(employee.id)}}
+                    onClick={()=>{clickRow(empl.id)}}
                 >
-                    <p>{employee.id}</p>
-                    <p>{employee.first_name}</p>
-                    <p>{employee.last_name}</p>
-                    <p>{employee.department}</p>
-                    <p>{(employee.employee)? employee.employee.firstname+ " " +employee.employee.lastname : "N/A"}</p>
+                    <p>{empl.id}</p>
+                    <p>{empl.firstname}</p>
+                    <p>{empl.lastname}</p>
+                    <p>{empl.department}</p>
+
+                    {/* <p>{empl.task}</p> */}
+                    <p> WE NEED TO MAP TASKS OUTS HERE</p>
                 </div>
 
-                <div className="remove-col"
-                    onClick={() => dispatch(deleteEmployee(employee.id))}>
+                <div className="id-remove-col"
+                onClick={() => dispatch(deleteEmployee(employee.id))}>
+                    
                 
                     <p className="remove-data">X</p>
                 </div>
@@ -42,27 +45,25 @@ export default function EmployeeList({pEmployees = [], dispatch})
     if(pEmployees.length > 0)
     {
             return(
-            <div className = "list">
+                <div className = "list">
                 <p className="table-caption">
                         Employee List
                 </p>
-                <div className="list-row list-header"
-                    //style={{color:'black', display:'grid', gridTemplateColumns: 'auto 70px', gap:'100px'}}
-                >
+                <div className="list-row list-header">
                         <div className="header-info-col">
                             <p>ID</p>
-                            <p>Priority</p>
-                            <p>Description</p>
-                            <p>Completion</p>
-                            <p>Owner</p>
+                            <p>First Name</p>
+                            <p>Last Name</p>
+                            <p>Department</p>
+                            <p>Task</p>
                         </div>
-
+    
                         <div>
                             <p>Remove</p>
                         </div>
                 </div>
-
-                <div style={{minHeight:'84px'}}>
+    
+                <div>
                     {listedEmployees}
                 </div>
             </div>
@@ -79,10 +80,10 @@ export default function EmployeeList({pEmployees = [], dispatch})
                 >
                         <div className="header-info-col">
                             <p>ID</p>
-                            <p>Priority</p>
-                            <p>Description</p>
-                            <p>Completion</p>
-                            <p>Owner</p>
+                            <p>First Name</p>
+                            <p>Last Name</p>
+                            <p>Department</p>
+                            <p>Task</p>
                         </div>
 
                         <div>
