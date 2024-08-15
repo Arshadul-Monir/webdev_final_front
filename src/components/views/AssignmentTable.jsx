@@ -1,13 +1,19 @@
+import { editTask } from "../../store/tasksSlice";
+
 export default function AssignmentTable({
     employee,
     tasks = [],
-    assignTask,
-    unassignTask
+    dispatch
 }) 
 {
     const availableTasks = tasks.filter(task => !task.employee && !task.isComplete);
     const employeeTasks = employee.tasks;
     
+    function assign(task){
+        task.employeeId = employee.id;
+        dispatch(editTask(task));
+    } 
+
     console.log(employee);
     return (
       <div
@@ -20,6 +26,7 @@ export default function AssignmentTable({
         <TaskTable
             tasks={availableTasks}
             right = {false}
+            operation={() =>assign}
         ></TaskTable>
         <TaskTable
             tasks={employeeTasks}
@@ -34,7 +41,7 @@ function TaskTable({
     tasks = [],
     right = true,
     employee,
-    operation
+    operation= () => {}
 })
 {
     
@@ -103,7 +110,7 @@ const header = (
                         gridTemplateColumns:"1fr 2fr 5fr",
                         gap:"10px",
                     }}
-                    onO
+                    onClick={() => operation(task)}
                 >
                     <p>{task.id}</p>
                     <p>{task.priority}</p>

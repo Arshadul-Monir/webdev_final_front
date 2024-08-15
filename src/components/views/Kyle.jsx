@@ -34,6 +34,7 @@ export default function Kyle()
         <AssignmentTable
             employee={employee}
             tasks={tasks}
+            dispatch={dispatch}
         ></AssignmentTable>
       </div>
     );
