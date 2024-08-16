@@ -1,9 +1,12 @@
 import { editTask } from "../../store/tasksSlice";
+import { useEffect, useState } from 'react'
 
 export default function AssignmentTable({
     employee,
     tasks = [],
-    dispatch
+    dispatch,
+
+    setForceRefresh
 }) 
 {
     const availableTasks = tasks.filter(task => !task.employee && !task.isComplete);
@@ -12,11 +15,13 @@ export default function AssignmentTable({
     function assign(task){
         console.log("assign");
         dispatch(editTask({...task,employeeId: employee.id}));
+        setForceRefresh(true);
     } 
 
     function unassign(task){
         console.log("unassign");
         dispatch(editTask({...task,employeeId: null}));
+        setForceRefresh(true);
     } 
 
     console.log(employee);
@@ -75,7 +80,8 @@ const header = (
         <p className="table-caption"
             style={{textAlign:"center"}}
         >
-            {right ? employee.firstname + " " + employee.lastname + "'s Tasks" : "Available Tasks"}
+            {right ? employee.firstname + " " + employee.lastname + "'s Tasks" : 
+            "Available Tasks"}
         </p>
         <div className="task-list-row task-list-header"
             style={tableStyle}

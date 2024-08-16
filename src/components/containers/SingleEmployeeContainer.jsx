@@ -23,6 +23,7 @@ function SingleEmployeeContainer(){
   );
 
   const [isLoaded, setIsLoaded] = useState(false);
+  const [forceRefresh, setForceRefresh] = useState(false);
 
   useEffect(() => {
     if (!employee){
@@ -35,8 +36,14 @@ function SingleEmployeeContainer(){
       setFormData(employee)
       setIsLoaded(true)
     }
-
-  }, [dispatch, employee]);
+    else if(forceRefresh)
+    {
+      console.log("fuc");
+      dispatch(fetchEmployees());
+      dispatch(fetchTasks());
+    }
+    setForceRefresh(false);
+  }, [dispatch, employee, forceRefresh]);
 
 
   const [newEntry, setNewEntry] = useState(false)
@@ -112,6 +119,7 @@ function SingleEmployeeContainer(){
           //AssignmentTable stuff
         dispatch={dispatch}
         tasks={tasks}
+        setForceRefresh={setForceRefresh}
     />
 }
 

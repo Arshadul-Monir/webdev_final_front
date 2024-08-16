@@ -22,7 +22,7 @@ export default function SingleEmployeeView({empl, dispactchType,
   newEntry,
   tasks,
   dispatch,
-
+  setForceRefresh
 })
 {
   function ValidateWarningText(){
@@ -65,6 +65,7 @@ export default function SingleEmployeeView({empl, dispactchType,
     employee={employee} // fyi Kyle, if you are reading this I'm removing ur hard coded employee
     tasks={tasks}
     dispatch={dispatch}
+    setForceRefresh={setForceRefresh}
     ></AssignmentTable>);
   
   return(
