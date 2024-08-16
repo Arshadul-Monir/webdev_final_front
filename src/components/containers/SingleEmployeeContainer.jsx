@@ -12,7 +12,8 @@ function SingleEmployeeContainer(){
 
   const employees = useSelector(state => state.employees);
   const tasks = useSelector(state => state.tasks);
-  const employee_kyle = employees.find(emp => emp.id === 2);
+  //hard coded rn cuz it's not working yet
+  const employee_kyle = employees.find(emp => emp.id === 1);
   
   const dispatch = useDispatch();
 
