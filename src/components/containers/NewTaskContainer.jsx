@@ -19,15 +19,13 @@ function NewTaskContainer() {
   taskId = parseInt(taskId); //convert to integer
 
   //get task from state based on URL parameter
+  // THis is no longer being used after I split the files to view single task and new task
   const task = useSelector(state =>
     state.tasks.find(task => task.id === taskId)
   );
 
   // Honestly this is how I did this back in 2021, it's been over 2 years since I touched react
-  const taskfiltered = tasks.filter((task) => task.id == param.taskId)
-  // const [tasks, setTasks] = useState([]);
-  // const [employees, setEmployees] = useState([]);;
-  // const [task, setTask] = useState(null);
+
   const [formData, setFormData] = useState( 
     // This was to prevent page refresh crashing 
     {

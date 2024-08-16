@@ -8,7 +8,7 @@ function AllTasksContainer() {
     const dispatch = useDispatch();
 
     const [isLoaded, setIsLoaded] = useState(false);
-    const [tasksLoad, setTasksLoaded] = useState(tasks)
+
 
     useEffect(() => {
       dispatch(fetchTasks());

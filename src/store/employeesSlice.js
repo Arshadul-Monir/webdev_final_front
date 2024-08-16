@@ -49,7 +49,7 @@ export const deleteEmployee = employeeId => async dispatch => {
 
 /* ADD EMPLOYEE */
 export const addEmployee = employee => async (dispatch) => {
-  console.log(employee)
+  console.log("Adding employee attemp ",employee )
   try {
     let res = await axios.post(`${PATH}`, employee);
     dispatch({type: 'employees/employeeCreated', payload: res.data});

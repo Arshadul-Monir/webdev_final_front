@@ -10,17 +10,20 @@ import AssignmentTable from "./AssignmentTable";
 
 export default function SingleEmployeeView({empl, dispactchType,
   employee,
-  tasks,
+
   //dispactchType,
   formData,
   handleFormChange,
   handleFormChangeNumber,
 
-    //AssignmentTable stuff
-  //tasks,
+  changeMade,
+
+  //AssignmentTable stuff
+  newEntry,
+  tasks,
   dispatch,
-  employee_kyle,
-  changeMade
+  employee_kyle
+
 })
 {
   function ValidateWarningText(){
@@ -52,6 +55,18 @@ export default function SingleEmployeeView({empl, dispactchType,
         Back 
       </Link>
       )
+    }
+  }
+
+  function AssignmentTableOrNew(){
+    if  (newEntry){
+      return (<div></div>)
+    } else {
+      <AssignmentTable
+      employee={employee} // fyi Kyle, if you are reading this I'm removing ur hard coded employee
+      tasks={tasks}
+      dispatch={dispatch}
+      ></AssignmentTable>
     }
   }
   
@@ -97,9 +112,9 @@ export default function SingleEmployeeView({empl, dispactchType,
                 <div><label className="pl-[4px]">First Name</label></div>
                 <div>
                   <input type="text" id="" placeholder="First Name..." className="pl-[4px]"
-                  value={formData.first_name} 
+                  value={formData.firstname} 
                   onChange={handleFormChange}
-                  name="first_name"
+                  name="firstname"
                   />
                 </div>
               </div>
@@ -108,19 +123,15 @@ export default function SingleEmployeeView({empl, dispactchType,
                 <div><label className="pl-[4px]" >Last Name</label></div>
                 <div>
                   <input type="text" id="" placeholder="Last Name..." className="pl-[4px]"
-                  value={formData.last_name} 
+                  value={formData.lastname} 
                   onChange={handleFormChange}
-                  name="last_name"
+                  name="lastname"
                   />
                 </div>
               </div>
             </div>
           </div>
-          <AssignmentTable
-            employee={employee_kyle}
-            tasks={tasks}
-            dispatch={dispatch}
-        ></AssignmentTable>
+
 
       </div>
     </div>
