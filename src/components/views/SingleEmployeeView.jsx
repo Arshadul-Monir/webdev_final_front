@@ -10,23 +10,26 @@ import AssignmentTable from "./AssignmentTable";
 
 export default function SingleEmployeeView({empl, dispactchType,
   employee,
-  tasks,
+
   //dispactchType,
   formData,
   handleFormChange,
   handleFormChangeNumber,
 
-    //AssignmentTable stuff
-  //tasks,
+  changeMade,
+
+  //AssignmentTable stuff
+  newEntry,
+  tasks,
   dispatch,
-  employee_kyle,
-  changeMade
+  employee_kyle
+
 })
 {
   function ValidateWarningText(){
     // document.getElementsByClassName("nav-button").disabled = true;
-    const check1 = (formData.first_name == "")
-    const check2 = (formData.last_name == "")
+    const check1 = (formData.firstname == "")
+    const check2 = (formData.lastname == "")
     if (changeMade && check1 && check2 ){
       return <div className="text-red-600"> Must Enter First and Last name</div>
     } else if (changeMade && check1){
@@ -39,7 +42,10 @@ export default function SingleEmployeeView({empl, dispactchType,
   }
 
   function BackOrSaveBtn(){
-    if (changeMade){
+    const check1 = (formData.firstname == "")
+    const check2 = (formData.lastname == "")
+
+    if (changeMade && !( check1 || check2) ){
       return (   
  
         <Link type="button" className="nav-button" onClick={dispactchType} to={"/employees"}>
@@ -52,6 +58,18 @@ export default function SingleEmployeeView({empl, dispactchType,
         Back 
       </Link>
       )
+    }
+  }
+
+  function AssignmentTableOrNew(){
+    if  (newEntry){
+      return (<div></div>)
+    } else {
+      <AssignmentTable
+      employee={employee} // fyi Kyle, if you are reading this I'm removing ur hard coded employee
+      tasks={tasks}
+      dispatch={dispatch}
+      ></AssignmentTable>
     }
   }
   
@@ -71,7 +89,7 @@ export default function SingleEmployeeView({empl, dispactchType,
                 <div><label className="pl-[4px]" >Id</label></div>
                 <div>
                   <p style={{textAlign:"left", paddingLeft:"50px"}}> 
-                      {(!employee.id)? "New Employee!" : `Edit Employee ${employee.id}!`}
+                      {(!newEntry)? "New Employee!" : `Edit Employee ${employee.id}!`}
                   </p>
                 </div>
               </div>
@@ -85,10 +103,13 @@ export default function SingleEmployeeView({empl, dispactchType,
                   name="department" />
                 </div></div>
 
+                {(newEntry) ? <div></div> :                 
                 <Link className="nav-button" to={"/employees"} 
-                onClick={(!employee.id)? () => null : deleteEmployee(employee.id)}>
-                  {(!employee.id)? "Cancel?" : `Delete Employee ${employee.id}?`}
+                  onClick={(!formData.id)? () => null : deleteEmployee(formData.id)}>
+                  {(!formData.id)? "Cancel?" : `Delete Employee ${formData.id}?`}
                 </Link>
+                }
+
             </div>
             
             <div className="forumRow">
@@ -97,9 +118,9 @@ export default function SingleEmployeeView({empl, dispactchType,
                 <div><label className="pl-[4px]">First Name</label></div>
                 <div>
                   <input type="text" id="" placeholder="First Name..." className="pl-[4px]"
-                  value={formData.first_name} 
+                  value={formData.firstname} 
                   onChange={handleFormChange}
-                  name="first_name"
+                  name="firstname"
                   />
                 </div>
               </div>
@@ -108,19 +129,15 @@ export default function SingleEmployeeView({empl, dispactchType,
                 <div><label className="pl-[4px]" >Last Name</label></div>
                 <div>
                   <input type="text" id="" placeholder="Last Name..." className="pl-[4px]"
-                  value={formData.last_name} 
+                  value={formData.lastname} 
                   onChange={handleFormChange}
-                  name="last_name"
+                  name="lastname"
                   />
                 </div>
               </div>
             </div>
           </div>
-          <AssignmentTable
-            employee={employee_kyle}
-            tasks={tasks}
-            dispatch={dispatch}
-        ></AssignmentTable>
+
 
       </div>
     </div>

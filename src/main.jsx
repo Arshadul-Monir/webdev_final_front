@@ -17,9 +17,8 @@ import AllEmployeesContainer from './components/containers/AllEmployeesContainer
 import AllTasksContainer from './components/containers/AllTasksContainer.jsx';
 import SingleTaskContainer from './components/containers/SingleTaskContainer.jsx';
 import SingleEmployeeContainer from './components/containers/SingleEmployeeContainer.jsx';
-// import SingleTaskNewContainer from './components/containers/SingleTaskNewContainer.jsx';
 import NewTaskContainer from './components/containers/NewTaskContainer.jsx';
-
+import NewEmployeeContainer from './components/containers/NewEmployeeContainer.jsx';
 
 // //Redux
 import { Provider } from "react-redux";
@@ -46,8 +45,12 @@ const router = createBrowserRouter([
   //   element: <Bananas />,
   // },
   {
-    path: "/employees/:emplId",
+    path: "/employees/:employeeID",
     element: <SingleEmployeeContainer />,
+  },
+  {
+    path: "/employees/new",
+    element: <NewEmployeeContainer />,
   },
   {
     path: "/tasks/:taskId",

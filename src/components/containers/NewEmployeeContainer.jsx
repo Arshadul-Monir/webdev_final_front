@@ -6,43 +6,40 @@ import { fetchTasks } from "../../store/tasksSlice";
 
 import SingleEmployeeView from '../views/SingleEmployeeView';
 
-function SingleEmployeeContainer(){
+function NewEmployeeContainer(){
   const param = useParams();
 
   const tasks = useSelector(state => state.tasks);
   const employees = useSelector((state) => state.employees);
   
-  const dispatch = useDispatch();
-
-  let { employeeID } = useParams(); //get id from URL
-  employeeID = parseInt(employeeID); //convert to integer
-
-
-  let employee = useSelector(state =>
-    state.employees.find(employee => employee.id === employeeID)
-  );
-
   //hard coded rn cuz it's not working yet
   const employee_kyle = employees.find(emp => emp.id === 1);
+  
+  const dispatch = useDispatch();
 
+  // const [tasksLoad, tasksLoadLoad] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
+
   useEffect(() => {
-    if (!employee){
-      console.log("asdfasdf")
-      console.log(employeeID, employee)
-      dispatch(fetchEmployees());
-      dispatch(fetchTasks());
-    } else if (!isLoaded){
-      console.log("test")
-      setFormData(employee)
+    dispatch(fetchEmployees());
+    dispatch(fetchTasks());
+
+    // My lazy way of making sure new info is not missed without doing a 
+    // real frontend data update function.
+    if (!isLoaded){
+      setTimeout(1000); // reloads info after 1 sec
       setIsLoaded(true)
     }
 
-  }, [dispatch, employee]);
+  }, [dispatch, isLoaded]);
 
+  const employeefiltered = employees.filter((employee) => employee.id == param.emplId)
 
-  const [newEntry, setNewEntry] = useState(false)
+  let employee = employeefiltered[0];
+
+  // We are spliting SingleEmployeeContainers to two files cuz im lazy. 
+  const [newEntry, setNewEntry] = useState(true)
   
   // this is if we want to highlight the save button if changes are made (optional and not implemented yet)
   const [changeMade, setChangeMade] = useState(false)
@@ -52,28 +49,19 @@ function SingleEmployeeContainer(){
       // Here we have a default value of zero if there are no employees 
       // or we take the largest id value then add one.
       //id: (tasks.length == 0) ? 0 : (Math.max(...tasks.map(o => o.id)) + 1),
-      first_name: "",
-      last_name: "",
+      firstname: "",
+      lastname: "",
       department: "",
-      tasks: []
+      // tasks: []
     }
   }
 
   const [formData, setFormData] = useState(
-    // This was to prevent page refresh crashing
-    (employee == undefined) ? {
-      id: 0,
+  {
       firstname: "",
       lastname: "",
       department: "",
-      tasks: [],
-    } :
-    {
-      id: employee.id,
-      firstname: employee.first_name,
-      lastname: employee.last_name,
-      department: employee.department,
-      tasks: employee.tasks,
+      // tasks: [],
     }
   )
 
@@ -113,10 +101,11 @@ function SingleEmployeeContainer(){
           changeMade={changeMade}
 
           //AssignmentTable stuff
-        dispatch={dispatch}
-        tasks={tasks}
-        employee_kyle = {employee_kyle}
+          newEntry={newEntry}
+          dispatch={dispatch}
+          tasks={tasks} // tasksLoad
+          employee_kyle = {employee_kyle}
     />
 }
 
-export default SingleEmployeeContainer
+export default NewEmployeeContainer

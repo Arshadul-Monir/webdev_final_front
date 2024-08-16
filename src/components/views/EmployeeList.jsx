@@ -10,11 +10,14 @@ export default function EmployeeList({pEmployees = [], dispatch})
 
 
     function mapTasks(tasks){
+        if (tasks){ // This if is to prevent any quick load crashes
+            const tasksMapped = tasks.map((task) => <div onClick={()=>{clickTask(task.id)}}> {task.description}</div>)
+            return (
+                <p>{tasksMapped}</p>
+            )
+        } 
+        return <div></div>
 
-        const tasksMapped = tasks.map((task) => <div onClick={()=>{clickTask(task.id)}}> {task.description}</div>)
-        return (
-            <p>{tasksMapped}</p>
-        )
     }
 
     const listedEmployees = [].concat(pEmployees).sort((a,b) => a.id < b.id ? 1 : -1).map((empl) => (
@@ -36,7 +39,7 @@ export default function EmployeeList({pEmployees = [], dispatch})
                 </div>
 
                 <div className="id-remove-col"
-                onClick={() => dispatch(deleteEmployee(employee.id))}>
+                onClick={() => dispatch(deleteEmployee(empl.id))}>
                     
                 
                     <p className="remove-data">X</p>
