@@ -19,7 +19,7 @@ export default function TaskList({pTasks = [], dispatch})
                 >
                     <p>{task.id}</p>
                     <p>{task.priority}</p>
-                    <p>{task.description}</p>
+                    <p>{(task.description)? task.description : "No Description"}</p>
                     <p>{task.isComplete? "Y" : "N"}</p>
                     <p>{(task.employee)? task.employee.firstname+ " " +task.employee.lastname : "N/A"}</p>
                 </div>

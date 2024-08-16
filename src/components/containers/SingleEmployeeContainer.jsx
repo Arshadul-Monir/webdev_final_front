@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from 'react'
-import { fetchEmployees, addEmployee, deleteEmployee, editEmployee,  } from "../../store/employeesSlice";
+import { fetchEmployees, addEmployee, deleteEmployee, editEmployee } from "../../store/employeesSlice";
 import { fetchTasks } from "../../store/tasksSlice";
 
 import SingleEmployeeView from '../views/SingleEmployeeView';
@@ -15,8 +15,8 @@ function SingleEmployeeContainer(){
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchTasks());
     dispatch(fetchEmployees());
+    dispatch(fetchTasks());
   }, [dispatch]);
 
   const employeefiltered = employees.filter((employee) => employee.id == param.employeeId)
@@ -33,7 +33,10 @@ function SingleEmployeeContainer(){
       // Here we have a default value of zero if there are no employees 
       // or we take the largest id value then add one.
       //id: (tasks.length == 0) ? 0 : (Math.max(...tasks.map(o => o.id)) + 1),
-
+      first_name: "",
+      last_name: "",
+      department: "",
+      tasks: []
     }
   }
 
@@ -42,7 +45,7 @@ function SingleEmployeeContainer(){
     (employee == undefined) ? {
       first_name: "",
       last_name: "",
-      department: null,
+      department: "",
       tasks: [],
     } :
     {
@@ -55,7 +58,7 @@ function SingleEmployeeContainer(){
   )
 
   function handleFormChange(event){
-    console.log(event)
+    // console.log(event)
     setFormData({...formData,
         [event.target.name]: event.target.value
     })
@@ -80,15 +83,15 @@ function SingleEmployeeContainer(){
           employee={employee}
           tasks={tasks}
           dispactchType={dispactchType} 
-          deleteTask={dispatch(deleteEmployee(formData))}
+          deleteEmployee={() => dispatch(deleteEmployee(formData))}
 
           formData={formData}
           setFormData={setFormData}
           handleFormChange={handleFormChange}
-          handleFormChangeNumber={handleFormChangeNumber}>
+          handleFormChangeNumber={handleFormChangeNumber}
           
           changeMade={changeMade}
-    </SingleEmployeeView>
+    />
 }
 
 export default SingleEmployeeContainer

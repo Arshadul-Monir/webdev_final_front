@@ -4,6 +4,7 @@ import "./styles/tailwindStyle.css"
 import { useSelector, useDispatch  } from "react-redux";
 import { useState } from 'react'
 import NavigationButtons from "./NavigationButtons";
+import { deleteEmployee } from "../../store/employeesSlice";
 
 export default function SingleEmployeeView({
   employee,
@@ -16,7 +17,7 @@ export default function SingleEmployeeView({
 })
 {
   function ValidateWarningText(){
-    document.getElementsByClassName("nav-btn").disabled = true;
+    // document.getElementsByClassName("nav-button").disabled = true;
     const check1 = (formData.first_name == "")
     const check2 = (formData.last_name == "")
     if (changeMade && check1 && check2 ){
@@ -60,7 +61,7 @@ export default function SingleEmployeeView({
 
             <div className="forumRow">
               <div className="forumDiv">
-                <div><label className="pl-[4px]" >id</label></div>
+                <div><label className="pl-[4px]" >Id</label></div>
                 <div>
                   <p style={{textAlign:"left", paddingLeft:"50px"}}> 
                       {(!employee.id)? "New Employee!" : `Edit Employee ${employee.id}!`}
@@ -78,8 +79,8 @@ export default function SingleEmployeeView({
                 </div></div>
 
                 <Link className="nav-button" to={"/employees"} 
-                onClick={(!employee.id)? () => null : deleteTask(employee.id)}>
-                  {(!employee.id)? "Cancel?" : `Delete task ${employee.id}?`}
+                onClick={(!employee.id)? () => null : deleteEmployee(employee.id)}>
+                  {(!employee.id)? "Cancel?" : `Delete Employee ${employee.id}?`}
                 </Link>
             </div>
             
@@ -92,8 +93,8 @@ export default function SingleEmployeeView({
                   value={formData.first_name} 
                   onChange={handleFormChange}
                   name="first_name"
-                  >
-                </input></div>
+                  />
+                </div>
               </div>
 
               <div className="forumDiv">
@@ -103,8 +104,8 @@ export default function SingleEmployeeView({
                   value={formData.last_name} 
                   onChange={handleFormChange}
                   name="last_name"
-                  >
-                </input></div>
+                  />
+                </div>
               </div>
             </div>
           </div>
