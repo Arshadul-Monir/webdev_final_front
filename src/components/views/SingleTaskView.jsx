@@ -11,7 +11,7 @@ import "./styles/tailwindStyle.css"
 export default function SingleTaskView({
   task, 
   tasks, // This is actually not being used
-  employees, 
+  employees, // This is a copy of employees after it's been loaded
   dispactchType,
   formData,
   setFormData, // This is actually not being used
@@ -24,8 +24,8 @@ export default function SingleTaskView({
 })
 {
 
-  console.log("On single Task view", task)
-  console.log("form data", formData)
+  // console.log("On single Task view", task)
+  // console.log("form data", formData)
   // console.log(tasks)
   // console.log(employees)
 
@@ -143,7 +143,7 @@ export default function SingleTaskView({
                 <div><label className="pl-[4px]">Complete Status</label></div>
                 <div>
                   <select id="" className="pl-[4px] w-[180px]"
-                  value={formData.complete} 
+                  value={formData.isComplete} 
                   onChange={handleFormChange}
                   name="isComplete"
                   >

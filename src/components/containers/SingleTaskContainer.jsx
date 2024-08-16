@@ -19,7 +19,7 @@ function SingleTaskContainer() {
 
   //get task from state based on URL parameter
   let task = useSelector(state =>
-    // Mapping then using find might be good O time but I don't care anymore
+    // Mapping then using find might be good O runtime but I don't care anymore
     state.tasks.map(task => ({
       id: task.id,
       priority: task.priority,
@@ -30,6 +30,7 @@ function SingleTaskContainer() {
     ).find(task => task.id === taskId)
   );
 
+  const [employeesLoad, setEmployeesLoad] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
   // Honestly this is how I did this back in 2021, it's been over 2 years since I touched react
@@ -66,11 +67,12 @@ function SingleTaskContainer() {
       dispatch(fetchTasks());
     } else if (!isLoaded){
       setFormData(task)
+      setEmployeesLoad(employees)
       setIsLoaded(true)
     }
 
 
-  }, [dispatch, task]);
+  }, [dispatch, task, employees]);
 
   // I check if we already have a task with that id. 
   // console.log("filtered tasks", taskfiltered)
@@ -93,9 +95,8 @@ function SingleTaskContainer() {
   // const [descriptionValid, setDescriptionValid] = useState(false)
 
 
-
     function handleFormChange(event){
-      console.log(event)
+      // console.log(event)
       setFormData({...formData,
           [event.target.name]: event.target.value
       })
@@ -103,7 +104,7 @@ function SingleTaskContainer() {
     }
   
     function handleFormChangeNumber(event){
-      //console.log("@", event)
+      //console.log(event)
       setFormData({...task,
           [event.target.name]: Number(event.target.value)
       })
@@ -125,11 +126,10 @@ function SingleTaskContainer() {
         <SingleTaskView 
           task={task} 
           tasks = {tasks} // we prob don't need this one, if i was better at coding. 
-          employees = {employees}
+          employees = {employeesLoad} // I'm using employeesload incase the user moves around the site too fast.
           dispactchType={dispactchType} 
 
           deleteTask={() => dispatch(deleteTask(task))}
-
 
           formData={formData}
           setFormData={setFormData} // This is actually not being used
