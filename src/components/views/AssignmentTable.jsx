@@ -10,8 +10,8 @@ export default function AssignmentTable({
     const employeeTasks = employee.tasks;
     
     function assign(task){
-        task.employeeId = employee.id;
-        dispatch(editTask(task));
+        console.log("click");
+        dispatch(editTask({...task,employeeId: employee.id}));
     } 
 
     console.log(employee);
@@ -26,7 +26,7 @@ export default function AssignmentTable({
         <TaskTable
             tasks={availableTasks}
             right = {false}
-            operation={() =>assign}
+            operation={assign}
         ></TaskTable>
         <TaskTable
             tasks={employeeTasks}
@@ -41,7 +41,7 @@ function TaskTable({
     tasks = [],
     right = true,
     employee,
-    operation= () => {}
+    operation=() => console.log("rah")
 })
 {
     

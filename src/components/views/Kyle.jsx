@@ -19,7 +19,7 @@ export default function Kyle()
   useEffect(() => {
     dispatch(fetchEmployees());
     dispatch(fetchTasks());
-  }, [dispatch]);
+  }, [dispatch, employees, tasks]);
 
   
   if(!employee)
