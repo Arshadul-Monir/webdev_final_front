@@ -36,7 +36,7 @@ export default function EmployeeList({pEmployees = [], dispatch})
                 </div>
 
                 <div className="id-remove-col"
-                onClick={() => dispatch(deleteEmployee(employee.id))}>
+                onClick={() => dispatch(deleteEmployee(empl.id))}>
                     
                 
                     <p className="remove-data">X</p>

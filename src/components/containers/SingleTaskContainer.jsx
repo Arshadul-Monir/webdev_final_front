@@ -35,12 +35,9 @@ function SingleTaskContainer() {
 
   // Honestly this is how I did this back in 2021, it's been over 2 years since I touched react
 
-  // const [tasks, setTasks] = useState([]);
-  // const [employees, setEmployees] = useState([]);;
-  // const [task, setTask] = useState(null);
-
   const [formData, setFormData] = useState( 
-    // This was to prevent page refresh crashing 
+    // This was to prevent page refresh crashing at the start 
+    // but im not sure if it's still needed
     (!task) ?
     {
       // id: 0,
@@ -70,7 +67,6 @@ function SingleTaskContainer() {
       setEmployeesLoad(employees)
       setIsLoaded(true)
     }
-
 
   }, [dispatch, task, employees]);
 
