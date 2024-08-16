@@ -11,7 +11,7 @@ import AssignmentTable from "./AssignmentTable";
 export default function SingleEmployeeView({empl, dispactchType,
   employee,
   tasks,
-  dispactchType,
+  //dispactchType,
   formData,
   handleFormChange,
   handleFormChangeNumber,
