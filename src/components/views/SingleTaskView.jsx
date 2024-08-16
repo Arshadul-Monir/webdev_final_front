@@ -24,8 +24,8 @@ export default function SingleTaskView({
 })
 {
 
-  // console.log("On single Task view", task)
-  // console.log("form data", formData)
+  console.log("On single Task view", task)
+  console.log("form data", formData)
   // console.log(tasks)
   // console.log(employees)
 
@@ -35,7 +35,7 @@ export default function SingleTaskView({
     if (changeMade && check1 && check2 ){
       return <div className="text-red-600"> Warning No Description or Employee assigned</div>
     } else if (changeMade && check1){
-      return <div className="text-red-600"> WarningNo Description</div>
+      return <div className="text-red-600"> Warning No Description</div>
     } else if (changeMade && check2){
       return <div className="text-red-600"> Warning No Employee assigned</div>
     } else {
@@ -44,7 +44,8 @@ export default function SingleTaskView({
   }
 
   function BackOrSaveBtn(){
-    if (changeMade){
+    const check1 = (formData.description.length == "")
+    if (changeMade &&  !check1){
       return (   
  
         <Link type="button" className="nav-button" onClick={dispactchType} to={"/tasks"}>
@@ -80,7 +81,7 @@ export default function SingleTaskView({
                 <div><label className="pl-[4px]" >id</label></div>
                 <div>
                   <p style={{textAlign:"left", paddingLeft:"50px"}}> 
-                    {(!task.id)? "New Task!" : `Edit task ${task.id}!`}
+                    {(!formData.id)? "New Task!" : `Edit task ${formData.id}!`}
                   </p>
                 </div>
               </div>
@@ -100,8 +101,8 @@ export default function SingleTaskView({
               </div>
 
               <Link className="nav-button" to={"/tasks"} 
-              onClick={(!task.id)? () => null : deleteTask(task.id)}>
-                {(!task.id)? "Cancel?" : `Delete task ${task.id}?`}
+              onClick={(!formData.id)? () => null : deleteTask(formData.id)}>
+                {(!formData.id)? "Cancel?" : `Delete task ${formData.id}?`}
               </Link>
             </div>
 
@@ -127,7 +128,7 @@ export default function SingleTaskView({
                     {employees.map(emp => {
                       let name = emp.firstname + " " + emp.lastname;
                       
-                      let option = (emp.id == task.employeeId) ? 
+                      let option = (emp.id == formData.employeeId) ? 
                           <option selected key={emp.id} value={emp.id}>{name}</option> 
                           : <option key={emp.id} value={emp.id}>{name}</option> 
                       return option
