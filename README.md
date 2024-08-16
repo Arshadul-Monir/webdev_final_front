@@ -11,11 +11,14 @@ Currently, two official plugins are available:
 
 ### Hi Friends remember to do the following below to run
 
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+
 npm install
 
 npm run dev
 
-(might need to run
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
-)
+
+
+I hope this helps
+![alt text](https://github.com/Arshadul-Monir/webdev_final_front/blob/main/src/readmeImage.png?raw=true)
