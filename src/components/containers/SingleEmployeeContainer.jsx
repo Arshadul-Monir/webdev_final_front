@@ -11,6 +11,9 @@ function SingleEmployeeContainer(){
   console.log(param.id);
 
   const employees = useSelector(state => state.employees);
+  const tasks = useSelector(state => state.tasks);
+  const employee_kyle = employees.find(emp => emp.id === 2);
+  
   const dispatch = useDispatch();
 
   const emplfiltered = employees.filter((empl) => empl.id == param.id)
@@ -61,7 +64,15 @@ function SingleEmployeeContainer(){
     formData={formData}
     setFormData={setFormData}
     handleFormChange={handleFormChange}
-    handleFormChangeNumber={handleFormChangeNumber}>
+    handleFormChangeNumber={handleFormChangeNumber}
+    
+    //AssignmentTable stuff
+    dispatch={dispatch}
+    tasks={tasks}
+    employee_kyle = {employee_kyle}
+    >
+
+
 
     </SingleEmployeeView>
 }

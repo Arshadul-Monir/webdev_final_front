@@ -10,31 +10,44 @@ export default function AssignmentTable({
     const employeeTasks = employee.tasks;
     
     function assign(task){
-        console.log("click");
+        console.log("assign");
         dispatch(editTask({...task,employeeId: employee.id}));
     } 
 
+    function unassign(task){
+        console.log("unassign");
+        dispatch(editTask({...task,employeeId: null}));
+    } 
+
     console.log(employee);
-    return (
-      <div
-        style={{
-            display :"grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap : "50px"
-        }}
-      >
-        <TaskTable
-            tasks={availableTasks}
-            right = {false}
-            operation={assign}
-        ></TaskTable>
-        <TaskTable
-            tasks={employeeTasks}
-            right = {true}
-            employee={employee}
-        ></TaskTable>
-      </div>
-    );
+    if(!employee)
+    {
+        return(<div></div>);
+    }
+    else
+    {
+        return (
+        <div
+            style={{
+                display :"grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap : "50px"
+            }}
+        >
+            <TaskTable
+                tasks={availableTasks}
+                right = {false}
+                operation={assign}
+            ></TaskTable>
+            <TaskTable
+                tasks={employeeTasks}
+                right = {true}
+                employee={employee}
+                operation={unassign}
+            ></TaskTable>
+        </div>
+        );
+    }
 }
 
 function TaskTable({

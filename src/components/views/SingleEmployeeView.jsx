@@ -5,11 +5,19 @@ import { useSelector, useDispatch  } from "react-redux";
 import { useState } from 'react'
 import NavigationButtons from "./NavigationButtons";
 
+import AssignmentTable from "./AssignmentTable";
+
 export default function SingleEmployeeView({empl, dispactchType,
   formData,
   setFormData,
   handleFormChange,
-  handleFormChangeNumber})
+  handleFormChangeNumber,
+
+    //AssignmentTable stuff
+  tasks,
+  dispatch,
+  employee_kyle
+})
 {
 
   return(
@@ -80,6 +88,11 @@ export default function SingleEmployeeView({empl, dispactchType,
 
             </div>
           </div>
+          <AssignmentTable
+            employee={employee_kyle}
+            tasks={tasks}
+            dispatch={dispatch}
+        ></AssignmentTable>
 
       </div>
     </div>
