@@ -101,6 +101,7 @@ function NewEmployeeContainer(){
           changeMade={changeMade}
 
           //AssignmentTable stuff
+          newEntry={newEntry}
           dispatch={dispatch}
           tasks={tasks} // tasksLoad
           employee_kyle = {employee_kyle}
