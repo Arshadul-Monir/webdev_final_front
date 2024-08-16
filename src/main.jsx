@@ -45,7 +45,7 @@ const router = createBrowserRouter([
   //   element: <Bananas />,
   // },
   {
-    path: "/employees/:emplId",
+    path: "/employees/:employeeID",
     element: <SingleEmployeeContainer />,
   },
   {

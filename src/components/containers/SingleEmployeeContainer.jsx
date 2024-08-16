@@ -12,21 +12,37 @@ function SingleEmployeeContainer(){
   const tasks = useSelector(state => state.tasks);
   const employees = useSelector((state) => state.employees);
   
-  //hard coded rn cuz it's not working yet
-  const employee_kyle = employees.find(emp => emp.id === 1);
-  
   const dispatch = useDispatch();
 
+  let { employeeID } = useParams(); //get id from URL
+  employeeID = parseInt(employeeID); //convert to integer
+
+
+  let employee = useSelector(state =>
+    state.employees.find(employee => employee.id === employeeID)
+  );
+
+  //hard coded rn cuz it's not working yet
+  const employee_kyle = employees.find(emp => emp.id === 1);
+
+  const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
-    dispatch(fetchEmployees());
-    dispatch(fetchTasks());
-  }, [dispatch]);
+    if (!employee){
+      console.log("asdfasdf")
+      console.log(employeeID, employee)
+      dispatch(fetchEmployees());
+      dispatch(fetchTasks());
+    } else if (!isLoaded){
+      console.log("test")
+      setFormData(employee)
+      setIsLoaded(true)
+    }
 
-  const employeefiltered = employees.filter((employee) => employee.id == param.emplId)
+  }, [dispatch, employee]);
 
-  let employee = employeefiltered[0];
 
-  const [newEntry, setNewEntry] = useState(employeefiltered.length == 0 ? true : false)
+  const [newEntry, setNewEntry] = useState(false)
   
   // this is if we want to highlight the save button if changes are made (optional and not implemented yet)
   const [changeMade, setChangeMade] = useState(false)
@@ -46,15 +62,16 @@ function SingleEmployeeContainer(){
   const [formData, setFormData] = useState(
     // This was to prevent page refresh crashing
     (employee == undefined) ? {
-      first_name: "",
-      last_name: "",
+      id: 0,
+      firstname: "",
+      lastname: "",
       department: "",
       tasks: [],
     } :
     {
       id: employee.id,
-      first_name: employee.first_name,
-      last_name: employee.last_name,
+      firstname: employee.first_name,
+      lastname: employee.last_name,
       department: employee.department,
       tasks: employee.tasks,
     }

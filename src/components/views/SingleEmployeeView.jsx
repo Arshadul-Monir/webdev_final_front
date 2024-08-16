@@ -28,8 +28,8 @@ export default function SingleEmployeeView({empl, dispactchType,
 {
   function ValidateWarningText(){
     // document.getElementsByClassName("nav-button").disabled = true;
-    const check1 = (formData.first_name == "")
-    const check2 = (formData.last_name == "")
+    const check1 = (formData.firstname == "")
+    const check2 = (formData.lastname == "")
     if (changeMade && check1 && check2 ){
       return <div className="text-red-600"> Must Enter First and Last name</div>
     } else if (changeMade && check1){
@@ -42,7 +42,10 @@ export default function SingleEmployeeView({empl, dispactchType,
   }
 
   function BackOrSaveBtn(){
-    if (changeMade){
+    const check1 = (formData.firstname == "")
+    const check2 = (formData.lastname == "")
+
+    if (changeMade && !( check1 || check2) ){
       return (   
  
         <Link type="button" className="nav-button" onClick={dispactchType} to={"/employees"}>
@@ -86,7 +89,7 @@ export default function SingleEmployeeView({empl, dispactchType,
                 <div><label className="pl-[4px]" >Id</label></div>
                 <div>
                   <p style={{textAlign:"left", paddingLeft:"50px"}}> 
-                      {(!employee.id)? "New Employee!" : `Edit Employee ${employee.id}!`}
+                      {(!newEntry)? "New Employee!" : `Edit Employee ${employee.id}!`}
                   </p>
                 </div>
               </div>
@@ -100,10 +103,13 @@ export default function SingleEmployeeView({empl, dispactchType,
                   name="department" />
                 </div></div>
 
+                {(newEntry) ? <div></div> :                 
                 <Link className="nav-button" to={"/employees"} 
-                onClick={(!employee.id)? () => null : deleteEmployee(employee.id)}>
-                  {(!employee.id)? "Cancel?" : `Delete Employee ${employee.id}?`}
+                  onClick={(!formData.id)? () => null : deleteEmployee(formData.id)}>
+                  {(!formData.id)? "Cancel?" : `Delete Employee ${formData.id}?`}
                 </Link>
+                }
+
             </div>
             
             <div className="forumRow">
