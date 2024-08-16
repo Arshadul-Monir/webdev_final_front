@@ -7,7 +7,7 @@ export default function AssignmentTable({
 }) 
 {
     const availableTasks = tasks.filter(task => !task.employee && !task.isComplete);
-    const employeeTasks = employee.tasks;
+    const employeeTasks = (employee) ? employee.tasks : [];
     
     function assign(task){
         console.log("assign");
