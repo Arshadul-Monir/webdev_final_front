@@ -22,9 +22,6 @@ function SingleEmployeeContainer(){
     state.employees.find(employee => employee.id === employeeID)
   );
 
-  //hard coded rn cuz it's not working yet
-  const employee_kyle = employees.find(emp => emp.id === 1);
-
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -115,7 +112,6 @@ function SingleEmployeeContainer(){
           //AssignmentTable stuff
         dispatch={dispatch}
         tasks={tasks}
-        employee_kyle = {employee_kyle}
     />
 }
 

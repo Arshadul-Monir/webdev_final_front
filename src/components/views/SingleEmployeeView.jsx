@@ -22,7 +22,6 @@ export default function SingleEmployeeView({empl, dispactchType,
   newEntry,
   tasks,
   dispatch,
-  employee_kyle
 
 })
 {
@@ -61,17 +60,12 @@ export default function SingleEmployeeView({empl, dispactchType,
     }
   }
 
-  function AssignmentTableOrNew(){
-    if  (newEntry){
-      return (<div></div>)
-    } else {
-      <AssignmentTable
-      employee={employee} // fyi Kyle, if you are reading this I'm removing ur hard coded employee
-      tasks={tasks}
-      dispatch={dispatch}
-      ></AssignmentTable>
-    }
-  }
+  const assignmentTable = (newEntry) ? (<div></div>) :
+  (<AssignmentTable
+    employee={employee} // fyi Kyle, if you are reading this I'm removing ur hard coded employee
+    tasks={tasks}
+    dispatch={dispatch}
+    ></AssignmentTable>);
   
   return(
     <div className="h-screen w-full flex justify-center ">
@@ -138,7 +132,7 @@ export default function SingleEmployeeView({empl, dispactchType,
             </div>
           </div>
 
-
+          {assignmentTable}
       </div>
     </div>
   );
