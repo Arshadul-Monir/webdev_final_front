@@ -1,22 +1,33 @@
 import { editTask } from "../../store/tasksSlice";
+import { useEffect, useState } from 'react'
+
+
 
 export default function AssignmentTable({
     employee,
     tasks = [],
-    dispatch
+    dispatch,
+
+    // KYLE this is what im adding
+    availableTasks,
+    employeeTasks,
+    handleTasksChange,
+
 }) 
 {
-    const availableTasks = tasks.filter(task => !task.employee && !task.isComplete);
-    const employeeTasks = employee.tasks;
-    
+
     function assign(task){
         console.log("assign");
+        handleTasksChange(true, task);
         dispatch(editTask({...task,employeeId: employee.id}));
+
     } 
 
     function unassign(task){
         console.log("unassign");
-        dispatch(editTask({...task,employeeId: null}));
+        handleTasksChange(false, task);
+        dispatch(editTask({...task,employeeId: null})); // This will change the backend
+
     } 
 
     console.log(employee);

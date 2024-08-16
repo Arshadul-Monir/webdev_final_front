@@ -20,9 +20,12 @@ export default function SingleEmployeeView({empl, dispactchType,
 
   //AssignmentTable stuff
   newEntry,
-  tasks,
+  tasks, // These are the load'd tasks 
   dispatch,
-  employee_kyle
+  employee_kyle, // Not being used
+  availableTasks,
+  employeeTasks,
+  handleTasksChange,
 
 })
 {
@@ -62,14 +65,22 @@ export default function SingleEmployeeView({empl, dispactchType,
   }
 
   function AssignmentTableOrNew(){
+    // console.log("Assigment Table being loaded:" , !newEntry)
     if  (newEntry){
       return (<div></div>)
     } else {
-      <AssignmentTable
-      employee={employee} // fyi Kyle, if you are reading this I'm removing ur hard coded employee
-      tasks={tasks}
-      dispatch={dispatch}
-      ></AssignmentTable>
+      return (
+        <AssignmentTable
+        employee={employee} // fyi Kyle, if you are reading this I'm removing ur hard coded employee
+        tasks={tasks}
+        dispatch={dispatch}
+
+        // KYLEEEEE
+        availableTasks={availableTasks}
+        employeeTasks = {employeeTasks}
+        handleTasksChange = {handleTasksChange}
+        ></AssignmentTable>
+      )
     }
   }
   
@@ -89,7 +100,8 @@ export default function SingleEmployeeView({empl, dispactchType,
                 <div><label className="pl-[4px]" >Id</label></div>
                 <div>
                   <p style={{textAlign:"left", paddingLeft:"50px"}}> 
-                      {(!newEntry)? "New Employee!" : `Edit Employee ${employee.id}!`}
+                    {/* To prevent refresh crashing */}
+                      {((!employee) || newEntry) ? "New Employee!" : `Edit Employee ${employee.id}!`}
                   </p>
                 </div>
               </div>
@@ -137,8 +149,8 @@ export default function SingleEmployeeView({empl, dispactchType,
               </div>
             </div>
           </div>
-
-
+        
+        <AssignmentTableOrNew/>
       </div>
     </div>
   );

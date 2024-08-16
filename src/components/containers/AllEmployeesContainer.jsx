@@ -2,6 +2,7 @@ import AllEmployeesView from "../views/AllEmployeesView";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchEmployees } from "../../store/employeesSlice";
+import { fetchTasks } from "../../store/tasksSlice";
 
 function AllEmployeesContainer() {
     const employees = useSelector((state) => state.employees);
@@ -11,6 +12,7 @@ function AllEmployeesContainer() {
 
     useEffect(() => {
         dispatch(fetchEmployees());
+        dispatch(fetchTasks()); // This is needed for Kyle's Table
 
         // My lazy way of making sure new info is not missed without doing a 
         // real frontend data update function.

@@ -30,7 +30,7 @@ function NewTaskContainer() {
     // This was to prevent page refresh crashing 
     {
       // id: 0,
-      priority: "",
+      priority: "Low",
       description: "",
       employeeId: null,
       employee: null,

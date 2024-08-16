@@ -25,21 +25,54 @@ function SingleEmployeeContainer(){
   //hard coded rn cuz it's not working yet
   const employee_kyle = employees.find(emp => emp.id === 1);
 
+  const [tasksLoad, setTasksLoad] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+
+
+
+  // KYLEEEEEE
+  const [availableTasks, setAvailableTasks] = useState((employee) ? tasks.filter(task => !task.employee && !task.isComplete): []);
+  const [employeeTasks, setEmployeeTasks] = useState((employee) ? employee.tasks : []);
+
+
+  function handleTasksChange( addOrRemove, task){
+    // Add will be true
+    if (addOrRemove){
+      setEmployeeTasks(employeeTasks => [...employeeTasks, task] )
+      setAvailableTasks( availableTasks => availableTasks.filter(t => t.id !== task.id ))
+    } else { // removing
+      setEmployeeTasks(employeeTasks => employeeTasks.filter(t => t.id !== task.id ))
+      setAvailableTasks( availableTasks => [...availableTasks, task] )
+    }
+    dispatch(fetchTasks());
+    setIsLoaded(false);
+  }
+
 
   useEffect(() => {
     if (!employee){
-      console.log("asdfasdf")
+      // console.log("asdfasdf")
       console.log(employeeID, employee)
       dispatch(fetchEmployees());
       dispatch(fetchTasks());
     } else if (!isLoaded){
-      console.log("test")
+      // console.log("test")
       setFormData(employee)
+      setTasksLoad(tasks)
+      setAvailableTasks(tasks.filter(task => !task.employee && !task.isComplete));
+      setEmployeeTasks(employee.tasks);
       setIsLoaded(true)
     }
 
   }, [dispatch, employee]);
+
+  
+
+  useEffect(() => {
+    // dispatch(fetchEmployees());
+    // dispatch(fetchTasks());
+
+  }, [availableTasks, employeeTasks]);
 
 
   const [newEntry, setNewEntry] = useState(false)
@@ -113,9 +146,17 @@ function SingleEmployeeContainer(){
           changeMade={changeMade}
 
           //AssignmentTable stuff
-        dispatch={dispatch}
-        tasks={tasks}
-        employee_kyle = {employee_kyle}
+          newEntry={newEntry}
+          dispatch={dispatch}
+          tasks={tasksLoad}
+          employee_kyle = {employee_kyle}
+          // Kyle these 4 are mines
+          availableTasks= {availableTasks}
+          employeeTasks = {employeeTasks}
+          handleTasksChange= {handleTasksChange}
+          // setAvailableTasks = {setAvailableTasks}
+          // setEmployeeTasks = {setEmployeeTasks}
+
     />
 }
 
