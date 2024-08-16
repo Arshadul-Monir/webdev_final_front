@@ -20,5 +20,5 @@ npm run dev
 
 
 
-I hope this helps
-![alt text](https://github.com/Arshadul-Monir/webdev_final_front/blob/main/src/readmeImage.png?raw=true)
+I hope this helps 
+![alt text](https://raw.githubusercontent.com/Arshadul-Monir/webdev_final_front/main/src/assets/readmeImage.png)
