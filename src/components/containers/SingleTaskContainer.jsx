@@ -12,7 +12,6 @@ function SingleTaskContainer() {
   const tasks = useSelector(state => state.tasks);
   const employees = useSelector((state) => state.employees);
   
-  // console.log(tasks);
   const dispatch = useDispatch();
 
   let { taskId } = useParams(); //get id from URL
@@ -78,11 +77,13 @@ function SingleTaskContainer() {
   // let task = taskfiltered[0]
   // console.log("Printing task", task)
 
+
   // We are spliting SingleEmployeeContainers to two files due to a bug.
   const [newEntry, setNewEntry] = useState(false)
   
   // this is if we want to highlight the save button if changes are made (optional and not implemented yet)
   const [changeMade, setChangeMade] = useState(false)
+
 
   // Validations
   // NO LONGER NEEDED HERE
@@ -90,6 +91,7 @@ function SingleTaskContainer() {
   // const orignalID = (param.taskId == "new" ? 0 : onLoadId);
   // const [idValid, setIdValid] = useState((param.taskId == "new" ? false : true))
   // const [descriptionValid, setDescriptionValid] = useState(false)
+
 
 
     function handleFormChange(event){
@@ -114,7 +116,6 @@ function SingleTaskContainer() {
     }
   
     const dispactchType = (newEntry == true) ? () => dispatch(addTask(formData)) : () => dispatch(editTask(formData));
-    // const dispactchType = () => dispatch(editTask(formData));
 
 
   // if (!isLoaded) return <h2>Loading... or maybe you do not have access to this post.</h2>
@@ -126,7 +127,9 @@ function SingleTaskContainer() {
           tasks = {tasks} // we prob don't need this one, if i was better at coding. 
           employees = {employees}
           dispactchType={dispactchType} 
+
           deleteTask={() => dispatch(deleteTask(task))}
+
 
           formData={formData}
           setFormData={setFormData} // This is actually not being used

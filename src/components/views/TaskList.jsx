@@ -10,10 +10,11 @@ export default function TaskList({pTasks = [], dispatch})
 
     const listedTasks = [].concat(pTasks).sort((a,b) => a.id < b.id ? 1 : -1).map((task) => (
         <div 
-            className="task-list-row"
+            className="list-row"
             key={task.id}
         >
                 <div id={"task-"+task.id} 
+
                     className="task-info-col"
                     
                 >
@@ -22,9 +23,10 @@ export default function TaskList({pTasks = [], dispatch})
                     <p onClick={()=>{clickRow(task.id)}}>{task.description}</p>
                     <p onClick={()=>{clickRow(task.id)}}>{task.isComplete? "Y" : "N"}</p>
                     <p>{(task.employee)? <div onClick={()=>{clickEmployee(task.employee.id)}}> {task.employee.firstname+ " " +task.employee.lastname} </div>: "N/A"}</p>
+
                 </div>
 
-                <div className="task-remove-col"
+                <div className="remove-col"
                     onClick={() => dispatch(deleteTask(task.id))}>
                 
                     <p className="remove-data">X</p>
@@ -47,11 +49,11 @@ export default function TaskList({pTasks = [], dispatch})
     if(pTasks.length > 0)
     {
             return(
-            <div className = "task-list">
+            <div className = "list">
                 <p className="table-caption">
                         Task List
                 </p>
-                <div className="task-list-row task-list-header"
+                <div className="list-row list-header"
                     //style={{color:'black', display:'grid', gridTemplateColumns: 'auto 70px', gap:'100px'}}
                 >
                         <div className="header-info-col">
@@ -75,11 +77,11 @@ export default function TaskList({pTasks = [], dispatch})
     }
     else{
         return(
-            <div className = "task-list">
+            <div className = "list">
                 <p className="table-caption">
                         Task List
                 </p>
-                <div className="task-list-row task-list-header"
+                <div className="list-row list-header"
                     //style={{color:'black', display:'grid', gridTemplateColumns: 'auto 70px', gap:'100px'}}
                 >
                         <div className="header-info-col">
