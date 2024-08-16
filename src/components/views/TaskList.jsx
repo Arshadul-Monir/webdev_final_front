@@ -15,13 +15,13 @@ export default function TaskList({pTasks = [], dispatch})
         >
                 <div id={"task-"+task.id} 
                     className="task-info-col"
-                    onClick={()=>{clickRow(task.id)}}
+                    
                 >
-                    <p>{task.id}</p>
-                    <p>{task.priority}</p>
-                    <p>{task.description}</p>
-                    <p>{task.isComplete? "Y" : "N"}</p>
-                    <p>{(task.employee)? task.employee.firstname+ " " +task.employee.lastname : "N/A"}</p>
+                    <p onClick={()=>{clickRow(task.id)}}>{task.id}</p>
+                    <p onClick={()=>{clickRow(task.id)}}>{task.priority}</p>
+                    <p onClick={()=>{clickRow(task.id)}}>{task.description}</p>
+                    <p onClick={()=>{clickRow(task.id)}}>{task.isComplete? "Y" : "N"}</p>
+                    <p>{(task.employee)? <div onClick={()=>{clickEmployee(task.employee.id)}}> {task.employee.firstname+ " " +task.employee.lastname} </div>: "N/A"}</p>
                 </div>
 
                 <div className="task-remove-col"
@@ -36,6 +36,11 @@ export default function TaskList({pTasks = [], dispatch})
     {
         //console.log("rah");
         const newURL = `/tasks/${id}`;
+        navigate(newURL);
+    }
+
+    function clickEmployee(id){
+        const newURL = `/employees/${id}`;
         navigate(newURL);
     }
 

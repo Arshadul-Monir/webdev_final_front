@@ -44,7 +44,8 @@ export default function SingleTaskView({
   }
 
   function BackOrSaveBtn(){
-    if (changeMade){
+    const check1 = (formData.description.length == "")
+    if (changeMade &&  !check1){
       return (   
  
         <Link type="button" className="nav-button" onClick={dispactchType} to={"/tasks"}>
