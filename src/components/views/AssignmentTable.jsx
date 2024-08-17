@@ -17,20 +17,20 @@ export default function AssignmentTable({
 {
 
     function assign(task){
-        console.log("assign");
+        // console.log("assign");
         handleTasksChange(true, task);
         dispatch(editTask({...task,employeeId: employee.id}));
 
     } 
 
     function unassign(task){
-        console.log("unassign");
+        // console.log("unassign");
         handleTasksChange(false, task);
         dispatch(editTask({...task,employeeId: null})); // This will change the backend
 
     } 
 
-    console.log(employee);
+    // console.log(employee);
     if(!employee)
     {
         return(<div></div>);
@@ -67,7 +67,7 @@ function TaskTable({
     tasks = [],
     right = true,
     employee,
-    operation=() => console.log("rah")
+    // operation=() => console.log("rah")
 })
 {
 

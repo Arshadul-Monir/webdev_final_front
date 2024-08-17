@@ -1,4 +1,4 @@
-import { Link, useNavigate,useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate,useParams } from "react-router-dom";
 import "./Table.css"
 
 import { useSelector, useDispatch  } from "react-redux";
@@ -18,17 +18,10 @@ export default function SingleTaskView({
   handleFormChange,
   handleFormChangeNumber,
 
-  // Validation Related
   changeMade
 
 })
 {
-
-  // console.log("On single Task view", task)
-  // console.log("form data", formData)
-  // console.log(tasks)
-  // console.log(employees)
-
   function ValidateWarningText(){
     const check1 = (formData.description.length == "")
     const check2 = (formData.employeeId == null)
@@ -45,18 +38,19 @@ export default function SingleTaskView({
 
   function BackOrSaveBtn(){
     const check1 = (formData.description.length == "")
+    const navigate = useNavigate();
     if (changeMade &&  !check1){
-      return (   
- 
-        <Link type="button" className="nav-button" onClick={dispactchType} to={"/tasks"}>
+      return (
+      
+        <div type="button" className="nav-button" onClick={() => {navigate(-1); dispactchType();}}>
           Save 
-        </Link>
+        </div>
       )
     } else {
       return (
-        <Link type="button" className="nav-button" to={"/tasks"}>
+        <div type="button" className="nav-button" onClick={() => navigate(-1)}>
         Back 
-      </Link>
+      </div>
       )
     }
   }
@@ -157,23 +151,4 @@ export default function SingleTaskView({
       </div>
     </div>
   );
-}
-
-
-
-function Validate(idObj){
-  const iddiv = (idObj.idValid == true) ?( <div></div> ) : (<div> ID not valid </div>)
-
-  return ( 
-        <div>
-          <ValidateIDDiv obj = {idObj}></ValidateIDDiv>
-        </div>
-  )
-
-}
-
-function ValidateIDDiv(idObj){
-  const iddiv = (idObj.idValid == true) ?( <div></div> ) : (<div> ID not valid </div>)
-
-  return (iddiv)
 }
