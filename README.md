@@ -26,6 +26,6 @@ ersg
 ![alt text](https://raw.githubusercontent.com/Arshadul-Monir/webdev_final_front/main/src/assets/AssignTable.png)
 
 
-Jason Jordan
+Jason Akira Jordan
 Kyle R. Bautista
 Arshadul Faheem Monir
