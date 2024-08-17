@@ -137,6 +137,8 @@ export default function SingleTaskView({
                     })}
                   </select>
                 </div>
+                <Link type="button" className="nav-button" to={(formData.employeeId)?"/employees/"+formData.employeeId:"/tasks"} style={{width : '10px', padding : '20px'}}>
+                {(formData.employeeId)?"->":"X"}    </Link>
               </div>
 
               <div className="forumDiv">
