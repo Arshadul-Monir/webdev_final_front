@@ -1,7 +1,7 @@
 import { editTask } from "../../store/tasksSlice";
 import { useEffect, useState } from 'react'
 
-
+import "./assign.css"
 
 export default function AssignmentTable({
     employee,
@@ -61,6 +61,8 @@ export default function AssignmentTable({
     }
 }
 
+import { useNavigate } from "react-router-dom";
+
 function TaskTable({
     tasks = [],
     right = true,
@@ -68,7 +70,16 @@ function TaskTable({
     operation=() => console.log("rah")
 })
 {
-    
+
+const navigate = useNavigate();
+
+function clickRow(id)
+{
+    //console.log("rah");
+    const newURL = `/tasks/${id}`;
+    navigate(newURL);
+}
+
 
 const tableStyle = (!right)?{
     gridTemplateColumns:"auto 25px",
@@ -125,7 +136,9 @@ const header = (
                 {right &&
                 <div>
                 
-                    <p>{"<-"}</p>
+                    <p className="ass"
+                       onClick={() => operation(task)} 
+                    >{"<-"}</p>
                 </div>}
 
                 <div id={"task-"+task.id} 
@@ -134,7 +147,7 @@ const header = (
                         gridTemplateColumns:"1fr 2fr 5fr",
                         gap:"10px",
                     }}
-                    onClick={() => operation(task)}
+                    onClick={()=>{clickRow(task.id)}}
                 >
                     <p>{task.id}</p>
                     <p>{task.priority}</p>
@@ -144,7 +157,9 @@ const header = (
                 {!right &&
                 <div>
                 
-                    <p>{"->"}</p>
+                    <p className="ass"
+                        onClick={() => operation(task)}
+                    >{"->"}</p>
                 </div>}
         </div>
     ));

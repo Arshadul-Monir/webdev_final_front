@@ -1,0 +1,9 @@
+.ass{
+    border-radius: 15px;
+
+    transition: all 100ms ease-in-out;
+}
+
+.ass:hover{
+    background-color: rgba(128, 128, 128, 0.283);
+}
