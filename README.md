@@ -22,3 +22,10 @@ npm run dev
 
 I hope this helps 
 ![alt text](https://raw.githubusercontent.com/Arshadul-Monir/webdev_final_front/main/src/assets/readmeImage.png)
+ersg
+![alt text](https://raw.githubusercontent.com/Arshadul-Monir/webdev_final_front/main/src/assets/AssignTable.png)
+
+
+Jason Jordan
+Kyle R. Bautista
+Arshadul Faheem Monir
