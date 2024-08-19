@@ -1,5 +1,6 @@
-# React + Vite
-
+# CSCI 39548 - Final Project Frontend
+## This was the default React ReadMe stuff :
+### I dont know if I can remove this but the due date passed and I don't wanna change **too** much without telling my group members so this stays here -kyle  
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
@@ -9,23 +10,31 @@ Currently, two official plugins are available:
 
 
 
-### Hi Friends remember to do the following below to run
+## Setup Instructions  
+Hi Friends remember to do the following below to run
 
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
+ ```bash
+    npm install -D tailwindcss postcss autoprefixer
+    npx tailwindcss init -p
+    
+    npm install
+    
+    npm run dev
+   ```
+  
 
-npm install
-
-npm run dev
-
-
-
+## Reference UI/UX Instructions
 I hope this helps 
 ![alt text](https://raw.githubusercontent.com/Arshadul-Monir/webdev_final_front/main/src/assets/readmeImage.png)
 ersg
 ![alt text](https://raw.githubusercontent.com/Arshadul-Monir/webdev_final_front/main/src/assets/AssignTable.png)
 
+## Credits and Links:  
+### Collaborators
+- Jason Akira Jordan : [JasonAJordan](https://github.com/JasonAJordan)  
+- Kyle R. Bautista : [KymaiselHunter](https://github.com/KymaiselHunter)
+- Arshadul Faheem Monir : [Arshadul-Monir](https://github.com/Arshadul-Monir)
 
-Jason Akira Jordan (GitHub: JasonAJordan)
-Kyle R. Bautista (GitHub: KymaiselHunter)
-Arshadul Faheem Monir (GitHub: Arshadul-Monir)
+### Repository Links
+- [FrontEnd](https://github.com/Arshadul-Monir/webdev_final_front)  
+- [BackEnd](https://github.com/arshadul-Monir/webdev_final_back)
